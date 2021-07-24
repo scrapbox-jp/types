@@ -1,3 +1,6 @@
+// utilities
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 /** scrapboxの行のメタデータ */
 export interface Line {
   /** 行のid */ id: string;
@@ -26,6 +29,15 @@ export interface User {
   /** user name */ name: string;
   /** user display name */ displayName: string;
   /** profile image URL */ photo: string;
+}
+
+/** user detailed information */
+export interface UserInfo extends User {
+  /** user e-mail */ email: string;
+  /** whether the user is a pro user or not */ pro: boolean;
+  /** login provider */ provider: "google" | "microsoft" | "email";
+  /** accountの作成日時 */ created: number;
+  /** accountの更新日時 */ updated: number;
 }
 
 /** summary of page information */
@@ -77,3 +89,52 @@ export interface PageListResponse {
   /** projectの全ページ数 (中身のないページを除く) */ count: number;
   /** 取得できたページ情報 */ pages: PageSummary[];
 }
+
+/** project basic information */
+export interface Project {
+  id: string;
+  name: string;
+  displayName: string;
+  publicVisible: boolean;
+  loginStrategies: string[];
+  theme: string;
+  gyazoTeamsName: string | null;
+  googleAnalyticsCode: string | null;
+  image?: string;
+  created: number;
+  updated: number;
+  isMember: boolean;
+  plan?: string;
+}
+
+export type NotMemberError = {
+  name: "NotMemberError";
+  message: string;
+};
+
+export type NotFoundError = {
+  name: "NotFoundError";
+  message: string;
+};
+
+/** the response type of https://scrpabox.io/api/projects/:projectname */
+export type ProjectResponse =
+  | NotFoundError
+  | NotMemberError
+  | (
+    & Omit<Omit<Project, "isMember">, "plan">
+    & ({ isMember: false } | {
+      isMember: true;
+      plan?: string | null;
+      users: UserInfo[];
+      admins: string[];
+      owner: string;
+      trialing: boolean;
+      trialMaxPages: number;
+      skipPayment: boolean;
+      uploadFileTo: "gcs";
+      uploadImaegTo: "gyazo" | "gcs";
+      emailAddressPatterns: string[];
+      backuped: number | null;
+    })
+  );
