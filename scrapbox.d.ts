@@ -28,11 +28,14 @@ export interface User {
   /** profile image URL */ photo: string;
 }
 
-/** page information */
-export interface Page {
+/** summary of page information */
+export interface PageSummary {
   /** ページのid */ id: string;
   /** ページのタイトル */ title: string;
-  /** ページのサムネイル画像 */ image: string;
+  /** ページのサムネイル画像
+   * 存在しなければ`null`
+  */
+  image: string | null;
   /** ページのサムネイル本文。最大5行 */ descriptions: string[];
   /** ピン留めされていたら1, されていなかったら0 */ pin: 0 | 1;
   /** ページの閲覧回数 */ views: number;
@@ -41,12 +44,16 @@ export interface Page {
   /** ページの作成日時 */ created: number;
   /** ページの最終更新日時 */ updated: number;
   /** Date last visitedに使われる最終アクセス日時 */ accessed: number;
+  /** page rank */ pageRank: number;
+  /** Page historyの最終生成日時 */ snapshotCreated: number | null;
+}
+
+/** page information */
+export interface Page extends PageSummary {
   /** APIを叩いたuserの最終アクセス日時。おそらくこの値を元にテロメアの未読/既読の判別をしている */ lastAccessed:
     | number
     | null;
-  /** Page historyの最終生成日時 */ snapshotCreated: number | null;
   /** 生成されたPage historyの数 */ snapshotCount: number;
-  /** page rank */ pageRank: number;
   /** 不明。削除されたページだとfalse？ */ persistent: boolean;
   /** ページの行情報 */ lines: Line[];
   /** ページ内のリンク */ links: string[];
@@ -62,26 +69,8 @@ export interface Page {
   /** ページを編集したユーザーのうち、`user`以外の人 */ collaborators: User[];
 }
 
-/** summary of page information */
-export interface PageSummary {
-  id: string;
-  title: string;
-  image: string | null;
-  descriptions: string[];
-  user: { id: string };
-  /** ピン留めされていたら1, されていなかったら0 */ pin: 0 | 1;
-  views: number;
-  linked: number;
-  commitId: string;
-  created: number;
-  updated: number;
-  accessed: number;
-  snapshotCreated: number | null;
-  pageRank: number;
-}
-
 /** the response type of https://scrpabox.io/api/pages/:projectname */
-export interface ProjectResponse {
+export interface PageListResponse {
   /** data取得先のproject名 */ projectName: string;
   /** parameterに渡したskipと同じ */ skip: number;
   /** parameterに渡したlimitと同じ */ limit: number;
