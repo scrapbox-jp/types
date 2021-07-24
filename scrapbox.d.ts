@@ -153,3 +153,18 @@ export type UserResponse =
       emacsBinding: boolean;
     };
   } & UserInfo);
+
+/** the response type of https://scrapbox.io/api/pages/:projectname/search/titles */
+export type LinksResponse =
+  | NotFoundError
+  | NotMemberError
+  | {
+    message: "Invalid pageId";
+  }
+  | {
+    /** page id */ id: string;
+    /** page title */ title: string;
+    /** 画像が存在するかどうか */ hasIcon: boolean;
+    /** ページの更新日時 */ updated: number;
+    /** ページ内のリンク */ links: string[];
+  }[];
