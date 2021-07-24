@@ -138,3 +138,18 @@ export type ProjectResponse =
       backuped: number | null;
     })
   );
+
+/** the response type of https://scrapbox.io/api/users/me */
+export type UserResponse =
+  | {
+    isGuest: true;
+    csrfToken: string;
+  }
+  | ({
+    isGuest: false;
+    csrfToken: string;
+    config: {
+      userScript: boolean;
+      emacsBinding: boolean;
+    };
+  } & UserInfo);
