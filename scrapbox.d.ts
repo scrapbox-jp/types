@@ -23,6 +23,14 @@ export type Scrapbox =
         },
       ) => void;
     };
+    PageMenu: ((name: string) => PageMenu) & {
+      addMenu: (
+        props: { title: string; image: string; onClick?: () => void },
+      ) => void;
+      addItem: (props: AddItemProps) => void;
+      addSeparator: () => void;
+      removeAllItems: () => void;
+    };
     addListener: (type: string, listener: () => void) => void;
     on: (type: string, listener: () => void) => void;
     removeListener: (type: string, listener: () => void) => void;
@@ -89,6 +97,30 @@ export type ParsedLine = {
 type TimeStamp = {
   addFormat: (format: string | (() => string)) => void;
   removeAllFormat: () => void;
+};
+
+type AddItemProps = {
+  title: string | (() => string);
+  image?: string;
+  onClick: () => void;
+};
+type PageMenu = {
+  addItem: (
+    props: AddItemProps,
+  ) => void;
+  addSeparator: () => void;
+  removeAllItems: () => void;
+  menuName: string;
+  reset: () => void;
+  emitChange: () => void;
+  menus: Map<
+    string,
+    {
+      image: string | null;
+      onClick?: () => void;
+      items: (AddItemProps & { separator: boolean })[];
+    }
+  >;
 };
 
 export type eventName =
