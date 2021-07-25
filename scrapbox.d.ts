@@ -72,7 +72,19 @@ export type PageBrief = {
   updated: number;
 };
 
-export type ParsedLine = {};
+export type ParsedLine = {
+  text: string;
+  id: string;
+  userId: string;
+  updated: number;
+  created: number;
+  section: {
+    number: number;
+    start: boolean;
+    end: boolean;
+  };
+  title?: boolean;
+};
 
 type TimeStamp = {
   addFormat: (format: string | (() => string)) => void;
