@@ -172,6 +172,31 @@ export type LinksResponse =
     /** ページ内のリンク */ links: string[];
   }[];
 
+export type ProjectBackup = {
+  name: string;
+  displayName: string;
+  exported: number;
+  pages: {
+    id: string;
+    title: string;
+    created: number;
+    updated: number;
+    lines: string[];
+  };
+};
+export type ProjectBackupWithMetadata = {
+  name: string;
+  displayName: string;
+  exported: number;
+  pages: {
+    id: string;
+    title: string;
+    created: number;
+    updated: number;
+    lines: { text: string; updated: number; created: number }[];
+  };
+};
+
 export type Layout =
   | "list"
   | "page"
