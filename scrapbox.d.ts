@@ -1,3 +1,6 @@
+import type { ParsedLine } from "./line.d.ts";
+export * from "./line.d.ts";
+
 // utilities
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -277,20 +280,6 @@ export type PageBrief = {
   title: string;
   titleLc: string;
   updated: number;
-};
-
-export type ParsedLine = {
-  text: string;
-  id: string;
-  userId: string;
-  updated: number;
-  created: number;
-  section: {
-    number: number;
-    start: boolean;
-    end: boolean;
-  };
-  title?: boolean;
 };
 
 type TimeStamp = {
