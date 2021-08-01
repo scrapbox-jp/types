@@ -1,5 +1,5 @@
-import type { ParsedLine } from "./line.d.ts";
-export * from "./line.d.ts";
+import type { ParsedLine } from "./line.ts";
+export * from "./line.ts";
 
 // utilities
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
