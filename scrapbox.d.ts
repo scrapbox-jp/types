@@ -217,7 +217,7 @@ export type Scrapbox =
       pages: PageBrief[];
     };
     TimeStamp: TimeStamp;
-    PopupMenu?: {
+    PopupMenu: {
       addButton: (
         props: {
           title: string | ((selectedText: string) => string);
