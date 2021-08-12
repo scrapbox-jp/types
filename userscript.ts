@@ -1,4 +1,4 @@
-import { ParsedLine } from "./line.ts";
+import { ParsedLine } from "./userscript/blocks.ts";
 
 export type Layout =
   | "list"

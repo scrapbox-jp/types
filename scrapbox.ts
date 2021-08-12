@@ -1,5 +1,6 @@
 import { Omit } from "./utils.ts";
-export * from "./line.ts";
+export * from "./userscript/blocks.ts";
+export * from "./userscript/nodes.ts";
 
 /** scrapboxの行のメタデータ */
 export interface Line {
@@ -196,5 +197,3 @@ export type ProjectBackupWithMetadata = {
     lines: { text: string; updated: number; created: number }[];
   };
 };
-
-
