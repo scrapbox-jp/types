@@ -1,8 +1,6 @@
-import type { ParsedLine } from "./line.ts";
+import { ParsedLine } from "./line.ts";
+import { Omit } from "./utils.ts";
 export * from "./line.ts";
-
-// utilities
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 /** scrapboxの行のメタデータ */
 export interface Line {
