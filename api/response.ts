@@ -1,15 +1,6 @@
-import { Omit } from "./utils.ts";
-export * from "./userscript/blocks.ts";
-export * from "./userscript/nodes.ts";
-
-/** scrapboxの行のメタデータ */
-export interface Line {
-  /** 行のid */ id: string;
-  /** 行のテキスト */ text: string;
-  /** 一番最後に行を編集した人のid */ userId: string;
-  /** 行の作成日時 */ created: number;
-  /** 行の最終更新日時 */ updated: number;
-}
+import { Omit } from "../utils.ts";
+import { Line } from "../base.ts";
+import { NotFoundError, NotMemberError } from "./error.ts";
 
 /** 関連ページのメタデータ */
 export interface RelatedPage {
@@ -110,7 +101,6 @@ export interface Project {
   isMember: boolean;
   plan?: string;
 }
-
 
 /** the response type of https://scrpabox.io/api/projects/:projectname */
 export type ProjectResponse =
