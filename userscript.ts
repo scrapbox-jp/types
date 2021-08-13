@@ -73,14 +73,14 @@ export type Scrapbox =
     };
   });
 
-export type PageBrief = {
-  exists: boolean;
-  hasIcon?: boolean;
-  id: string;
-  title: string;
-  titleLc: string;
-  updated: number;
-};
+export interface PageBrief {
+  /** true when the page has contents */ exists: boolean;
+  /** whether the page contains any image */ hasIcon?: boolean;
+  /** the page id */ id: string;
+  /** the page title */ title: string;
+  /** the converted page title */ titleLc: string;
+  /** updated time */ updated: number;
+}
 
 type TimeStamp = {
   addFormat: (format: string | (() => string)) => void;
@@ -111,6 +111,7 @@ type PageMenu = {
   >;
 };
 
+/** built-in UserScript events */
 export type eventName =
   | "lines:changed"
   | "page:changed"

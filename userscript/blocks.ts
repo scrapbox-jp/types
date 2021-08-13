@@ -1,12 +1,9 @@
 import { Node, NodeWithoutIndent } from "./nodes.ts";
+import { Line } from "../base.ts";
 
 export type ParsedLine =
+  & Line
   & {
-    text: string;
-    id: string;
-    userId: string;
-    updated: number;
-    created: number;
     section: {
       number: number;
       start: boolean;
