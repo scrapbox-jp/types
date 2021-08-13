@@ -5,13 +5,13 @@ import {
   Page as PageBase,
   PageId,
   ProjectId,
+  StringLc,
   UserId,
 } from "../base.ts";
-import { NotFoundError, NotMemberError } from "./error.ts";
 
 /** 関連ページのメタデータ */
 export interface RelatedPage extends PageBase {
-  /** ページ内のリンク */ linksLc: string[];
+  /** ページ内のリンク */ linksLc: StringLc[];
   /** おそらく被リンク数 */ linked: number;
 }
 

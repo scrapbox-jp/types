@@ -1,4 +1,5 @@
 import { ParsedLine } from "./userscript/blocks.ts";
+import { StringLc } from "./base.ts";
 
 export type Layout =
   | "list"
@@ -78,7 +79,7 @@ export interface PageBrief {
   /** whether the page contains any image */ hasIcon?: boolean;
   /** the page id */ id: string;
   /** the page title */ title: string;
-  /** the converted page title */ titleLc: string;
+  titleLc: StringLc;
   /** updated time */ updated: number;
 }
 

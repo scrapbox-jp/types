@@ -33,3 +33,9 @@ export type CommitId = string;
 export type PageId = string;
 /** the project id */
 export type ProjectId = string;
+/** the formatted string
+ *
+ * format rule:
+ * - UPPER CASE -> upper_case
+ */
+export type StringLc = string;
