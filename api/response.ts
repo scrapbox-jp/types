@@ -129,7 +129,7 @@ export interface SearchedTitle {
   /** ページ内のリンク */ links: string[];
 }
 
-export type ProjectBackup = {
+export interface ProjectBackup {
   name: string;
   displayName: string;
   exported: number;
@@ -140,8 +140,8 @@ export type ProjectBackup = {
     updated: number;
     lines: string[];
   };
-};
-export type ProjectBackupWithMetadata = {
+}
+export interface ProjectBackupWithMetadata {
   name: string;
   displayName: string;
   exported: number;
@@ -152,4 +152,4 @@ export type ProjectBackupWithMetadata = {
     updated: number;
     lines: Omit<Line, "id" | "userId">[];
   };
-};
+}
