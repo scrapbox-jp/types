@@ -111,15 +111,6 @@ export interface Project {
   plan?: string;
 }
 
-export type NotMemberError = {
-  name: "NotMemberError";
-  message: string;
-};
-
-export type NotFoundError = {
-  name: "NotFoundError";
-  message: string;
-};
 
 /** the response type of https://scrpabox.io/api/projects/:projectname */
 export type ProjectResponse =
