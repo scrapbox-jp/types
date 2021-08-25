@@ -1,23 +1,23 @@
 import { Omit } from "../utils.ts";
-import { Line } from "../base.ts";
-import { NotFoundError, NotMemberError } from "./error.ts";
+import {
+  CommitId,
+  Line,
+  Page as PageBase,
+  PageId,
+  ProjectId,
+  StringLc,
+  UserId,
+} from "../base.ts";
 
 /** 関連ページのメタデータ */
-export interface RelatedPage {
-  /** ページのid */ id: string;
-  /** ページのタイトル */ title: string;
-  /** ページのタイトルを小文字にして、` `を`_`に変換したもの */ titleLc: string;
-  /** ページのサムネイル画像 */ image: string;
-  /** ページのサムネイル本文。最大5行 */ descriptions: string[];
-  /** ページ内のリンク */ linksLc: string[];
+export interface RelatedPage extends PageBase {
+  /** ページ内のリンク */ linksLc: StringLc[];
   /** おそらく被リンク数 */ linked: number;
-  /** ページの最終更新日時 */ updated: number;
-  /** おそらくページの閲覧日時 */ accessed: number;
 }
 
 /** user information */
 export interface User {
-  /** user id */ id: string;
+  id: UserId;
   /** user name */ name: string;
   /** user display name */ displayName: string;
   /** profile image URL */ photo: string;
@@ -33,21 +33,12 @@ export interface UserInfo extends User {
 }
 
 /** summary of page information */
-export interface PageSummary {
-  /** ページのid */ id: string;
-  /** ページのタイトル */ title: string;
-  /** ページのサムネイル画像
-   * 存在しなければ`null`
-  */
-  image: string | null;
-  /** ページのサムネイル本文。最大5行 */ descriptions: string[];
+export interface PageSummary extends PageBase {
   /** ピン留めされていたら1, されていなかったら0 */ pin: 0 | 1;
   /** ページの閲覧回数 */ views: number;
   /** おそらく被リンク数 */ linked: number;
-  /** 最新の編集コミットid */ commitId: string;
+  /** 最新の編集コミットid */ commitId: CommitId;
   /** ページの作成日時 */ created: number;
-  /** ページの最終更新日時 */ updated: number;
-  /** Date last visitedに使われる最終アクセス日時 */ accessed: number;
   /** page rank */ pageRank: number;
   /** Page historyの最終生成日時 */ snapshotCreated: number | null;
 }
@@ -74,20 +65,17 @@ export interface Page extends PageSummary {
 }
 
 /** the response type of https://scrpabox.io/api/pages/:projectname */
-export type PageListResponse =
-  | NotFoundError
-  | NotMemberError
-  | {
-    /** data取得先のproject名 */ projectName: string;
-    /** parameterに渡したskipと同じ */ skip: number;
-    /** parameterに渡したlimitと同じ */ limit: number;
-    /** projectの全ページ数 (中身のないページを除く) */ count: number;
-    /** 取得できたページ情報 */ pages: PageSummary[];
-  };
+export interface PageList {
+  /** data取得先のproject名 */ projectName: string;
+  /** parameterに渡したskipと同じ */ skip: number;
+  /** parameterに渡したlimitと同じ */ limit: number;
+  /** projectの全ページ数 (中身のないページを除く) */ count: number;
+  /** 取得できたページ情報 */ pages: PageSummary[];
+}
 
-/** project basic information */
-export interface Project {
-  id: string;
+/** project information which isn't joined */
+export interface NotMemberProject {
+  id: ProjectId;
   name: string;
   displayName: string;
   publicVisible: boolean;
@@ -98,83 +86,72 @@ export interface Project {
   image?: string;
   created: number;
   updated: number;
-  isMember: boolean;
-  plan?: string;
+  isMember: false;
 }
 
-/** the response type of https://scrpabox.io/api/projects/:projectname */
-export type ProjectResponse =
-  | NotFoundError
-  | NotMemberError
-  | (
-    & Omit<Omit<Project, "isMember">, "plan">
-    & ({ isMember: false } | {
-      isMember: true;
-      plan?: string | null;
-      users: UserInfo[];
-      admins: string[];
-      owner: string;
-      trialing: boolean;
-      trialMaxPages: number;
-      skipPayment: boolean;
-      uploadFileTo: "gcs";
-      uploadImaegTo: "gyazo" | "gcs";
-      emailAddressPatterns: string[];
-      backuped: number | null;
-    })
-  );
+/** project information which is joined */
+export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
+  isMember: true;
+  plan?: string | null;
+  users: UserInfo[];
+  admins: UserId[];
+  owner: UserId;
+  trialing: boolean;
+  trialMaxPages: number;
+  skipPayment: boolean;
+  uploadFileTo: "gcs";
+  uploadImaegTo: "gyazo" | "gcs";
+  emailAddressPatterns: string[];
+  backuped: number | null;
+}
+
+export interface GuestUser {
+  isGuest: true;
+  csrfToken: string;
+}
+
+export interface MemberUser extends UserInfo {
+  isGuest: false;
+  csrfToken: string;
+  config: {
+    userScript: boolean;
+    emacsBinding: boolean;
+  };
+}
 
 /** the response type of https://scrapbox.io/api/users/me */
-export type UserResponse =
-  | {
-    isGuest: true;
-    csrfToken: string;
-  }
-  | ({
-    isGuest: false;
-    csrfToken: string;
-    config: {
-      userScript: boolean;
-      emacsBinding: boolean;
-    };
-  } & UserInfo);
+export type UserResponse = GuestUser | MemberUser;
 
 /** the response type of https://scrapbox.io/api/pages/:projectname/search/titles */
-export type LinksResponse =
-  | NotFoundError
-  | NotMemberError
-  | {
-    message: "Invalid pageId";
-  }
-  | {
-    /** page id */ id: string;
-    /** page title */ title: string;
-    /** 画像が存在するかどうか */ hasIcon: boolean;
-    /** ページの更新日時 */ updated: number;
-    /** ページ内のリンク */ links: string[];
-  }[];
+export interface SearchedTitle {
+  id: PageId;
+  /** page title */ title: string;
+  /** 画像が存在するかどうか */ hasIcon: boolean;
+  /** ページの更新日時 */ updated: number;
+  /** ページ内のリンク */ links: string[];
+}
 
-export type ProjectBackup = {
+export interface ProjectBackup {
   name: string;
   displayName: string;
   exported: number;
   pages: {
-    id: string;
+    id: PageId;
     title: string;
     created: number;
     updated: number;
     lines: string[];
   };
-};
-export type ProjectBackupWithMetadata = {
+}
+export interface ProjectBackupWithMetadata {
   name: string;
   displayName: string;
   exported: number;
   pages: {
-    id: string;
+    id: PageId;
     title: string;
     created: number;
     updated: number;
-    lines: { text: string; updated: number; created: number }[];
+    lines: Omit<Line, "id" | "userId">[];
   };
-};
+}
