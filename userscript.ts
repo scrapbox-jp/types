@@ -35,7 +35,7 @@ export type Scrapbox =
       removeAllItems: () => void;
     };
   }
-  & UserScriptEvents
+  & UserScriptEventTarget
   & ({
     Layout:
       | "list"
@@ -60,8 +60,18 @@ export type Scrapbox =
     };
   });
 
-export interface UserScriptEvents {
+export interface UserScriptEventTarget {
+  /** Register an event listener to Scrapbox
+   *
+   * @param type the event type the event listener registers to
+   * @param the event listener
+   */
   addListener: (type: string, listener: () => void) => void;
+  /** Register an event listener to Scrapbox
+   *
+   * @param type the event type the event listener registers to
+   * @param the event listener
+   */
   on: (type: string, listener: () => void) => void;
   removeListener: (type: string, listener: () => void) => void;
   off: (type: string, listener: () => void) => void;
