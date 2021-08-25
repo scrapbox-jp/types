@@ -105,20 +105,22 @@ export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
   backuped: number | null;
 }
 
+export interface GuestUser {
+  isGuest: true;
+  csrfToken: string;
+}
+
+export interface MemberUser extends UserInfo {
+  isGuest: false;
+  csrfToken: string;
+  config: {
+    userScript: boolean;
+    emacsBinding: boolean;
+  };
+}
+
 /** the response type of https://scrapbox.io/api/users/me */
-export type UserResponse =
-  | {
-    isGuest: true;
-    csrfToken: string;
-  }
-  | ({
-    isGuest: false;
-    csrfToken: string;
-    config: {
-      userScript: boolean;
-      emacsBinding: boolean;
-    };
-  } & UserInfo);
+export type UserResponse = GuestUser | MemberUser;
 
 /** the response type of https://scrapbox.io/api/pages/:projectname/search/titles */
 export interface SearchedTitle {

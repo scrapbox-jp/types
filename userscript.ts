@@ -34,22 +34,8 @@ export type Scrapbox =
       addSeparator: () => void;
       removeAllItems: () => void;
     };
-    addListener: (type: string, listener: () => void) => void;
-    on: (type: string, listener: () => void) => void;
-    removeListener: (type: string, listener: () => void) => void;
-    off: (type: string, listener: () => void) => void;
-    removeAllListeners: (type?: string) => void;
-    once: (type: string, listener: () => void) => void;
-    prependListener: (type: string, listener: () => void) => void;
-    prependOnceListener: (type: string, listener: () => void) => void;
-    listeners: (type: string) => (() => void)[];
-    rawListeners: (type: string) => (() => void)[];
-    listenerCount: (type: string) => number;
-    emit: (type: string) => void;
-    eventNames: () => string[];
-    getMexListeners: () => number;
-    setMexListeners: (length: number) => void;
   }
+  & UserScriptEvents
   & ({
     Layout:
       | "list"
@@ -74,6 +60,23 @@ export type Scrapbox =
     };
   });
 
+export interface UserScriptEvents {
+  addListener: (type: string, listener: () => void) => void;
+  on: (type: string, listener: () => void) => void;
+  removeListener: (type: string, listener: () => void) => void;
+  off: (type: string, listener: () => void) => void;
+  removeAllListeners: (type?: string) => void;
+  once: (type: string, listener: () => void) => void;
+  prependListener: (type: string, listener: () => void) => void;
+  prependOnceListener: (type: string, listener: () => void) => void;
+  listeners: (type: string) => (() => void)[];
+  rawListeners: (type: string) => (() => void)[];
+  listenerCount: (type: string) => number;
+  emit: (type: string) => void;
+  eventNames: () => string[];
+  getMexListeners: () => number;
+  setMexListeners: (length: number) => void;
+}
 export interface PageBrief {
   /** true when the page has contents */ exists: boolean;
   /** whether the page contains any image */ hasIcon?: boolean;
@@ -83,20 +86,35 @@ export interface PageBrief {
   /** updated time */ updated: number;
 }
 
-type TimeStamp = {
+export interface TimeStamp {
+  /** Add a timestamp format to Scrapbox
+   *
+   * @param format a format of timestamp. this follow the moment.js format. You can set a function which returns any string
+   */
   addFormat: (format: string | (() => string)) => void;
+  /** Remove all timestamp formats from Scrapbox
+   *
+   * These include default formats
+   */
   removeAllFormat: () => void;
-};
+}
 
-type AddItemProps = {
-  title: string | (() => string);
+export interface AddItemProps {
+  /** the title of a menu item */ title: string | (() => string);
+  /** the URL of an image which views on the left of the title */
   image?: string;
+  /** the event listener which is executed when the menu item is clicked */
   onClick: () => void;
-};
-type PageMenu = {
+}
+export interface PageMenu {
+  /** Add a menu item to a particular Page Menu button
+   *
+   * @param props information used for a menu item
+   */
   addItem: (
     props: AddItemProps,
   ) => void;
+  /** Add a separator to a particular Page Menu button */
   addSeparator: () => void;
   removeAllItems: () => void;
   menuName: string;
@@ -110,7 +128,7 @@ type PageMenu = {
       items: (AddItemProps & { separator: boolean })[];
     }
   >;
-};
+}
 
 /** built-in UserScript events */
 export type eventName =
