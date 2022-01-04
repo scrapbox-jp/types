@@ -131,7 +131,7 @@ export interface SearchedTitle {
 }
 
 /** exportもしくはbackupをとったときのページデータ */
-export interface ExportPage<hasMetadata extends true | false = false> {
+export interface ExportedPage<hasMetadata extends true | false = false> {
   /** page's title */ title: string;
   /** ページの最終更新日時 (UNIX時刻) */ updated: number;
   /** ページの最終作成日時 (UNIX時刻) */ created: number;
@@ -145,11 +145,11 @@ export interface ExportPage<hasMetadata extends true | false = false> {
     : string[];
 }
 
-export interface ExportData<hasMetadata extends true | false = false> {
+export interface ExportedData<hasMetadata extends true | false = false> {
   /** project's name */ name: string;
   /** project's display name */ displayName: string;
   /** このデータを生成した日時 (UNIX時刻) */ exported: number;
-  /** exported pages */ pages: ExportPage<hasMetadata>[];
+  /** exported pages */ pages: ExportedPage<hasMetadata>[];
 }
 
 /** メタデータ無しインポート用ページデータ */
