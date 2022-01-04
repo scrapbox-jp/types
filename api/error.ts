@@ -34,3 +34,8 @@ export interface NotLoggedInError extends ErrorLike {
     )[];
   };
 }
+
+/** CSRF tokenが不正なときに発生するエラー */
+export interface SessionError extends ErrorLike {
+  name: "SessionError";
+}
