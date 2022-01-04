@@ -1,9 +1,11 @@
-export type NotMemberError = {
+export interface ErrorLike {
+  name: string;
+  message: string;
+}
+export interface NotMemberError extends ErrorLike {
   name: "NotMemberError";
-  message: string;
-};
+}
 
-export type NotFoundError = {
+export interface NotFoundError extends ErrorLike {
   name: "NotFoundError";
-  message: string;
-};
+}
