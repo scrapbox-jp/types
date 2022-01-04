@@ -187,5 +187,5 @@ export interface ImportedPage {
 /** JSON data for importing by https://scrapbox.io/api/page-data/import/:projectname.json  */
 export interface ImportedData<hasMetadata extends true | false = false> {
   /** pages importing to a project */
-  pages: hasMetadata extends true ? ImportedPage[] : ImportedLightPage;
+  pages: hasMetadata extends true ? ImportedPage[] : ImportedLightPage[];
 }
