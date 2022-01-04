@@ -1,4 +1,3 @@
-import { Omit } from "../utils.ts";
 import {
   CommitId,
   Line,
