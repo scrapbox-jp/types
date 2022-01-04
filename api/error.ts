@@ -13,3 +13,8 @@ export interface NotMemberError extends ErrorLike {
 export interface NotFoundError extends ErrorLike {
   name: "NotFoundError";
 }
+
+/** owner/admin権限が不足しているときに発生するエラー */
+export interface NotPrivilegeError extends ErrorLike {
+  name: "NotPrivilegeError";
+}
