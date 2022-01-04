@@ -130,27 +130,23 @@ export interface SearchedTitle {
   /** ページ内のリンク */ links: string[];
 }
 
-export interface ProjectBackup {
-  name: string;
-  displayName: string;
-  exported: number;
-  pages: {
-    id: PageId;
-    title: string;
-    created: number;
-    updated: number;
-    lines: string[];
-  };
+/** exportもしくはbackupをとったときのページデータ */
+export interface ExportPage<hasMetadata extends true | false = false> {
+  /** page's title */ title: string;
+  /** ページの最終更新日時 (UNIX時刻) */ updated: number;
+  /** ページの最終作成日時 (UNIX時刻) */ created: number;
+  /** page ID */ id: string;
+  /** ページ本文
+   *
+   * `hasMetadata === true`のときは行のmetadataが入る
+   * それ以外の場合は行のテキストが入る
+   */
+  lines: hasMetadata extends true ? Omit<Line, "id" | "userId">[]
+    : string[];
 }
-export interface ProjectBackupWithMetadata {
-  name: string;
-  displayName: string;
-  exported: number;
-  pages: {
-    id: PageId;
-    title: string;
-    created: number;
-    updated: number;
-    lines: Omit<Line, "id" | "userId">[];
-  };
+export interface ExportData<hasMetadata extends true | false = false> {
+  /** project's name */ name: string;
+  /** project's display name */ displayName: string;
+  /** このデータを生成した日時 (UNIX時刻) */ exported: number;
+  /** exported pages */ pages: ExportPage<hasMetadata>[];
 }
