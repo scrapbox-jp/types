@@ -1,11 +1,15 @@
+/** Scrapbox REST APIが返すエラーの型 */
 export interface ErrorLike {
-  name: string;
-  message: string;
+  /** error name */ name: string;
+  /** error message */ message: string;
 }
+
+/** 参加していないprivate projectに対してAPIを叩いたときに発生するエラー */
 export interface NotMemberError extends ErrorLike {
   name: "NotMemberError";
 }
 
+/** 指定したprojectやpageが見つからないときに発生するエラー */
 export interface NotFoundError extends ErrorLike {
   name: "NotFoundError";
 }
