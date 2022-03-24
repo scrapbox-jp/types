@@ -39,3 +39,16 @@ export interface NotLoggedInError extends ErrorLike {
 export interface SessionError extends ErrorLike {
   name: "SessionError";
 }
+
+/** 不正なURLを渡したときに返ってくるエラー
+ *
+ * 実際のresponseではmessageしか返ってこないことに注意
+ */
+export interface InvalidURLError extends ErrorLike {
+  name: "InvalidURLError";
+}
+
+/** URL先ページから正常な応答が返ってこなかったときのエラー */
+export interface BadRequestError extends ErrorLike {
+  name: "BadRequestError";
+}
