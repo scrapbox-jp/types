@@ -1,3 +1,8 @@
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext"/>
+/// <reference lib="dom"/>
+/// <reference lib="deno.ns" />
+
 import { ParsedLine } from "./userscript/blocks.ts";
 import { StringLc } from "./base.ts";
 import type { Layout, PartialLayout } from "./layout.ts";
