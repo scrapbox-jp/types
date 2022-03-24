@@ -1,92 +1,56 @@
 import { ParsedLine } from "./userscript/blocks.ts";
 import { StringLc } from "./base.ts";
+import type { Layout, PartialLayout } from "./layout.ts";
+import type { AddMenuInit, Item, PageMenu } from "./pageMenu.ts";
+import type { EventEmitter } from "./deps/events.ts";
+export type { EventEmitter, Layout, ParsedLine, PartialLayout, StringLc };
+export * from "./pageMenu.ts";
 
-export type Layout =
-  | "list"
-  | "page"
-  | "stream"
-  | "project-settings-billing-page"
-  | "project-settings-basic-page"
-  | "project-settings-members-page"
-  | "settings-profile-page"
-  | "settings-extensions-page"
-  | "settings-delete-account-page";
 export type Scrapbox =
+  & EventEmitter
   & {
-    Project: {
-      name: string;
-      pages: PageBrief[];
-    };
-    TimeStamp: TimeStamp;
-    PopupMenu: {
-      addButton: (
-        props: {
-          title: string | ((selectedText: string) => string);
-          onClick: (selectedText: string) => string | undefined;
-        },
-      ) => void;
-    };
-    PageMenu: ((name: string) => PageMenu) & {
-      addMenu: (
-        props: { title: string; image: string; onClick?: () => void },
-      ) => void;
-      addItem: (props: AddItemProps) => void;
-      addSeparator: () => void;
+    PageMenu: {
+      (menuName?: string): PageMenu;
+      addMenu: (init: AddMenuInit) => void;
+      /** Add a menu item to a particular Page Menu button
+       *
+       * @param item information used for a menu item
+       */
+      addItem: (item: Item) => void;
+      /** Add a separator to a particular Page Menu button */
+      addSeparater: () => void;
       removeAllItems: () => void;
     };
+    PopupMenu: {
+      addButton: (button: {
+        title: string | ((text: string) => (string | undefined));
+        onClick: (text: string) => (string | undefined);
+      }) => void;
+    };
+    TimeStamp: TimeStamp;
+    Project: {
+      get name(): string;
+      get pages(): PageBrief[];
+    };
   }
-  & UserScriptEventTarget
-  & ({
-    Layout:
-      | "list"
-      | "stream"
-      | "project-settings-billing-page"
-      | "project-settings-basic-page"
-      | "project-settings-members-page"
-      | "settings-profile-page"
-      | "settings-extensions-page"
-      | "settings-delete-account-page";
-    Page: {
-      title: null;
-      lines: null;
-      id: null;
-    };
-  } | {
-    Layout: "page";
-    Page: {
-      title: string;
-      lines: ParsedLine[];
-      id: string;
-    };
-  });
+  & (
+    {
+      Layout: "page";
+      Page: {
+        get lines(): ParsedLine[];
+        get title(): string;
+        get id(): string;
+      };
+    } | {
+      Layout: PartialLayout;
+      Page: {
+        get lines(): null;
+        get title(): null;
+        get id(): null;
+      };
+    }
+  );
 
-export interface UserScriptEventTarget {
-  /** Register an event listener to Scrapbox
-   *
-   * @param type the event type the event listener registers to
-   * @param the event listener
-   */
-  addListener: (type: string, listener: () => void) => void;
-  /** Register an event listener to Scrapbox
-   *
-   * @param type the event type the event listener registers to
-   * @param the event listener
-   */
-  on: (type: string, listener: () => void) => void;
-  removeListener: (type: string, listener: () => void) => void;
-  off: (type: string, listener: () => void) => void;
-  removeAllListeners: (type?: string) => void;
-  once: (type: string, listener: () => void) => void;
-  prependListener: (type: string, listener: () => void) => void;
-  prependOnceListener: (type: string, listener: () => void) => void;
-  listeners: (type: string) => (() => void)[];
-  rawListeners: (type: string) => (() => void)[];
-  listenerCount: (type: string) => number;
-  emit: (type: string) => void;
-  eventNames: () => string[];
-  getMexListeners: () => number;
-  setMexListeners: (length: number) => void;
-}
 export interface PageBrief {
   /** true when the page has contents */ exists: boolean;
   /** whether the page contains any image */ hasIcon?: boolean;
@@ -107,37 +71,6 @@ export interface TimeStamp {
    * These include default formats
    */
   removeAllFormat: () => void;
-}
-
-export interface AddItemProps {
-  /** the title of a menu item */ title: string | (() => string);
-  /** the URL of an image which views on the left of the title */
-  image?: string;
-  /** the event listener which is executed when the menu item is clicked */
-  onClick: () => void;
-}
-export interface PageMenu {
-  /** Add a menu item to a particular Page Menu button
-   *
-   * @param props information used for a menu item
-   */
-  addItem: (
-    props: AddItemProps,
-  ) => void;
-  /** Add a separator to a particular Page Menu button */
-  addSeparator: () => void;
-  removeAllItems: () => void;
-  menuName: string;
-  reset: () => void;
-  emitChange: () => void;
-  menus: Map<
-    string,
-    {
-      image: string | null;
-      onClick?: () => void;
-      items: (AddItemProps & { separator: boolean })[];
-    }
-  >;
 }
 
 /** built-in UserScript events */
