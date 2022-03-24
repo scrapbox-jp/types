@@ -189,3 +189,15 @@ export interface ImportedData<hasMetadata extends true | false = false> {
   /** pages importing to a project */
   pages: hasMetadata extends true ? ImportedPage[] : ImportedLightPage[];
 }
+
+/** the response type of /api/embed-text/twitter */
+export interface TweetInfo {
+  /** Tweet本文 */
+  description: string;
+  /** Tweet投稿者のuser name*/
+  userName: string;
+  /** Tweet投稿者の表示名 */
+  screenName: string;
+  /** Tweetに添付された画像 */
+  images: string[];
+}
