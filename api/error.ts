@@ -47,3 +47,8 @@ export interface SessionError extends ErrorLike {
 export interface InvalidURLError extends ErrorLike {
   name: "InvalidURLError";
 }
+
+/** URL先ページから正常な応答が返ってこなかったときのエラー */
+export interface BadRequestError extends ErrorLike {
+  name: "BadRequestError";
+}
