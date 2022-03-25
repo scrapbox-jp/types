@@ -220,11 +220,42 @@ export interface SearchResult {
   backend: string;
   /** 見つかったページ */
   pages: {
-    id: string;
+    id: PageId;
+    /** page title */
     title: string;
-    image: string; // 無いときは''になる
+    /** page thumbnail
+     *
+     * 無いときは空文字が入る
+     */
+    image: string;
+    /** 検索語句の中で、このページに含まれている語句 */
     words: string[];
-    lines: string[]; //検索語句に一致した行。 タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
+    /** 検索語句に一致した行
+     *
+     * タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
+     */
+    lines: string[];
+  }[];
+}
+
+/** the response type of /api/projects/search/query and /api/projects/search/watch-list */
+export interface ProjectSearchResult {
+  /** 検索文字列 */
+  searchQuery: string;
+  /** 検索語句 */
+  query: SearchQuery;
+  /** 見つかったprojects */
+  projects: {
+    _id: ProjectId;
+    /** project name */
+    name: string;
+    /** projectの表示名 */
+    displayName: string;
+    /** project favicon
+     *
+     * 無いときは`null`が入るかproperty自体が存在しない
+     */
+    image?: string | null;
   }[];
 }
 
