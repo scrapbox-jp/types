@@ -52,3 +52,11 @@ export interface InvalidURLError extends ErrorLike {
 export interface BadRequestError extends ErrorLike {
   name: "BadRequestError";
 }
+
+/** 検索文字列を渡さないと出てくるエラー
+ *
+ * 実際のresponseではmessageしか返ってこないことに注意
+ */
+export interface NoQueryError extends ErrorLike {
+  name: "NoQueryError";
+}

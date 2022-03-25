@@ -201,3 +201,37 @@ export interface TweetInfo {
   /** Tweetに添付された画像 */
   images: string[];
 }
+
+/** the response type of /api/pages/:projectname/search/titles */
+export interface SearchResult {
+  /** 検索したprojectの名前 */
+  projectName: string;
+  /** 検索文字列 */
+  searchQuery: string;
+  /** 検索語句 */
+  query: SearchQuery;
+  /** 検索件数の上限 */
+  limit: number;
+  /** 検索件数 */
+  count: number;
+  /** 検索文字列と完全一致するタイトルが見つかったら`true` */
+  existsExactTitleMatch: boolean;
+  /** 全文検索エンジンの名前 */
+  backend: string;
+  /** 見つかったページ */
+  pages: {
+    id: string;
+    title: string;
+    image: string; // 無いときは''になる
+    words: string[];
+    lines: string[]; //検索語句に一致した行。 タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
+  }[];
+}
+
+/** 検索クエリ */
+export interface SearchQuery {
+  /** AND検索に使う語句 */
+  words: string[];
+  /** NOT検索に使う語句 */
+  excludes: string[];
+}
