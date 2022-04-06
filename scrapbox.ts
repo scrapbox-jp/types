@@ -4,7 +4,7 @@
 /// <reference lib="deno.ns" />
 
 import type { Line } from "./blocks.ts";
-import type { StringLc, UnixTime } from "./base.ts";
+import type { Page as PageBase, StringLc } from "./base.ts";
 import type { PartialLayout } from "./layout.ts";
 import type { AddMenuInit, Item, PageMenu } from "./pageMenu.ts";
 import type { EventEmitter } from "./deps/events.ts";
@@ -84,13 +84,10 @@ export type Scrapbox =
   );
 
 /** 入力補完に使われる辞書 */
-export interface Page {
+export interface Page extends Pick<PageBase, "id" | "title" | "updated"> {
   /** true when the page has contents */ exists: boolean;
   /** whether the page contains any image */ hasIcon?: boolean;
-  /** the page id */ id: string;
-  /** the page title */ title: string;
   /** lower case style of the page title */ titleLc: StringLc;
-  /** updated time */ updated: UnixTime;
 }
 
 export interface TimeStamp {

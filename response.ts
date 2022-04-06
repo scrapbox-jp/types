@@ -45,20 +45,24 @@ export interface PageSummary extends PageBase {
 
 /** page information */
 export interface Page extends PageSummary {
-  /** APIを叩いたuserの最終アクセス日時。おそらくこの値を元にテロメアの未読/既読の判別をしている */ lastAccessed:
-    | UnixTime
-    | null;
+  /** APIを叩いたuserの最終アクセス日時。
+   *
+   * おそらくこの値を元にテロメアの未読/既読の判別をしている
+   */
+  lastAccessed: UnixTime | null;
   /** 生成されたPage historyの数 */ snapshotCount: number;
   /** 不明。削除されたページだとfalse？ */ persistent: boolean;
   /** ページの行情報 */ lines: Line[];
   /** ページ内のリンク */ links: string[];
   /** ページ内のアイコン */ icons: string[];
-  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */ files: string[];
+  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */
+  files: string[];
   /** 関連ページリスト */
   relatedPages: {
     /** 1 hop links */ links1hop: RelatedPage[];
     /** 2 hop links */ links2hop: RelatedPage[];
-    /** このページを参照しているページorアイコンがあればtrue */ hasBackLinksOrIcons: boolean;
+    /** このページを参照しているページorアイコンがあればtrue */
+    hasBackLinksOrIcons: boolean;
   };
   /** 最後にページを更新したユーザー */ user: User;
   /** ページを編集したユーザーのうち、`user`以外の人 */ collaborators: User[];
@@ -123,20 +127,15 @@ export interface MemberUser extends UserInfo {
 export type UserResponse = GuestUser | MemberUser;
 
 /** the response type of https://scrapbox.io/api/pages/:projectname/search/titles */
-export interface SearchedTitle {
-  id: PageId;
-  /** page title */ title: string;
+export interface SearchedTitle
+  extends Pick<PageBase, "id" | "title" | "updated"> {
   /** 画像が存在するかどうか */ hasIcon: boolean;
-  /** ページの更新日時 */ updated: UnixTime;
   /** ページ内のリンク */ links: string[];
 }
 
 /** exportもしくはbackupをとったときのページデータ */
-export interface ExportedPage<hasMetadata extends true | false = false> {
-  /** page's title */ title: string;
-  /** ページの最終更新日時 (UNIX時刻) */ updated: UnixTime;
-  /** ページの最終作成日時 (UNIX時刻) */ created: UnixTime;
-  /** page ID */ id: string;
+export interface ExportedPage<hasMetadata extends true | false = false>
+  extends Pick<Page, "title" | "updated" | "created" | "id"> {
   /** ページ本文
    *
    * `hasMetadata === true`のときは行のmetadataが入る
