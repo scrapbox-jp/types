@@ -27,8 +27,20 @@ export type Scrapbox =
       removeAllItems: () => void;
     };
     PopupMenu: {
+      /** Add a popup button
+       *
+       * @param button button settings
+       */
       addButton: (button: {
+        /** ボタンのタイトル
+         *
+         * 関数を設定して、選択範囲が変わるたびにタイトルを変更させる事もできる
+         */
         title: string | ((text: string) => (string | undefined));
+        /** ボタンをクリックしたときに実行する処理
+         *
+         * @return ここで返した文字列で選択範囲を置換し、popupを閉じる。`undefined`を返した場合は何もしない。popupも閉じない
+         */
         onClick: (text: string) => (string | undefined);
       }) => void;
     };
@@ -56,12 +68,13 @@ export type Scrapbox =
     }
   );
 
+/** 入力補完に使われる辞書 */
 export interface PageBrief {
   /** true when the page has contents */ exists: boolean;
   /** whether the page contains any image */ hasIcon?: boolean;
   /** the page id */ id: string;
   /** the page title */ title: string;
-  titleLc: StringLc;
+  /** lower case style of the page title */ titleLc: StringLc;
   /** updated time */ updated: number;
 }
 
