@@ -11,6 +11,7 @@ import type { EventEmitter } from "./deps/events.ts";
 export type { EventEmitter, Layout, ParsedLine, PartialLayout, StringLc };
 export * from "./pageMenu.ts";
 
+/** Type definition of `window.scrapbox` */
 export type Scrapbox =
   & EventEmitter
   & {
@@ -55,19 +56,26 @@ export type Scrapbox =
     };
     TimeStamp: TimeStamp;
     Project: {
+      /** get the current project name */
       get name(): string;
+      /** get the dictionary used for comupletion */
       get pages(): PageBrief[];
     };
   }
   & (
     {
+      /** the current page layout */
       Layout: "page";
       Page: {
+        /** get the current page lines data */
         get lines(): ParsedLine[];
+        /** get the current page title */
         get title(): string;
+        /** get the current page id */
         get id(): string;
       };
     } | {
+      /** the current page layout */
       Layout: PartialLayout;
       Page: {
         get lines(): null;
