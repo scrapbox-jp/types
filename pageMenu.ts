@@ -25,6 +25,10 @@ export declare class PageMenu extends BaseStore {
   public initialize(): void;
   public reset(): void;
   public pageMenu(menuName?: string): PageMenu;
+  /** Add a new Page Menu button
+   *
+   * @param init information used for a Page Menu button
+   */
   public addMenu(init: AddMenuInit): void;
   /** Add a menu item to a particular Page Menu button
    *
@@ -33,6 +37,7 @@ export declare class PageMenu extends BaseStore {
   public addItem(item: Item): void;
   /** Add a separator to a particular Page Menu button */
   public addSeparator(): void;
+  /** remove all custom items from a particular Page Menu button */
   public removeAllItems(): void;
 
   public menuName: string;

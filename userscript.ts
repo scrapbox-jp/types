@@ -15,15 +15,24 @@ export type Scrapbox =
   & EventEmitter
   & {
     PageMenu: {
+      /** get a particular Page Menu
+       *
+       * @param menuName Page Menu name to get. If it is set to "default" or undefined, return the default page Menu
+       */
       (menuName?: string): PageMenu;
+      /** Add a new Page Menu button
+       *
+       * @param init information used for a Page Menu button
+       */
       addMenu: (init: AddMenuInit) => void;
-      /** Add a menu item to a particular Page Menu button
+      /** Add a menu item to the default Page Menu button
        *
        * @param item information used for a menu item
        */
       addItem: (item: Item) => void;
-      /** Add a separator to a particular Page Menu button */
+      /** Add a separator to the default Page Menu button */
       addSeparater: () => void;
+      /** remove all custom items from the default Page Menu button */
       removeAllItems: () => void;
     };
     PopupMenu: {
