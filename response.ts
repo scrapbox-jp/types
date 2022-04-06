@@ -5,8 +5,9 @@ import {
   PageId,
   ProjectId,
   StringLc,
+  UnixTime,
   UserId,
-} from "../base.ts";
+} from "./base.ts";
 
 /** 関連ページのメタデータ */
 export interface RelatedPage extends PageBase {
@@ -27,8 +28,8 @@ export interface UserInfo extends User {
   /** user e-mail */ email: string;
   /** whether the user is a pro user or not */ pro: boolean;
   /** login provider */ provider: "google" | "microsoft" | "email";
-  /** accountの作成日時 */ created: number;
-  /** accountの更新日時 */ updated: number;
+  /** accountの作成日時 */ created: UnixTime;
+  /** accountの更新日時 */ updated: UnixTime;
 }
 
 /** summary of page information */
@@ -37,27 +38,31 @@ export interface PageSummary extends PageBase {
   /** ページの閲覧回数 */ views: number;
   /** おそらく被リンク数 */ linked: number;
   /** 最新の編集コミットid */ commitId: CommitId;
-  /** ページの作成日時 */ created: number;
+  /** ページの作成日時 */ created: UnixTime;
   /** page rank */ pageRank: number;
-  /** Page historyの最終生成日時 */ snapshotCreated: number | null;
+  /** Page historyの最終生成日時 */ snapshotCreated: UnixTime | null;
 }
 
 /** page information */
 export interface Page extends PageSummary {
-  /** APIを叩いたuserの最終アクセス日時。おそらくこの値を元にテロメアの未読/既読の判別をしている */ lastAccessed:
-    | number
-    | null;
+  /** APIを叩いたuserの最終アクセス日時。
+   *
+   * おそらくこの値を元にテロメアの未読/既読の判別をしている
+   */
+  lastAccessed: UnixTime | null;
   /** 生成されたPage historyの数 */ snapshotCount: number;
   /** 不明。削除されたページだとfalse？ */ persistent: boolean;
   /** ページの行情報 */ lines: Line[];
   /** ページ内のリンク */ links: string[];
   /** ページ内のアイコン */ icons: string[];
-  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */ files: string[];
+  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */
+  files: string[];
   /** 関連ページリスト */
   relatedPages: {
     /** 1 hop links */ links1hop: RelatedPage[];
     /** 2 hop links */ links2hop: RelatedPage[];
-    /** このページを参照しているページorアイコンがあればtrue */ hasBackLinksOrIcons: boolean;
+    /** このページを参照しているページorアイコンがあればtrue */
+    hasBackLinksOrIcons: boolean;
   };
   /** 最後にページを更新したユーザー */ user: User;
   /** ページを編集したユーザーのうち、`user`以外の人 */ collaborators: User[];
@@ -83,8 +88,8 @@ export interface NotMemberProject {
   gyazoTeamsName: string | null;
   googleAnalyticsCode: string | null;
   image?: string;
-  created: number;
-  updated: number;
+  created: UnixTime;
+  updated: UnixTime;
   isMember: false;
 }
 
@@ -101,7 +106,7 @@ export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
   uploadFileTo: "gcs";
   uploadImaegTo: "gyazo" | "gcs";
   emailAddressPatterns: string[];
-  backuped: number | null;
+  backuped: UnixTime | null;
 }
 
 export interface GuestUser {
@@ -122,20 +127,15 @@ export interface MemberUser extends UserInfo {
 export type UserResponse = GuestUser | MemberUser;
 
 /** the response type of https://scrapbox.io/api/pages/:projectname/search/titles */
-export interface SearchedTitle {
-  id: PageId;
-  /** page title */ title: string;
+export interface SearchedTitle
+  extends Pick<PageBase, "id" | "title" | "updated"> {
   /** 画像が存在するかどうか */ hasIcon: boolean;
-  /** ページの更新日時 */ updated: number;
   /** ページ内のリンク */ links: string[];
 }
 
 /** exportもしくはbackupをとったときのページデータ */
-export interface ExportedPage<hasMetadata extends true | false = false> {
-  /** page's title */ title: string;
-  /** ページの最終更新日時 (UNIX時刻) */ updated: number;
-  /** ページの最終作成日時 (UNIX時刻) */ created: number;
-  /** page ID */ id: string;
+export interface ExportedPage<hasMetadata extends true | false = false>
+  extends Pick<Page, "title" | "updated" | "created" | "id"> {
   /** ページ本文
    *
    * `hasMetadata === true`のときは行のmetadataが入る
@@ -148,7 +148,7 @@ export interface ExportedPage<hasMetadata extends true | false = false> {
 export interface ExportedData<hasMetadata extends true | false = false> {
   /** project's name */ name: string;
   /** project's display name */ displayName: string;
-  /** このデータを生成した日時 (UNIX時刻) */ exported: number;
+  /** このデータを生成した日時 (UNIX時刻) */ exported: UnixTime;
   /** exported pages */ pages: ExportedPage<hasMetadata>[];
 }
 
@@ -168,8 +168,8 @@ export interface ImportedLightPage {
 /** インポート用メタデータ付き行データ */
 export interface ImportedLine {
   /** line text */ text: string;
-  /** 行の最終更新日時 (UNIX時刻) */ updated?: number;
-  /** 行の最終作成日時 (UNIX時刻) */ created?: number;
+  /** 行の最終更新日時 (UNIX時刻) */ updated?: UnixTime;
+  /** 行の最終作成日時 (UNIX時刻) */ created?: UnixTime;
 }
 /** メタデータ付きインポート用ページデータ */
 export interface ImportedPage {

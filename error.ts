@@ -1,4 +1,7 @@
-/** Scrapbox REST APIが返すエラーの型 */
+/** Scrapbox REST APIが返すエラーの型
+ *
+ * `name`はないことがある
+ */
 export interface ErrorLike {
   /** error name */ name: string;
   /** error message */ message: string;
@@ -22,8 +25,10 @@ export interface NotPrivilegeError extends ErrorLike {
 /** Loginが必要なAPIをloginせずに叩いたときに発生するエラー */
 export interface NotLoggedInError extends ErrorLike {
   name: "NotLoggedInError";
-  /** 詳細情報 */ details: {
-    /** 使用できるログイン方法 */ loginStrategies: (
+  /** 詳細情報 */
+  details: {
+    /** 使用できるログイン方法 */
+    loginStrategies: (
       | "google"
       | "github"
       | "microsoft"
