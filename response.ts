@@ -5,6 +5,7 @@ import {
   PageId,
   ProjectId,
   StringLc,
+  UnixTime,
   UserId,
 } from "./base.ts";
 
@@ -27,8 +28,8 @@ export interface UserInfo extends User {
   /** user e-mail */ email: string;
   /** whether the user is a pro user or not */ pro: boolean;
   /** login provider */ provider: "google" | "microsoft" | "email";
-  /** accountの作成日時 */ created: number;
-  /** accountの更新日時 */ updated: number;
+  /** accountの作成日時 */ created: UnixTime;
+  /** accountの更新日時 */ updated: UnixTime;
 }
 
 /** summary of page information */
@@ -37,15 +38,15 @@ export interface PageSummary extends PageBase {
   /** ページの閲覧回数 */ views: number;
   /** おそらく被リンク数 */ linked: number;
   /** 最新の編集コミットid */ commitId: CommitId;
-  /** ページの作成日時 */ created: number;
+  /** ページの作成日時 */ created: UnixTime;
   /** page rank */ pageRank: number;
-  /** Page historyの最終生成日時 */ snapshotCreated: number | null;
+  /** Page historyの最終生成日時 */ snapshotCreated: UnixTime | null;
 }
 
 /** page information */
 export interface Page extends PageSummary {
   /** APIを叩いたuserの最終アクセス日時。おそらくこの値を元にテロメアの未読/既読の判別をしている */ lastAccessed:
-    | number
+    | UnixTime
     | null;
   /** 生成されたPage historyの数 */ snapshotCount: number;
   /** 不明。削除されたページだとfalse？ */ persistent: boolean;
@@ -83,8 +84,8 @@ export interface NotMemberProject {
   gyazoTeamsName: string | null;
   googleAnalyticsCode: string | null;
   image?: string;
-  created: number;
-  updated: number;
+  created: UnixTime;
+  updated: UnixTime;
   isMember: false;
 }
 
@@ -101,7 +102,7 @@ export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
   uploadFileTo: "gcs";
   uploadImaegTo: "gyazo" | "gcs";
   emailAddressPatterns: string[];
-  backuped: number | null;
+  backuped: UnixTime | null;
 }
 
 export interface GuestUser {
@@ -126,15 +127,15 @@ export interface SearchedTitle {
   id: PageId;
   /** page title */ title: string;
   /** 画像が存在するかどうか */ hasIcon: boolean;
-  /** ページの更新日時 */ updated: number;
+  /** ページの更新日時 */ updated: UnixTime;
   /** ページ内のリンク */ links: string[];
 }
 
 /** exportもしくはbackupをとったときのページデータ */
 export interface ExportedPage<hasMetadata extends true | false = false> {
   /** page's title */ title: string;
-  /** ページの最終更新日時 (UNIX時刻) */ updated: number;
-  /** ページの最終作成日時 (UNIX時刻) */ created: number;
+  /** ページの最終更新日時 (UNIX時刻) */ updated: UnixTime;
+  /** ページの最終作成日時 (UNIX時刻) */ created: UnixTime;
   /** page ID */ id: string;
   /** ページ本文
    *
@@ -148,7 +149,7 @@ export interface ExportedPage<hasMetadata extends true | false = false> {
 export interface ExportedData<hasMetadata extends true | false = false> {
   /** project's name */ name: string;
   /** project's display name */ displayName: string;
-  /** このデータを生成した日時 (UNIX時刻) */ exported: number;
+  /** このデータを生成した日時 (UNIX時刻) */ exported: UnixTime;
   /** exported pages */ pages: ExportedPage<hasMetadata>[];
 }
 
@@ -168,8 +169,8 @@ export interface ImportedLightPage {
 /** インポート用メタデータ付き行データ */
 export interface ImportedLine {
   /** line text */ text: string;
-  /** 行の最終更新日時 (UNIX時刻) */ updated?: number;
-  /** 行の最終作成日時 (UNIX時刻) */ created?: number;
+  /** 行の最終更新日時 (UNIX時刻) */ updated?: UnixTime;
+  /** 行の最終作成日時 (UNIX時刻) */ created?: UnixTime;
 }
 /** メタデータ付きインポート用ページデータ */
 export interface ImportedPage {

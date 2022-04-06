@@ -3,8 +3,8 @@
 /// <reference lib="dom"/>
 /// <reference lib="deno.ns" />
 
-import { Line } from "./blocks.ts";
-import { StringLc } from "./base.ts";
+import type { Line } from "./blocks.ts";
+import type { StringLc, UnixTime } from "./base.ts";
 import type { PartialLayout } from "./layout.ts";
 import type { AddMenuInit, Item, PageMenu } from "./pageMenu.ts";
 import type { EventEmitter } from "./deps/events.ts";
@@ -90,7 +90,7 @@ export interface Page {
   /** the page id */ id: string;
   /** the page title */ title: string;
   /** lower case style of the page title */ titleLc: StringLc;
-  /** updated time */ updated: number;
+  /** updated time */ updated: UnixTime;
 }
 
 export interface TimeStamp {

@@ -3,8 +3,8 @@ export interface Line {
   /** 行のid */ id: LineId;
   /** 行のテキスト */ text: string;
   /** 一番最後に行を編集した人のid */ userId: UserId;
-  /** 行の作成日時 */ created: number;
-  /** 行の最終更新日時 */ updated: number;
+  /** 行の作成日時 */ created: UnixTime;
+  /** 行の最終更新日時 */ updated: UnixTime;
 }
 
 /** basic information about a page */
@@ -20,8 +20,8 @@ export interface Page {
    * the maximum number of lines is 5.
    */
   descriptions: string[];
-  /** ページの最終更新日時 */ updated: number;
-  /** Date last visitedに使われる最終アクセス日時 */ accessed: number;
+  /** ページの最終更新日時 */ updated: UnixTime;
+  /** Date last visitedに使われる最終アクセス日時 */ accessed: UnixTime;
 }
 
 /** the user id */
@@ -41,3 +41,5 @@ export type ProjectId = string;
  * - UPPER CASE -> upper_case
  */
 export type StringLc = string;
+/** UNIX time */
+export type UnixTime = number;
