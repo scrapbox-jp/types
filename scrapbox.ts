@@ -8,7 +8,6 @@ import type { Page as PageBase, StringLc } from "./base.ts";
 import type { PartialLayout } from "./layout.ts";
 import type { AddMenuInit, Item, PageMenu } from "./pageMenu.ts";
 import type { EventEmitter } from "./deps/events.ts";
-export type { PageBase };
 
 /** Type definition of `window.scrapbox` */
 export type Scrapbox =
