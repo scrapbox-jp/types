@@ -18,7 +18,8 @@ export interface Page {
   image: string | null;
   /** the thumbnail text of a page.
    * the maximum number of lines is 5.
-   */ descriptions: string[];
+   */
+  descriptions: string[];
   /** ページの最終更新日時 */ updated: number;
   /** Date last visitedに使われる最終アクセス日時 */ accessed: number;
 }
@@ -36,6 +37,7 @@ export type ProjectId = string;
 /** the formatted string
  *
  * format rule:
+ *
  * - UPPER CASE -> upper_case
  */
 export type StringLc = string;
