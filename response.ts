@@ -6,7 +6,7 @@ import {
   ProjectId,
   StringLc,
   UserId,
-} from "../base.ts";
+} from "./base.ts";
 
 /** 関連ページのメタデータ */
 export interface RelatedPage extends PageBase {
