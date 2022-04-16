@@ -1,10 +1,18 @@
 /** scrapboxの行のメタデータ */
 export interface BaseLine {
-  /** 行のid */ id: LineId;
-  /** 行のテキスト */ text: string;
-  /** 一番最後に行を編集した人のid */ userId: UserId;
-  /** 行の作成日時 */ created: UnixTime;
-  /** 行の最終更新日時 */ updated: UnixTime;
+  id: LineId;
+
+  /** 行のテキスト */
+  text: string;
+
+  /** 一番最後に行を編集した人のid */
+  userId: UserId;
+
+  /** 行の作成日時 */
+  created: UnixTime;
+
+  /** 行の最終更新日時 */
+  updated: UnixTime;
 }
 
 /** basic information about a page */
