@@ -1,5 +1,5 @@
 /** scrapboxの行のメタデータ */
-export interface Line {
+export interface BaseLine {
   /** 行のid */ id: LineId;
   /** 行のテキスト */ text: string;
   /** 一番最後に行を編集した人のid */ userId: UserId;

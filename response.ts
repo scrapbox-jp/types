@@ -1,6 +1,6 @@
 import {
+  BaseLine,
   BasePage,
-  Line,
   PageId,
   ProjectId,
   StringLc,
@@ -40,7 +40,7 @@ export interface Page extends BasePage {
   lastAccessed: UnixTime | null;
   /** 生成されたPage historyの数 */ snapshotCount: number;
   /** 不明。削除されたページだとfalse？ */ persistent: boolean;
-  /** ページの行情報 */ lines: Line[];
+  /** ページの行情報 */ lines: BaseLine[];
   /** ページ内のリンク */ links: string[];
   /** ページ内のアイコン */ icons: string[];
   /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */
@@ -129,7 +129,7 @@ export interface ExportedPage<hasMetadata extends true | false = false>
    * `hasMetadata === true`のときは行のmetadataが入る
    * それ以外の場合は行のテキストが入る
    */
-  lines: hasMetadata extends true ? Omit<Line, "id" | "userId">[]
+  lines: hasMetadata extends true ? Omit<BaseLine, "id" | "userId">[]
     : string[];
 }
 
