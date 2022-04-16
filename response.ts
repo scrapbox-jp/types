@@ -7,6 +7,7 @@ import {
   UnixTime,
   UserId,
 } from "./base.ts";
+import { Commit } from "./commit.ts";
 
 /** 関連ページのメタデータ */
 export interface RelatedPage extends BasePage {
@@ -253,4 +254,10 @@ export interface SearchQuery {
   words: string[];
   /** NOT検索に使う語句 */
   excludes: string[];
+}
+
+/** the response type of /api/commits/:projectname/:pageid */
+export interface CommitsResponse {
+  /** 指定したページのcommits */
+  commits: Commit[];
 }
