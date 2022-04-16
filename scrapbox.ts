@@ -102,6 +102,9 @@ export interface Candidate extends Pick<BasePage, "id" | "title" | "updated"> {
 
   /** lower case style of the page title */
   titleLc: StringLc;
+
+  /** the length of `title` */
+  titleLengthForSort: number;
 }
 
 /** `window.scrapbox`に露出している`Project`の型 */
