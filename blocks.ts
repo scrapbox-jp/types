@@ -1,8 +1,8 @@
 import type { Node, NodeWithoutIndent } from "./nodes.ts";
-import type { Line as LineBase } from "./base.ts";
+import type { BaseLine } from "./base.ts";
 
 export type Line =
-  & LineBase
+  & BaseLine
   & {
     section: {
       /** section number */

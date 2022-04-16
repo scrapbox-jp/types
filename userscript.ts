@@ -1,3 +1,6 @@
+/** @module types used at UserScript */
+
+export * from "./base.ts";
 export * from "./blocks.ts";
 export * from "./nodes.ts";
 export * from "./layout.ts";

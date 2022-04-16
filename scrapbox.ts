@@ -4,7 +4,7 @@
 /// <reference lib="deno.ns" />
 
 import type { Line } from "./blocks.ts";
-import type { Page as PageBase, StringLc } from "./base.ts";
+import type { BasePage, StringLc } from "./base.ts";
 import type { PartialLayout } from "./layout.ts";
 import type { AddMenuInit, Item, PageMenu } from "./pageMenu.ts";
 import type { EventEmitter } from "./deps/events.ts";
@@ -57,7 +57,7 @@ export type Scrapbox =
       /** get the current project name */
       get name(): string;
       /** get the dictionary used for comupletion */
-      get pages(): Page[];
+      get pages(): Candidate[];
     };
   }
   & (
@@ -84,7 +84,7 @@ export type Scrapbox =
   );
 
 /** 入力補完に使われる辞書 */
-export interface Page extends Pick<PageBase, "id" | "title" | "updated"> {
+export interface Candidate extends Pick<BasePage, "id" | "title" | "updated"> {
   /** true when the page has contents */ exists: boolean;
   /** whether the page contains any image */ hasIcon?: boolean;
   /** lower case style of the page title */ titleLc: StringLc;

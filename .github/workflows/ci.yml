@@ -15,4 +15,4 @@ jobs:
       - name: Run lint
         run: deno lint
       - name: Run type check
-        run: deno cache mod.ts
+        run: deno cache rest.ts userscript.ts

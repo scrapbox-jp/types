@@ -1,7 +1,6 @@
 import {
-  CommitId,
-  Line,
-  Page as PageBase,
+  BaseLine,
+  BasePage,
   PageId,
   ProjectId,
   StringLc,
@@ -10,7 +9,7 @@ import {
 } from "./base.ts";
 
 /** 関連ページのメタデータ */
-export interface RelatedPage extends PageBase {
+export interface RelatedPage extends BasePage {
   /** ページ内のリンク */ linksLc: StringLc[];
   /** おそらく被リンク数 */ linked: number;
 }
@@ -32,19 +31,8 @@ export interface UserInfo extends User {
   /** accountの更新日時 */ updated: UnixTime;
 }
 
-/** summary of page information */
-export interface PageSummary extends PageBase {
-  /** ピン留めされていたら1, されていなかったら0 */ pin: 0 | 1;
-  /** ページの閲覧回数 */ views: number;
-  /** おそらく被リンク数 */ linked: number;
-  /** 最新の編集コミットid */ commitId: CommitId;
-  /** ページの作成日時 */ created: UnixTime;
-  /** page rank */ pageRank: number;
-  /** Page historyの最終生成日時 */ snapshotCreated: UnixTime | null;
-}
-
 /** page information */
-export interface Page extends PageSummary {
+export interface Page extends BasePage {
   /** APIを叩いたuserの最終アクセス日時。
    *
    * おそらくこの値を元にテロメアの未読/既読の判別をしている
@@ -52,7 +40,7 @@ export interface Page extends PageSummary {
   lastAccessed: UnixTime | null;
   /** 生成されたPage historyの数 */ snapshotCount: number;
   /** 不明。削除されたページだとfalse？ */ persistent: boolean;
-  /** ページの行情報 */ lines: Line[];
+  /** ページの行情報 */ lines: BaseLine[];
   /** ページ内のリンク */ links: string[];
   /** ページ内のアイコン */ icons: string[];
   /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */
@@ -74,7 +62,7 @@ export interface PageList {
   /** parameterに渡したskipと同じ */ skip: number;
   /** parameterに渡したlimitと同じ */ limit: number;
   /** projectの全ページ数 (中身のないページを除く) */ count: number;
-  /** 取得できたページ情報 */ pages: PageSummary[];
+  /** 取得できたページ情報 */ pages: BasePage[];
 }
 
 /** project information which isn't joined */
@@ -128,7 +116,7 @@ export type UserResponse = GuestUser | MemberUser;
 
 /** the response type of https://scrapbox.io/api/pages/:projectname/search/titles */
 export interface SearchedTitle
-  extends Pick<PageBase, "id" | "title" | "updated"> {
+  extends Pick<BasePage, "id" | "title" | "updated"> {
   /** 画像が存在するかどうか */ hasIcon: boolean;
   /** ページ内のリンク */ links: string[];
 }
@@ -141,7 +129,7 @@ export interface ExportedPage<hasMetadata extends true | false = false>
    * `hasMetadata === true`のときは行のmetadataが入る
    * それ以外の場合は行のテキストが入る
    */
-  lines: hasMetadata extends true ? Omit<Line, "id" | "userId">[]
+  lines: hasMetadata extends true ? Omit<BaseLine, "id" | "userId">[]
     : string[];
 }
 
