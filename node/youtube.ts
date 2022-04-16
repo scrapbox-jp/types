@@ -4,6 +4,7 @@ import { PlainText } from "./plainText.ts";
 /** Youtube埋め込み */
 export interface Youtube {
   type: "youtube";
+
   /** 構文解析結果 */
   unit: YoutubeUnit & (VideoId | ListId);
 
