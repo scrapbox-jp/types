@@ -18,6 +18,8 @@ import { Youtube } from "./youtube.ts";
 import { Vimeo } from "./vimeo.ts";
 import { Audio } from "./audio.ts";
 import { AudioLink } from "./audioLink.ts";
+import { Spotify } from "./spotify.ts";
+import { Anchor } from "./anchor.ts";
 import { GoogleMap } from "./googleMap.ts";
 import { Indent } from "./indent.ts";
 
@@ -45,6 +47,8 @@ export type NodeWithoutIndent =
   | Video
   | Audio
   | AudioLink
+  | Spotify
+  | Anchor
   | Youtube
   | Vimeo
   | GoogleMap;
