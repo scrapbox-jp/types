@@ -10,9 +10,22 @@ import {
 import { Commit } from "./commit.ts";
 
 /** 関連ページのメタデータ */
-export interface RelatedPage extends BasePage {
-  /** ページ内のリンク */ linksLc: StringLc[];
-  /** おそらく被リンク数 */ linked: number;
+export interface RelatedPage extends
+  Pick<
+    BasePage,
+    | "id"
+    | "title"
+    | "image"
+    | "descriptions"
+    | "linked"
+    | "updated"
+    | "accessed"
+  > {
+  /** page title */
+  titleLc: StringLc;
+
+  /** ページ内のリンク */
+  linksLc: StringLc[];
 }
 
 /** user information */
@@ -51,6 +64,9 @@ export interface Page extends BasePage {
 
   /** ページ内のリンク */
   links: string[];
+
+  /** ページ内の外部プロジェクトリンク */
+  projectLinks: string[];
 
   /** ページ内のアイコン */
   icons: string[];
