@@ -17,7 +17,7 @@ export type Item = {
   /** the URL of an image which views on the left of the title */
   image?: string;
   /** the event listener which is executed when the menu item is clicked */
-  onClick: (event: React.MouseEvent<HTMLImageElement>) => void;
+  onClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
 export declare class PageMenu extends BaseStore {
