@@ -28,6 +28,12 @@ export interface RelatedPage extends
   linksLc: StringLc[];
 }
 
+/** 外部プロジェクトの関連ページ */
+export interface ProjectRelatedPage extends Omit<RelatedPage, "linksLc"> {
+  /** project name */
+  projectName: string;
+}
+
 /** user information */
 export interface User {
   id: UserId;
@@ -81,6 +87,9 @@ export interface Page extends BasePage {
 
     /** 2 hop links */
     links2hop: RelatedPage[];
+
+    /** external links */
+    projectLinks1hop: ProjectRelatedPage[];
 
     /** このページを参照しているページorアイコンがあればtrue */
     hasBackLinksOrIcons: boolean;
