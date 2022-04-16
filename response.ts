@@ -9,31 +9,6 @@ import {
 } from "./base.ts";
 import { Commit } from "./commit.ts";
 
-/** 関連ページのメタデータ */
-export interface RelatedPage extends
-  Pick<
-    BasePage,
-    | "id"
-    | "title"
-    | "image"
-    | "descriptions"
-    | "linked"
-    | "updated"
-    | "accessed"
-  > {
-  /** page title */
-  titleLc: StringLc;
-
-  /** ページ内のリンク */
-  linksLc: StringLc[];
-}
-
-/** 外部プロジェクトの関連ページ */
-export interface ProjectRelatedPage extends Omit<RelatedPage, "linksLc"> {
-  /** project name */
-  projectName: string;
-}
-
 /** user information */
 export interface User {
   id: UserId;
@@ -81,24 +56,52 @@ export interface Page extends BasePage {
   files: string[];
 
   /** 関連ページリスト */
-  relatedPages: {
-    /** 1 hop links */
-    links1hop: RelatedPage[];
+  relatedPages: RelatedPages;
 
-    /** 2 hop links */
-    links2hop: RelatedPage[];
-
-    /** external links */
-    projectLinks1hop: ProjectRelatedPage[];
-
-    /** このページを参照しているページorアイコンがあればtrue */
-    hasBackLinksOrIcons: boolean;
-  };
   /** 最後にページを更新したユーザー */
   user: User;
 
   /** ページを編集したユーザーのうち、`user`以外の人 */
   collaborators: User[];
+}
+
+export interface RelatedPages {
+  /** 1 hop links */
+  links1hop: RelatedPage[];
+
+  /** 2 hop links */
+  links2hop: RelatedPage[];
+
+  /** external links */
+  projectLinks1hop: ProjectRelatedPage[];
+
+  /** このページを参照しているページorアイコンがあればtrue */
+  hasBackLinksOrIcons: boolean;
+}
+
+/** 関連ページのメタデータ */
+export interface RelatedPage extends
+  Pick<
+    BasePage,
+    | "id"
+    | "title"
+    | "image"
+    | "descriptions"
+    | "linked"
+    | "updated"
+    | "accessed"
+  > {
+  /** page title */
+  titleLc: StringLc;
+
+  /** ページ内のリンク */
+  linksLc: StringLc[];
+}
+
+/** 外部プロジェクトの関連ページ */
+export interface ProjectRelatedPage extends Omit<RelatedPage, "linksLc"> {
+  /** project name */
+  projectName: string;
 }
 
 /** the response type of https://scrpabox.io/api/pages/:projectname */
