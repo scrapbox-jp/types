@@ -2,7 +2,7 @@
 
 export * from "./base.ts";
 export * from "./blocks.ts";
-export * from "./nodes.ts";
+export * from "./node/node.ts";
 export * from "./layout.ts";
 export * from "./pageMenu.ts";
 export * from "./eventName.ts";

@@ -1,4 +1,4 @@
-import type { Node, NodeWithoutIndent } from "./nodes.ts";
+import type { Node, NodeWithoutIndent } from "./node/node.ts";
 import type { BaseLine } from "./base.ts";
 
 export type Line =
