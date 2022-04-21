@@ -354,3 +354,23 @@ export interface CommitsResponse {
   /** 指定したページのcommits */
   commits: Commit[];
 }
+
+/** the response type of /api/page-snapshots/:projectname/:pageid */
+export interface PageSnapshot {
+  pageId: PageId;
+
+  /** 作成されているsnapshots */
+  snapshots: Snapshot[];
+}
+
+/** a page snapshot */
+export interface Snapshot {
+  /** snapshotを撮ったときのページタイトル */
+  title: string;
+
+  /** snapshotの作成日時 */
+  created: UnixTime;
+
+  /** snapshotしたページ本文 */
+  lines: BaseLine[];
+}
