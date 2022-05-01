@@ -122,8 +122,8 @@ export interface PageList {
   pages: BasePage[];
 }
 
-/** project information which isn't joined */
-export interface NotMemberProject {
+/** project information */
+export interface Project {
   id: ProjectId;
   name: string;
   displayName: string;
@@ -132,9 +132,26 @@ export interface NotMemberProject {
   theme: string;
   gyazoTeamsName: string | null;
   googleAnalyticsCode: string | null;
-  image?: string;
+  /** planの種類
+   *
+   * public projectの場合は`null`になる
+   *
+   * 古いprojectだとpropertyが生えていない
+   */
+  plan?: string | null;
   created: UnixTime;
   updated: UnixTime;
+  isMember: boolean;
+}
+
+/** the response type of /api/projects */
+export interface ProjectResponse {
+  projects: Project[];
+}
+
+/** project information which isn't joined */
+export interface NotMemberProject extends Omit<Project, "isMember"> {
+  image?: string;
   isMember: false;
 }
 
