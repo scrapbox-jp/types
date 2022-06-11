@@ -94,7 +94,11 @@ export interface RelatedPage extends
   /** page title */
   titleLc: StringLc;
 
-  /** ページ内のリンク */
+  /**
+   * links1hopの場合：ページ内の全てのリンク
+   *
+   * links2hopの場合：ページ内の全てのリンクのうち、`Page.links`に含まれるリンク
+   */
   linksLc: StringLc[];
 }
 
