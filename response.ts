@@ -202,7 +202,7 @@ export interface SearchedTitle
   links: string[];
 }
 
-/** exportもしくはbackupをとったときのページデータ */
+/** exportしたときのページデータ */
 export interface ExportedPage<hasMetadata extends true | false = false>
   extends Pick<Page, "title" | "updated" | "created" | "id"> {
   /** ページ本文
@@ -226,6 +226,31 @@ export interface ExportedData<hasMetadata extends true | false = false> {
 
   /** exported pages */
   pages: ExportedPage<hasMetadata>[];
+}
+
+/** backupされるページデータ */
+export interface BackupedPage
+  extends Pick<Page, "title" | "updated" | "created" | "id"> {
+  /** ページ本文 */
+  lines: Pick<BaseLine, "text" | "created" | "updated">[];
+
+  /** ページに含まれているリンク*/
+  linksLc: StringLc[];
+}
+
+/** project backup data */
+export interface BackupData {
+  /** project's name */
+  name: string;
+
+  /** project's display name */
+  displayName: string;
+
+  /** このデータを生成した日時 (UNIX時刻) */
+  exported: UnixTime;
+
+  /** backuped pages */
+  pages: BackupedPage[];
 }
 
 /** メタデータ無しインポート用ページデータ */
