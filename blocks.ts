@@ -61,7 +61,7 @@ export interface CodeBlock extends Block {
   lang: string;
 
   /** the file name of the code block */
-  filename?: string;
+  filename: string;
 }
 
 /**  the type which represents a line in a table block */
