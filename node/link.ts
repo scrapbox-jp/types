@@ -1,4 +1,3 @@
-import { Unit } from "./unit.ts";
 import { PlainText } from "./plainText.ts";
 
 /** リンク記法
@@ -20,20 +19,26 @@ export interface Link {
   children: PlainText;
 }
 
-export interface InternalLinkUnit extends Unit {
+export interface InternalLinkUnit {
   /** page title */
   page: string;
+
+  /** line id */
+  line?: string;
 }
 
-export interface ProjectLinkUnit extends Unit {
+export interface ProjectLinkUnit {
   /** project name */
   project: string;
 
   /** page title */
   page: string;
+
+  /** line id */
+  line?: string;
 }
 
-export interface ProjectHomeLinkUnit extends Unit {
+export interface ProjectHomeLinkUnit {
   /** project name */
   project: string;
 }

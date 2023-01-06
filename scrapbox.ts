@@ -68,12 +68,12 @@ export interface PopupMenu {
      *
      * 関数を設定して、選択範囲が変わるたびにタイトルを変更させる事もできる
      */
-    title: string | ((text: string) => (string | undefined));
+    title: string | ((text: string) => string | undefined);
     /** ボタンをクリックしたときに実行する処理
      *
      * @return ここで返した文字列で選択範囲を置換し、popupを閉じる。`undefined`を返した場合は何もしない。popupも閉じない
      */
-    onClick: (text: string) => (string | undefined);
+    onClick: (text: string) => string | undefined;
   }) => void;
 }
 

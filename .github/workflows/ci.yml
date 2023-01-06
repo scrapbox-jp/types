@@ -9,10 +9,12 @@ jobs:
       - uses: actions/checkout@master
       - uses: denoland/setup-deno@main
         with:
-          deno-version: "1.20.2"
+          deno-version: "1.29.1"
       - name: Check fmt
         run: deno fmt --check
       - name: Run lint
         run: deno lint
       - name: Run type check
-        run: deno cache rest.ts userscript.ts
+        run: deno check rest.ts userscript.ts
+      - name: Run test
+        run: deno test
