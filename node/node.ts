@@ -6,6 +6,7 @@ import { Decoration } from "./decoration.ts";
 import { Quote } from "./quote.ts";
 import { Strong } from "./strong.ts";
 import { Link } from "./link.ts";
+import { HashTag } from "./hashTag.ts";
 import { Icon, StrongIcon } from "./icon.ts";
 import { UrlLink } from "./urlLink.ts";
 import { Url } from "./url.ts";
@@ -32,6 +33,7 @@ export type NodeWithoutIndent =
   | Quote
   | Strong
   | Link
+  | HashTag
   | Icon
   | StrongIcon
   | UrlLink

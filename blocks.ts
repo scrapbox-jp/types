@@ -32,8 +32,13 @@ export type Line =
       /** 番号の長さ */
       digit: number;
     };
+
     /** 数式を含む行のときのみ生える */
     formulaLine?: true;
+
+    /** 画像を並べているときのみ生える */
+    numberOfImages?: number;
+
     /** 中に含まれるnodes */
     nodes: Node | NodeWithoutIndent[];
   });

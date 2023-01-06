@@ -3,7 +3,7 @@ import { PlainText } from "./plainText.ts";
 
 /** Anchor埋め込み */
 export interface Anchor {
-  type: "anchor";
+  type: "anchor-fm";
 
   /** 構文解析結果 */
   unit: AnchorUnit;
