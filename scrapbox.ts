@@ -7,7 +7,7 @@ import type { Line } from "./blocks.ts";
 import type { BasePage, StringLc } from "./base.ts";
 import type { Layout, PartialLayout } from "./layout.ts";
 import type { AddMenuInit, Item, PageMenu } from "./pageMenu.ts";
-import type { EventEmitter } from "./deps/events.ts";
+import type { EventEmitter } from "./deps/events.d.ts";
 
 /** Type definition of `window.scrapbox` */
 export type Scrapbox =
