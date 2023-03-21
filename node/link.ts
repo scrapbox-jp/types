@@ -1,4 +1,5 @@
 import { PlainText } from "./plainText.ts";
+import { Unit } from "./unit.ts";
 
 /** リンク記法
  *
@@ -19,7 +20,7 @@ export interface Link {
   children: PlainText;
 }
 
-export interface InternalLinkUnit {
+export interface InternalLinkUnit extends Unit {
   /** page title */
   page: string;
 
@@ -27,7 +28,7 @@ export interface InternalLinkUnit {
   line?: string;
 }
 
-export interface ProjectLinkUnit {
+export interface ProjectLinkUnit extends Unit {
   /** project name */
   project: string;
 
@@ -38,7 +39,7 @@ export interface ProjectLinkUnit {
   line?: string;
 }
 
-export interface ProjectHomeLinkUnit {
+export interface ProjectHomeLinkUnit extends Unit {
   /** project name */
   project: string;
 }

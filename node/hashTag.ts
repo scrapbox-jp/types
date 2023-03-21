@@ -1,4 +1,5 @@
 import { NodeWithoutIndent } from "./node.ts";
+import { Unit } from "./unit.ts";
 
 /** hashtag */
 export interface HashTag {
@@ -11,7 +12,7 @@ export interface HashTag {
   children: NodeWithoutIndent | NodeWithoutIndent[];
 }
 
-export interface HashTagUnit {
+export interface HashTagUnit extends Unit {
   /** page title */
   page: string;
 
