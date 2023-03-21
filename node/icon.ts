@@ -1,4 +1,5 @@
 import { PlainText } from "./plainText.ts";
+import { Unit } from "./unit.ts";
 
 /** アイコン記法 */
 export interface Icon {
@@ -22,7 +23,7 @@ export interface StrongIcon {
   children: PlainText;
 }
 
-export interface IconUnit {
+export interface IconUnit extends Unit {
   /** アイコンがあるproject name
    *
    * 同じprojectのアイコンのときは省略される

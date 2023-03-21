@@ -15,4 +15,7 @@ export interface Anchor {
 export interface AnchorUnit extends Unit {
   /** Anchor video ID */
   videoId: string;
+
+  /** the username of Anchor video ID */
+  username: string;
 }
