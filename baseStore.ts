@@ -10,7 +10,7 @@ export declare class BaseStore<Event = string> {
 
   public addChangeListener(listener: BaseStoreListener<Event, this>): void;
   public removeChangeListener(listener: BaseStoreListener<Event, this>): void;
-  public emitChange(event: string): void;
+  public emitChange(event: Event): void;
   public get listenersCount(): number;
 
   private _onChangeListeners: BaseStoreListener<Event, this>[];
