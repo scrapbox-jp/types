@@ -97,8 +97,8 @@ export interface Candidate extends Pick<BasePage, "id" | "title" | "updated"> {
   /** true when the page has contents */
   exists: boolean;
 
-  /** whether the page contains any image */
-  hasIcon?: boolean;
+  /** thumbnail URL */
+  image?: string;
 
   /** lower case style of the page title */
   titleLc: StringLc;
