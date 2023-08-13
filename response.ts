@@ -195,8 +195,8 @@ export type UserResponse = GuestUser | MemberUser;
 /** the response type of https://scrapbox.io/api/pages/:projectname/search/titles */
 export interface SearchedTitle
   extends Pick<BasePage, "id" | "title" | "updated"> {
-  /** 画像が存在するかどうか */
-  hasIcon: boolean;
+  /** thumbnail URL */
+  image?: string;
 
   /** ページ内のリンク */
   links: string[];
