@@ -301,7 +301,7 @@ export interface ImportedData<hasMetadata extends true | false = false> {
 /** the response type of /api/embed-text/twitter */
 export interface TweetInfo {
   /** Tweet本文 */
-  description: string;
+  description?: string;
 
   /** Tweet投稿者の表示名 */
   screenName: string;
