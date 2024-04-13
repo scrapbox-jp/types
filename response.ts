@@ -303,9 +303,6 @@ export interface TweetInfo {
   /** Tweet本文 */
   description: string;
 
-  /** Tweet投稿者のuser name*/
-  userName: string;
-
   /** Tweet投稿者の表示名 */
   screenName: string;
 
