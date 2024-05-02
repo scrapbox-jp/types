@@ -12,18 +12,33 @@ import { Commit } from "./commit.ts";
 /** user information */
 export interface User {
   id: UserId;
-  /** user name */ name: string;
-  /** user display name */ displayName: string;
-  /** profile image URL */ photo: string;
+
+  /** user name */
+  name: string;
+
+  /** user display name */
+  displayName: string;
+
+  /** profile image URL */
+  photo: string;
 }
 
 /** user detailed information */
 export interface UserInfo extends User {
-  /** user e-mail */ email: string;
-  /** whether the user is a pro user or not */ pro: boolean;
-  /** login provider */ provider: "google" | "microsoft" | "email";
-  /** accountの作成日時 */ created: UnixTime;
-  /** accountの更新日時 */ updated: UnixTime;
+  /** user e-mail */
+  email: string;
+
+  /** whether the user is a pro user or not */
+  pro: boolean;
+
+  /** login provider */
+  provider: "google" | "microsoft" | "email";
+
+  /** creation time of the account */
+  created: UnixTime;
+
+  /** update time of the account */
+  updated: UnixTime;
 }
 
 /** page information */
@@ -129,13 +144,21 @@ export interface PageList {
 /** project information */
 export interface Project {
   id: ProjectId;
+
   name: string;
+
   displayName: string;
+
   publicVisible: boolean;
+
   loginStrategies: string[];
+
   theme: string;
+
   gyazoTeamsName: string | null;
+
   googleAnalyticsCode: string | null;
+
   /** planの種類
    *
    * public projectの場合は`null`になる
@@ -143,8 +166,11 @@ export interface Project {
    * 古いprojectだとpropertyが生えていない
    */
   plan?: string | null;
+
   created: UnixTime;
+
   updated: UnixTime;
+
   isMember: boolean;
 }
 
@@ -156,35 +182,51 @@ export interface ProjectResponse {
 /** project information which isn't joined */
 export interface NotMemberProject extends Omit<Project, "isMember"> {
   image?: string;
+
   isMember: false;
 }
 
 /** project information which is joined */
 export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
   isMember: true;
+
   plan?: string | null;
+
   users: UserInfo[];
+
   admins: UserId[];
+
   owner: UserId;
+
   trialing: boolean;
+
   trialMaxPages: number;
+
   skipPayment: boolean;
+
   uploadFileTo: "gcs";
+
   uploadImaegTo: "gyazo" | "gcs";
+
   emailAddressPatterns: string[];
+
   backuped: UnixTime | null;
 }
 
 export interface GuestUser {
   isGuest: true;
+
   csrfToken: string;
 }
 
 export interface MemberUser extends UserInfo {
   isGuest: false;
+
   csrfToken: string;
+
   config: {
     userScript: boolean;
+
     emacsBinding: boolean;
   };
 }
