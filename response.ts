@@ -67,7 +67,7 @@ export interface Page extends BasePage {
   /** ページ内のアイコン */
   icons: string[];
 
-  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */
+  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルのfile id */
   files: string[];
 
   /** 関連ページリスト */
