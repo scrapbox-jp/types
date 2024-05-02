@@ -12,18 +12,33 @@ import { Commit } from "./commit.ts";
 /** user information */
 export interface User {
   id: UserId;
-  /** user name */ name: string;
-  /** user display name */ displayName: string;
-  /** profile image URL */ photo: string;
+
+  /** user name */
+  name: string;
+
+  /** user display name */
+  displayName: string;
+
+  /** profile image URL */
+  photo: string;
 }
 
 /** user detailed information */
 export interface UserInfo extends User {
-  /** user e-mail */ email: string;
-  /** whether the user is a pro user or not */ pro: boolean;
-  /** login provider */ provider: "google" | "microsoft" | "email";
-  /** accountの作成日時 */ created: UnixTime;
-  /** accountの更新日時 */ updated: UnixTime;
+  /** user e-mail */
+  email: string;
+
+  /** whether the user is a pro user or not */
+  pro: boolean;
+
+  /** login provider */
+  provider: "google" | "microsoft" | "email";
+
+  /** creation time of the account */
+  created: UnixTime;
+
+  /** update time of the account */
+  updated: UnixTime;
 }
 
 /** page information */
@@ -52,7 +67,7 @@ export interface Page extends BasePage {
   /** ページ内のアイコン */
   icons: string[];
 
-  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルへのリンク */
+  /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルのfile id */
   files: string[];
 
   /** 関連ページリスト */
@@ -129,13 +144,21 @@ export interface PageList {
 /** project information */
 export interface Project {
   id: ProjectId;
+
   name: string;
+
   displayName: string;
+
   publicVisible: boolean;
+
   loginStrategies: string[];
+
   theme: string;
+
   gyazoTeamsName: string | null;
+
   googleAnalyticsCode: string | null;
+
   /** planの種類
    *
    * public projectの場合は`null`になる
@@ -143,8 +166,11 @@ export interface Project {
    * 古いprojectだとpropertyが生えていない
    */
   plan?: string | null;
+
   created: UnixTime;
+
   updated: UnixTime;
+
   isMember: boolean;
 }
 
@@ -156,35 +182,51 @@ export interface ProjectResponse {
 /** project information which isn't joined */
 export interface NotMemberProject extends Omit<Project, "isMember"> {
   image?: string;
+
   isMember: false;
 }
 
 /** project information which is joined */
 export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
   isMember: true;
+
   plan?: string | null;
+
   users: UserInfo[];
+
   admins: UserId[];
+
   owner: UserId;
+
   trialing: boolean;
+
   trialMaxPages: number;
+
   skipPayment: boolean;
+
   uploadFileTo: "gcs";
+
   uploadImaegTo: "gyazo" | "gcs";
+
   emailAddressPatterns: string[];
+
   backuped: UnixTime | null;
 }
 
 export interface GuestUser {
   isGuest: true;
+
   csrfToken: string;
 }
 
 export interface MemberUser extends UserInfo {
   isGuest: false;
+
   csrfToken: string;
+
   config: {
     userScript: boolean;
+
     emacsBinding: boolean;
   };
 }
@@ -334,27 +376,30 @@ export interface SearchResult {
   backend: string;
 
   /** 見つかったページ */
-  pages: {
-    id: PageId;
+  pages: FoundPage[];
+}
 
-    /** page title */
-    title: string;
+/** /api/pages/:projectname/search/titles で見つかったページ */
+export interface FoundPage {
+  id: PageId;
 
-    /** page thumbnail
-     *
-     * 無いときは空文字が入る
-     */
-    image: string;
+  /** page title */
+  title: string;
 
-    /** 検索語句の中で、このページに含まれている語句 */
-    words: string[];
+  /** page thumbnail
+   *
+   * 無いときは空文字が入る
+   */
+  image: string;
 
-    /** 検索語句に一致した行
-     *
-     * タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
-     */
-    lines: string[];
-  }[];
+  /** 検索語句の中で、このページに含まれている語句 */
+  words: string[];
+
+  /** 検索語句に一致した行
+   *
+   * タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
+   */
+  lines: string[];
 }
 
 /** the response type of /api/projects/search/query and /api/projects/search/watch-list */
@@ -366,21 +411,24 @@ export interface ProjectSearchResult {
   query: SearchQuery;
 
   /** 見つかったprojects */
-  projects: {
-    _id: ProjectId;
+  projects: FoundProject[];
+}
 
-    /** project name */
-    name: string;
+/** /api/projects/search/query や /api/projects/search/watch-list で見つかったproject */
+export interface FoundProject {
+  _id: ProjectId;
 
-    /** projectの表示名 */
-    displayName: string;
+  /** project name */
+  name: string;
 
-    /** project favicon
-     *
-     * 無いときは`null`が入るかproperty自体が存在しない
-     */
-    image?: string | null;
-  }[];
+  /** projectの表示名 */
+  displayName: string;
+
+  /** project favicon
+   *
+   * 無いときは`null`が入るかproperty自体が存在しない
+   */
+  image?: string | null;
 }
 
 /** 検索クエリ */
