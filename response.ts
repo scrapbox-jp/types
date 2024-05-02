@@ -70,11 +70,20 @@ export interface Page extends BasePage {
   /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルのfile id */
   files: string[];
 
+  infoboxDefinition: string[];
+
+  infoboxResult: InfoboxResult[];
+
+  infoboxDisableLinks: string[];
+
   /** 関連ページリスト */
   relatedPages: RelatedPages;
 
-  /** 最後にページを更新したユーザー */
+  /** ページを作成したユーザー */
   user: User;
+
+  /** 最後にページを更新したユーザー */
+  lastUpdateUser: User;
 
   /** ページを編集したユーザーのうち、`user`以外の人 */
   collaborators: User[];
@@ -92,6 +101,22 @@ export interface RelatedPages {
 
   /** このページを参照しているページorアイコンがあればtrue */
   hasBackLinksOrIcons: boolean;
+
+  /** 2 hop searchのquery */
+  search: string;
+
+  /** 全文検索エンジンの名前 */
+  searchBackend: string;
+}
+
+export interface InfoboxResult {
+  title: string;
+
+  infobox: Record<string, string>;
+
+  hallucination: boolean;
+
+  truncated: boolean;
 }
 
 /** 関連ページのメタデータ */
@@ -103,6 +128,8 @@ export interface RelatedPage extends
     | "image"
     | "descriptions"
     | "linked"
+    | "pageRank"
+    | "created"
     | "updated"
     | "accessed"
   > {
@@ -115,10 +142,19 @@ export interface RelatedPage extends
    * links2hopの場合：ページ内の全てのリンクのうち、`Page.links`に含まれるリンク
    */
   linksLc: StringLc[];
+
+  infoboxResult: InfoboxResult[];
+
+  infoboxDisableLinks: string[];
+
+  search: SearchQuery;
 }
 
 /** 外部プロジェクトの関連ページ */
-export interface ProjectRelatedPage extends Omit<RelatedPage, "linksLc"> {
+export interface ProjectRelatedPage
+  extends Omit<RelatedPage, "linksLc" | "created" | "pageRank"> {
+  created: number | null;
+
   /** project name */
   projectName: string;
 }
