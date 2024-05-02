@@ -334,27 +334,30 @@ export interface SearchResult {
   backend: string;
 
   /** 見つかったページ */
-  pages: {
-    id: PageId;
+  pages: FoundPage[];
+}
 
-    /** page title */
-    title: string;
+/** /api/pages/:projectname/search/titles で見つかったページ */
+export interface FoundPage {
+  id: PageId;
 
-    /** page thumbnail
-     *
-     * 無いときは空文字が入る
-     */
-    image: string;
+  /** page title */
+  title: string;
 
-    /** 検索語句の中で、このページに含まれている語句 */
-    words: string[];
+  /** page thumbnail
+   *
+   * 無いときは空文字が入る
+   */
+  image: string;
 
-    /** 検索語句に一致した行
-     *
-     * タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
-     */
-    lines: string[];
-  }[];
+  /** 検索語句の中で、このページに含まれている語句 */
+  words: string[];
+
+  /** 検索語句に一致した行
+   *
+   * タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
+   */
+  lines: string[];
 }
 
 /** the response type of /api/projects/search/query and /api/projects/search/watch-list */
@@ -366,21 +369,24 @@ export interface ProjectSearchResult {
   query: SearchQuery;
 
   /** 見つかったprojects */
-  projects: {
-    _id: ProjectId;
+  projects: FoundProject[];
+}
 
-    /** project name */
-    name: string;
+/** /api/projects/search/query や /api/projects/search/watch-list で見つかったproject */
+export interface FoundProject {
+  _id: ProjectId;
 
-    /** projectの表示名 */
-    displayName: string;
+  /** project name */
+  name: string;
 
-    /** project favicon
-     *
-     * 無いときは`null`が入るかproperty自体が存在しない
-     */
-    image?: string | null;
-  }[];
+  /** projectの表示名 */
+  displayName: string;
+
+  /** project favicon
+   *
+   * 無いときは`null`が入るかproperty自体が存在しない
+   */
+  image?: string | null;
 }
 
 /** 検索クエリ */
