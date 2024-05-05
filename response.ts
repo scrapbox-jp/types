@@ -147,7 +147,7 @@ export interface RelatedPage extends
 
   infoboxDisableLinks: string[];
 
-  search: SearchQuery;
+  search?: SearchQuery;
 }
 
 /** 外部プロジェクトの関連ページ */
