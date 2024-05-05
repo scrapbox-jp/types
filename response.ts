@@ -151,8 +151,20 @@ export interface RelatedPage extends
 }
 
 /** 外部プロジェクトの関連ページ */
-export interface ProjectRelatedPage
-  extends Omit<RelatedPage, "linksLc" | "created" | "pageRank"> {
+export interface ProjectRelatedPage extends
+  Pick<
+    BasePage,
+    | "id"
+    | "title"
+    | "image"
+    | "descriptions"
+    | "linked"
+    | "updated"
+    | "accessed"
+  > {
+  /** page title */
+  titleLc: StringLc;
+
   created: number | null;
 
   /** project name */
