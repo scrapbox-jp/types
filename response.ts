@@ -201,12 +201,6 @@ export interface Project {
 
   loginStrategies: string[];
 
-  theme: string;
-
-  gyazoTeamsName: string | null;
-
-  googleAnalyticsCode: string | null;
-
   /** planの種類
    *
    * public projectの場合は`null`になる
@@ -215,11 +209,21 @@ export interface Project {
    */
   plan?: string | null;
 
+  theme: string;
+
+  gyazoTeamsName: string | null;
+
+  translation: boolean;
+
+  infobox: boolean;
+
   created: UnixTime;
 
   updated: UnixTime;
 
   isMember: boolean;
+
+  trialing: boolean;
 }
 
 /** the response type of /api/projects */
@@ -228,17 +232,18 @@ export interface ProjectResponse {
 }
 
 /** project information which isn't joined */
-export interface NotMemberProject extends Omit<Project, "isMember"> {
+export interface NotMemberProject
+  extends Omit<Project, "isMember" | "plan" | "trialing"> {
   image?: string;
 
   isMember: false;
 }
 
 /** project information which is joined */
-export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
+export interface MemberProject extends Omit<Project, "isMember"> {
   isMember: true;
 
-  plan?: string | null;
+  image?: string;
 
   users: UserInfo[];
 
@@ -246,7 +251,7 @@ export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
 
   owner: UserId;
 
-  trialing: boolean;
+  isUserPageExists: boolean;
 
   trialMaxPages: number;
 
@@ -257,6 +262,8 @@ export interface MemberProject extends Omit<NotMemberProject, "isMember"> {
   uploadImaegTo: "gyazo" | "gcs";
 
   emailAddressPatterns: string[];
+
+  projectScript: boolean;
 
   backuped: UnixTime | null;
 }
@@ -420,6 +427,8 @@ export interface SearchResult {
   /** 検索文字列と完全一致するタイトルが見つかったら`true` */
   existsExactTitleMatch: boolean;
 
+  field: "title" | "helpfeels" | "lines";
+
   /** 全文検索エンジンの名前 */
   backend: string;
 
@@ -448,6 +457,18 @@ export interface FoundPage {
    * タイトル行のみが一致した場合は、検索語句の有無にかかわらずその次の行のみが入る
    */
   lines: string[];
+}
+
+/** the response type of /api/pages/:projectname/search/files */
+export interface FileSearchResult
+  extends Omit<SearchResult, "field" | "pages"> {
+  /** 見つかったページ */
+  pages: FoundPageByFile[];
+}
+
+/** /api/pages/:projectname/search/files で見つかったページ */
+export interface FoundPageByFile extends FoundPage {
+  file: string;
 }
 
 /** the response type of /api/projects/search/query and /api/projects/search/watch-list */
@@ -495,11 +516,31 @@ export interface CommitsResponse {
 }
 
 /** the response type of /api/page-snapshots/:projectname/:pageid */
-export interface PageSnapshot {
+export interface PageSnapshotList {
   pageId: PageId;
+
+  /** 作成されているsnapshotsのtimestamp idのリスト */
+  timestamps: SnapshotTimestamp[];
 
   /** 作成されているsnapshots */
   snapshots: Snapshot[];
+}
+
+export interface SnapshotTimestamp {
+  id: string;
+  created: UnixTime;
+}
+
+/** the response type of /api/page-snapshots/:projectname/:pageid/:timestampid */
+export interface PageSnapshotResult {
+  page: PageWithSnapshot;
+
+  snapshot: Snapshot;
+}
+
+export interface PageWithSnapshot extends BasePage {
+  user: Pick<User, "id">;
+  lastupdateUser: Pick<User, "id"> | null;
 }
 
 /** a page snapshot */
