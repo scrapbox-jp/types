@@ -516,11 +516,31 @@ export interface CommitsResponse {
 }
 
 /** the response type of /api/page-snapshots/:projectname/:pageid */
-export interface PageSnapshot {
+export interface PageSnapshotList {
   pageId: PageId;
+
+  /** 作成されているsnapshotsのtimestamp idのリスト */
+  timestamps: SnapshotTimestamp[];
 
   /** 作成されているsnapshots */
   snapshots: Snapshot[];
+}
+
+export interface SnapshotTimestamp {
+  id: string;
+  created: UnixTime;
+}
+
+/** the response type of /api/page-snapshots/:projectname/:pageid/:timestampid */
+export interface PageSnapshotResult {
+  page: PageWithSnapshot;
+
+  snapshot: Snapshot;
+}
+
+export interface PageWithSnapshot extends BasePage {
+  user: Pick<User, "id">;
+  lastupdateUser: Pick<User, "id"> | null;
 }
 
 /** a page snapshot */
