@@ -521,9 +521,6 @@ export interface PageSnapshotList {
 
   /** 作成されているsnapshotsのtimestamp idのリスト */
   timestamps: SnapshotTimestamp[];
-
-  /** 作成されているsnapshots */
-  snapshots: Snapshot[];
 }
 
 export interface SnapshotTimestamp {
