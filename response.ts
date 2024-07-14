@@ -459,6 +459,18 @@ export interface FoundPage {
   lines: string[];
 }
 
+/** the response type of /api/pages/:projectname/search/files */
+export interface FileSearchResult
+  extends Omit<SearchResult, "field" | "pages"> {
+  /** 見つかったページ */
+  pages: FoundPageByFile[];
+}
+
+/** /api/pages/:projectname/search/files で見つかったページ */
+export interface FoundPageByFile extends FoundPage {
+  file: string;
+}
+
 /** the response type of /api/projects/search/query and /api/projects/search/watch-list */
 export interface ProjectSearchResult {
   /** 検索文字列 */
