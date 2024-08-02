@@ -1,0 +1,24 @@
+{
+  "name": "@cosense/types",
+  "version": "0.0.0",
+  "tasks": {
+    "check:dry": "deno fmt --check && deno lint && deno check --remote **/*.ts && deno test --parallel",
+    "check": "deno fmt && deno lint && deno check --remote **/*.ts && deno test --parallel",
+    "check:publish": "deno task check && deno publish --dry-run --allow-dirty",
+    "publish": "deno run --allow-env --allow-run=deno --allow-read --allow-write=deno.jsonc jsr:@david/publish-on-tag@0.1.x"
+  },
+  "imports": {
+    "@std/testing/types": "jsr:@std/testing@0/types"
+  },
+  "exports": {
+    "./rest": "./rest.ts",
+    "./userscript": "./userscript.ts"
+  },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
+  }
+}

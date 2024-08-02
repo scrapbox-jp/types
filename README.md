@@ -1,10 +1,17 @@
-## types
+## @cosense/types
 
-scrapbox関連の型定義ファイル
+Type definitions for [cosense](https://cosen.se)
 
-### Document
+## Getting Started
 
-- [rest.ts](https://doc.deno.land/https://raw.githubusercontent.com/scrapbox-jp/types/0.3.6/rest.ts)
-  - REST API関連の型定義
-- [userscript.ts](https://doc.deno.land/https://raw.githubusercontent.com/scrapbox-jp/types/0.3.6/userscript.ts)
-  - `window.scrapbox`で使う型定義
+If you want to use type definitions for REST API, run
+
+```bash
+deno add jsr:@cosense/types/rest
+```
+
+If you want to use type definitions for UserScript, run
+
+```bash
+deno add jsr:@cosense/types/userscript
+```

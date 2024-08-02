@@ -1,5 +1,5 @@
-import { Unit } from "./unit.ts";
-import { PlainText } from "./plainText.ts";
+import type { Unit } from "./unit.ts";
+import type { PlainText } from "./plainText.ts";
 
 /** 外部リンク記法 */
 export interface UrlLink {

@@ -1,4 +1,4 @@
-import {
+import type {
   BaseLine,
   BasePage,
   PageId,
@@ -7,7 +7,7 @@ import {
   UnixTime,
   UserId,
 } from "./base.ts";
-import { Commit } from "./commit.ts";
+import type { Commit } from "./commit.ts";
 
 /** user information */
 export interface User {

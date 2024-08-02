@@ -1,5 +1,5 @@
-import { Unit } from "./unit.ts";
-import { NodeWithoutIndent } from "./node.ts";
+import type { Unit } from "./unit.ts";
+import type { NodeWithoutIndent } from "./node.ts";
 
 /** インデントがある行 */
 export interface Indent {

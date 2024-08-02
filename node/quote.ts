@@ -1,5 +1,5 @@
-import { Unit } from "./unit.ts";
-import { NodeWithoutIndent } from "./node.ts";
+import type { Unit } from "./unit.ts";
+import type { NodeWithoutIndent } from "./node.ts";
 
 /** 引用記法 */
 export interface Quote {

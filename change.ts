@@ -1,4 +1,4 @@
-import { BasePage, LineId, StringLc } from "./base.ts";
+import type { BasePage, LineId, StringLc } from "./base.ts";
 
 /** ページの変更内容 */
 export type Change =
