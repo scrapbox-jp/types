@@ -1,5 +1,6 @@
 import type { React } from "./vendor/react.ts";
 import type { BaseStore } from "./baseStore.ts";
+export type { BaseStore };
 
 export type AddMenuInit = {
   title?: string;
