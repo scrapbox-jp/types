@@ -1,7 +1,3 @@
-/// <reference no-default-lib="true"/>
-/// <reference lib="esnext"/>
-/// <reference lib="dom"/>
-
 // cut and modified from https://cdn.esm.sh/v73/@types/react@17.0.42/index.d.ts
 
 type NativeMouseEvent = MouseEvent;

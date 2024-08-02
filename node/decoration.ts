@@ -1,23 +1,23 @@
-import { Unit } from "./unit.ts";
-import { PlainText } from "./plainText.ts";
-import { Formula } from "./formula.ts";
-import { Link } from "./link.ts";
-import { HashTag } from "./hashTag.ts";
-import { Icon } from "./icon.ts";
-import { UrlLink } from "./urlLink.ts";
-import { Url } from "./url.ts";
-import { Image } from "./image.ts";
-import { Gyazo } from "./gyazo.ts";
-import { ImageLink } from "./imageLink.ts";
-import { GyazoLink } from "./gyazoLink.ts";
-import { Video } from "./video.ts";
-import { Youtube } from "./youtube.ts";
-import { Vimeo } from "./vimeo.ts";
-import { Audio } from "./audio.ts";
-import { AudioLink } from "./audioLink.ts";
-import { Spotify } from "./spotify.ts";
-import { Anchor } from "./anchor.ts";
-import { GoogleMap } from "./googleMap.ts";
+import type { Unit } from "./unit.ts";
+import type { PlainText } from "./plainText.ts";
+import type { Formula } from "./formula.ts";
+import type { Link } from "./link.ts";
+import type { HashTag } from "./hashTag.ts";
+import type { Icon } from "./icon.ts";
+import type { UrlLink } from "./urlLink.ts";
+import type { Url } from "./url.ts";
+import type { Image } from "./image.ts";
+import type { Gyazo } from "./gyazo.ts";
+import type { ImageLink } from "./imageLink.ts";
+import type { GyazoLink } from "./gyazoLink.ts";
+import type { Video } from "./video.ts";
+import type { Youtube } from "./youtube.ts";
+import type { Vimeo } from "./vimeo.ts";
+import type { Audio } from "./audio.ts";
+import type { AudioLink } from "./audioLink.ts";
+import type { Spotify } from "./spotify.ts";
+import type { Anchor } from "./anchor.ts";
+import type { GoogleMap } from "./googleMap.ts";
 
 /** 文字装飾記法中に入れられる記法 */
 export type NodeInDecoration =

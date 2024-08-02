@@ -1,5 +1,5 @@
-import { PlainText } from "./plainText.ts";
-import { Unit } from "./unit.ts";
+import type { PlainText } from "./plainText.ts";
+import type { Unit } from "./unit.ts";
 
 /** アイコン記法 */
 export interface Icon {

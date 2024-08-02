@@ -1,5 +1,5 @@
-import { CommitId, PageId, UnixTime, UserId } from "./base.ts";
-import { Change } from "./change.ts";
+import type { CommitId, PageId, UnixTime, UserId } from "./base.ts";
+import type { Change } from "./change.ts";
 
 /** Scrapboxのページの編集commit */
 export interface Commit {

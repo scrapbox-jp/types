@@ -1,5 +1,5 @@
-import { Unit } from "./unit.ts";
-import { PlainText } from "./plainText.ts";
+import type { Unit } from "./unit.ts";
+import type { PlainText } from "./plainText.ts";
 
 /** Gyazoから引っ張ってきた画像の画像記法 */
 export interface Gyazo extends GyazoBase {

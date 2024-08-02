@@ -1,5 +1,5 @@
-import { Unit } from "./unit.ts";
-import { PlainText } from "./plainText.ts";
+import type { Unit } from "./unit.ts";
+import type { PlainText } from "./plainText.ts";
 
 /** リンク付き画像記法 */
 export interface ImageLink {

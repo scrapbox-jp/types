@@ -1,5 +1,5 @@
-import { assertType, IsExact } from "./deps/testing.ts";
-import { Line } from "./blocks.ts";
+import { assertType, type IsExact } from "@std/testing/types";
+import type { Line } from "./blocks.ts";
 
 // scrapbox.Page.lines の型定義が正しいか確認する
 // サンプルは https://scrapbox.io/villagepump/記法サンプル より拝借した
