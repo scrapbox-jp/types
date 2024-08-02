@@ -1,5 +1,7 @@
-/** @module types used at UserScript */
-
+/**  type definitions for Cosense UserScript
+ *
+ * @module
+ */
 export * from "./base.ts";
 export * from "./blocks.ts";
 export * from "./node/node.ts";

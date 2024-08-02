@@ -1,4 +1,7 @@
-/** @module types used at REST API */
+/**  type definitions for Cosense REST API responses
+ *
+ * @module
+ */
 
 export * from "./base.ts";
 export * from "./commit.ts";
