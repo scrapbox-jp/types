@@ -6,7 +6,11 @@ export interface Icon {
   type: "icon";
 
   /** 構文解析結果 */
-  unit: IconUnit;
+  unit:
+    | IconUnit<false>
+    | ProjectIconUnit<false>
+    | RepeatIconUnit<false>
+    | RepeatProjectIconUnit<false>;
 
   /** the same as `unit.content` */
   children: PlainText;
@@ -17,18 +21,75 @@ export interface StrongIcon {
   type: "strong-icon";
 
   /** 構文解析結果 */
-  unit: IconUnit;
+  unit:
+    | IconUnit<true>
+    | ProjectIconUnit<true>
+    | RepeatIconUnit<true>
+    | RepeatProjectIconUnit<true>;
 
   /** the same as `unit.content` */
   children: PlainText;
 }
 
-export interface IconUnit extends Unit {
-  /** アイコンがあるproject name
+export interface IconUnit<Strong extends boolean = false> extends Unit {
+  /** アイコンがあるページのタイトル */
+  page: string;
+
+  /** 繰り返し回数
    *
-   * 同じprojectのアイコンのときは省略される
+   * 最大1000
    */
-  project?: string;
+  size: 1;
+
+  /** icon syntax */
+  get content(): `${string}.icon`;
+
+  /** raw text */
+  get whole(): Strong extends true ? `[[${string}.icon]]` : `[${string}.icon]`;
+}
+
+export interface ProjectIconUnit<Strong extends boolean> extends Unit {
+  /** アイコンがあるproject name */
+  project: string;
+
+  /** アイコンがあるページのタイトル */
+  page: string;
+
+  /** 繰り返し回数
+   *
+   * 最大1000
+   */
+  size: 1;
+
+  /** icon syntax */
+  get content(): `/${string}/${string}.icon`;
+
+  /** raw text */
+  get whole(): Strong extends true ? `[[/${string}/${string}.icon]]`
+    : `[/${string}/${string}.icon]`;
+}
+
+export interface RepeatIconUnit<Strong extends boolean> extends Unit {
+  /** アイコンがあるページのタイトル */
+  page: string;
+
+  /** 繰り返し回数
+   *
+   * 最大1000
+   */
+  size: number;
+
+  /** icon syntax */
+  get content(): `${string}.icon${"*" | "x"}${number}`;
+
+  /** raw text */
+  get whole(): Strong extends true ? `[[${string}.icon${"*" | "x"}${number}]]`
+    : `[${string}.icon${"*" | "x"}${number}]`;
+}
+
+export interface RepeatProjectIconUnit<Strong extends boolean> extends Unit {
+  /** アイコンがあるproject name */
+  project: string;
 
   /** アイコンがあるページのタイトル */
   page: string;
@@ -38,4 +99,12 @@ export interface IconUnit extends Unit {
    * 最大1000
    */
   size: number;
+
+  /** icon syntax */
+  get content(): `/${string}/${string}.icon${"*" | "x"}${number}`;
+
+  /** raw text */
+  get whole(): Strong extends true
+    ? `[[/${string}/${string}.icon${"*" | "x"}${number}]]`
+    : `[/${string}/${string}.icon${"*" | "x"}${number}]`;
 }

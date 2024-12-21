@@ -6,8 +6,13 @@ export interface Code {
   type: "code";
 
   /** 構文解析結果 */
-  unit: Unit;
+  unit: CodeUnit;
 
   /** the same as `unit.content` */
   children: PlainText;
+}
+
+export interface CodeUnit extends Unit {
+  content: string;
+  whole: `\`${string}\``;
 }

@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** Vimeo埋め込み */
@@ -12,7 +12,9 @@ export interface Vimeo {
   children: PlainText;
 }
 
-export interface VimeoUnit extends Unit {
+export interface VimeoUnit extends BracketUnit {
   /** vimeoのvideo id */
   videoId: string;
+
+  params: { h?: string };
 }

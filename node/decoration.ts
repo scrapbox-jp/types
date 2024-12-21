@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 import type { Formula } from "./formula.ts";
 import type { Link } from "./link.ts";
@@ -52,7 +52,7 @@ export interface Decoration {
   children: NodeInDecoration | NodeInDecoration[];
 }
 
-export interface DecorationUnit extends Unit {
+export interface DecorationUnit extends BracketUnit {
   /** 文字装飾記号 */
   deco: string;
 
@@ -72,4 +72,6 @@ export interface DecorationUnit extends Unit {
 
   /** 下線記号`_`を含むとき`true` */
   underline: boolean;
+
+  whole: `[${string} ${string}]`;
 }

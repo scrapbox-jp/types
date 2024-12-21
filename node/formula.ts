@@ -1,5 +1,4 @@
-import type { Unit } from "./unit.ts";
-import type { PlainText } from "./plainText.ts";
+import type { BracketUnit } from "./unit.ts";
 
 /** 数式記法 */
 export interface Formula {
@@ -9,13 +8,17 @@ export interface Formula {
   unit: FormulaUnit;
 
   /** the same as `unit.content` */
-  children: PlainText;
+  children: `$ ${string}`;
 }
 
-export interface FormulaUnit extends Unit {
+export interface FormulaUnit extends BracketUnit {
   /** KaTeX text
    *
    * `content` から`$ `を外したもの
    */
   formula: string;
+
+  content: `$ ${string}`;
+
+  whole: `[$ ${string}]`;
 }

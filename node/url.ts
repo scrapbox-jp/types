@@ -1,11 +1,10 @@
 import type { Unit } from "./unit.ts";
-import type { PlainText } from "./plainText.ts";
 
-/** 裸のURL */
+/** raw URL */
 export interface Url {
   type: "url";
   /** 構文解析結果 */
-  unit: Unit;
+  unit: UrlUnit;
 
   /** scrapboxにuploadされたfileのID
    *
@@ -14,5 +13,10 @@ export interface Url {
   fileId?: string;
 
   /** the same as `unit.content` */
-  children: PlainText;
+  children: `http${"s" | ""}://${string}`;
+}
+
+export interface UrlUnit extends Unit {
+  content: `http${"s" | ""}://${string}`;
+  whole: `http${"s" | ""}://${string}`;
 }

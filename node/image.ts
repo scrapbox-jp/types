@@ -1,19 +1,12 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit, DoubleBracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** 画像記法 */
-export interface Image extends ImageBase {
+export interface Image {
   type: "image";
-}
 
-/** 強調画像記法 */
-export interface StrongImage extends ImageBase {
-  type: "strongImage";
-}
-
-export interface ImageBase {
   /** 構文解析結果 */
-  unit: Unit;
+  unit: BracketUnit;
 
   /** scrapboxにuploadされたfileのID
    *
@@ -21,6 +14,23 @@ export interface ImageBase {
    */
   fileId?: string;
 
-  /** the same as `unit.content` */
+  /** the same as {@linkcode Unit.content} */
+  children: PlainText;
+}
+
+/** 強調画像記法 */
+export interface StrongImage {
+  type: "strongImage";
+
+  /** 構文解析結果 */
+  unit: DoubleBracketUnit;
+
+  /** scrapboxにuploadされたfileのID
+   *
+   * このpropertyはscrapboxにuploadされた画像ファイルのときのみ生える
+   */
+  fileId?: string;
+
+  /** the same as {@linkcode Unit.content} */
   children: PlainText;
 }

@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** Anchor埋め込み */
@@ -12,7 +12,7 @@ export interface Anchor {
   children: PlainText;
 }
 
-export interface AnchorUnit extends Unit {
+export interface AnchorUnit extends BracketUnit {
   /** Anchor video ID */
   videoId: string;
 
