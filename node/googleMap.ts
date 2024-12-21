@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** Location記法 */
@@ -12,7 +12,9 @@ export interface GoogleMap {
   children: PlainText;
 }
 
-export interface GoogleMapUnit extends Unit {
+declare const unit: GoogleMapUnit;
+
+export interface GoogleMapUnit extends BracketUnit {
   /** 緯度 */
   latitude: number;
 
@@ -24,4 +26,13 @@ export interface GoogleMapUnit extends Unit {
 
   /** 地点の名前 */
   title?: string;
+  content:
+    | `${"N" | "S"}${number},${"E" | "W"}${number}${`,Z${number}` | ""}`
+    | `${"N" | "S"}${number},${"E" | "W"}${number}${
+      | `,Z${number}`
+      | ""} ${string}`
+    | `${string} ${"N" | "S"}${number},${"E" | "W"}${number}${
+      | `,Z${number}`
+      | ""}`;
+  whole: `[${this["content"]}]`;
 }

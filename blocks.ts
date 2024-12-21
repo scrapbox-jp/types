@@ -39,8 +39,11 @@ export type Line =
     /** 画像を並べているときのみ生える */
     numberOfImages?: number;
 
+    /** 引用文のときのみ生える */
+    quoteLine?: true;
+
     /** 中に含まれるnodes */
-    nodes: Node | NodeWithoutIndent[];
+    get nodes(): Node | NodeWithoutIndent[];
   });
 
 /**  the type which represents a line in a block */
@@ -62,6 +65,8 @@ export interface CodeBlock extends Block {
 
   /** the file name of the code block */
   filename: string;
+
+  hasCursor: boolean;
 }
 
 /**  the type which represents a line in a table block */

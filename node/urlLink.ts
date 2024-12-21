@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** 外部リンク記法 */
@@ -6,7 +6,7 @@ export interface UrlLink {
   type: "urlLink";
 
   /** 構文解析結果 */
-  unit: UrlLinkUnit;
+  unit: UrlLinkUnit | UrlLinkWithTitleUnit;
 
   /** scrapboxにuploadされたfileのID
    *
@@ -18,10 +18,22 @@ export interface UrlLink {
   children: PlainText;
 }
 
-export interface UrlLinkUnit extends Unit {
+export interface UrlLinkUnit extends BracketUnit {
   /** URL */
-  link: string;
+  link: `http${"s" | ""}://${string}`;
 
-  /** タイトル */
-  title?: string;
+  content: `http${"s" | ""}://${string}`;
+}
+
+export interface UrlLinkWithTitleUnit extends BracketUnit {
+  /** URL */
+  link: `http${"s" | ""}://${string}`;
+
+  /** title */
+  title: string;
+
+  /** space between `link` and `title` in `[link title]` */
+  space: string;
+
+  content: `${this["link"]}${string}` | `${string}${this["link"]}`;
 }

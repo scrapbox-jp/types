@@ -1,5 +1,5 @@
 import type { Unit } from "./unit.ts";
-import type { NodeWithoutIndent } from "./node.ts";
+import type { Node, NodeWithoutIndent } from "./node.ts";
 
 /** 引用記法 */
 export interface Quote {
@@ -9,10 +9,11 @@ export interface Quote {
   unit: QuoteUnit;
 
   /** 中に含まれるNodes */
-  children: NodeWithoutIndent | NodeWithoutIndent[];
+  children: Node | NodeWithoutIndent[];
 }
 
 export interface QuoteUnit extends Unit {
-  /** 引用記号とそれに続く空白を含んだもの */
-  tag: `>${string}`;
+  /** 引用記号とそれに続く半角空白を1文字含んだもの */
+  tag: ">" | "> ";
+  whole: `${">" | "> "}${string}`;
 }

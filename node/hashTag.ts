@@ -1,4 +1,3 @@
-import type { NodeWithoutIndent } from "./node.ts";
 import type { Unit } from "./unit.ts";
 
 /** hashtag */
@@ -8,8 +7,8 @@ export interface HashTag {
   /** 構文解析結果 */
   unit: HashTagUnit;
 
-  /** 中に含まれるNodes */
-  children: NodeWithoutIndent | NodeWithoutIndent[];
+  /** same as {@linkcode HashTagUnit.content} */
+  children: `#${string}`;
 }
 
 export interface HashTagUnit extends Unit {
@@ -17,4 +16,10 @@ export interface HashTagUnit extends Unit {
   page: string;
 
   tag: "#";
+
+  /** page title */
+  get content(): string;
+
+  /** raw text */
+  get whole(): `#${string}`;
 }

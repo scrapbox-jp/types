@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** 動画埋め込み */
@@ -6,7 +6,7 @@ export interface Video {
   type: "video";
 
   /** 構文解析結果 */
-  unit: Unit;
+  unit: BracketUnit;
 
   /** scrapboxにuploadされたfileのID
    *

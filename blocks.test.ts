@@ -375,6 +375,7 @@ const lines: Line[] = [{
     "type": "urlLink",
     "unit": {
       "link": "https://scrapbox.io/help-jp/ブラケティング",
+      "space": " ",
       "title": "外部プロジェクトリンク(scrapbox.io)",
       "content":
         "外部プロジェクトリンク(scrapbox.io) https://scrapbox.io/help-jp/ブラケティング",
@@ -384,6 +385,48 @@ const lines: Line[] = [{
     "children":
       "外部プロジェクトリンク(scrapbox.io) https://scrapbox.io/help-jp/ブラケティング",
   },
+}, {
+  "id": "676646f11280f000000d134a",
+  "text":
+    "生のURLもリンクとして認識される：https://example.com 空白を末尾に入れれば、それ以降の文字列をURLから切り離せる",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767911,
+  "updated": 1734767912,
+  "section": { "number": 2, "start": false, "end": false },
+  "nodes": ["生のURLもリンクとして認識される：", {
+    "type": "url",
+    "unit": {
+      "content": "https://example.com",
+      "whole": "https://example.com",
+    },
+    "children": "https://example.com",
+  }, " 空白を末尾に入れれば、それ以降の文字列をURLから切り離せる"],
+}, {
+  "id": "676647221280f000000d134b",
+  "text":
+    "`[]`で囲めば、[https://example.com]のように空白を入れずに文章をつなげられる",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767912,
+  "updated": 1734767912,
+  "section": { "number": 2, "start": false, "end": false },
+  "nodes": [
+    {
+      "type": "code",
+      "unit": { "whole": "`[]`", "content": "[]" },
+      "children": "[]",
+    },
+    "で囲めば、",
+    {
+      "type": "urlLink",
+      "unit": {
+        "link": "https://example.com",
+        "content": "https://example.com",
+        "whole": "[https://example.com]",
+      },
+      "children": "https://example.com",
+    },
+    "のように空白を入れずに文章をつなげられる",
+  ],
 }, {
   "id": "61fe3cbf7838e300001888ec",
   "text": "",
@@ -438,6 +481,7 @@ const lines: Line[] = [{
       "type": "urlLink",
       "unit": {
         "link": "https://example.com/",
+        "space": " ",
         "title": "外部サイトリンク",
         "content": "外部サイトリンク https://example.com/",
         "whole": "[外部サイトリンク https://example.com/]",
@@ -466,6 +510,7 @@ const lines: Line[] = [{
       "type": "urlLink",
       "unit": {
         "link": "https://twitter.com/shokai/status/1480481768247549954",
+        "space": " ",
         "title": "Twitterのリンク",
         "content":
           "https://twitter.com/shokai/status/1480481768247549954 Twitterのリンク",
@@ -522,6 +567,7 @@ const lines: Line[] = [{
       "type": "urlLink",
       "unit": {
         "link": "https://github.com/",
+        "space": " ",
         "title": "GitHubのリンク",
         "content": "https://github.com/ GitHubのリンク",
         "whole": "[https://github.com/ GitHubのリンク]",
@@ -547,6 +593,7 @@ const lines: Line[] = [{
       "type": "urlLink",
       "unit": {
         "link": "https://ja.wikipedia.org",
+        "space": " ",
         "title": "ウィキペディアのリンク",
         "content": "https://ja.wikipedia.org ウィキペディアのリンク",
         "whole": "[https://ja.wikipedia.org ウィキペディアのリンク]",
@@ -575,6 +622,7 @@ const lines: Line[] = [{
       "type": "urlLink",
       "unit": {
         "link": "https://www.mhlw.go.jp/content/10900000/000622211.pdf",
+        "space": " ",
         "title": "PDFへのリンク",
         "content":
           "https://www.mhlw.go.jp/content/10900000/000622211.pdf PDFへのリンク",
@@ -603,6 +651,7 @@ const lines: Line[] = [{
       "type": "urlLink",
       "unit": {
         "link": "https://www.amazon.co.jp",
+        "space": " ",
         "title": "Amazonのリンク",
         "content": "Amazonのリンク https://www.amazon.co.jp",
         "whole": "[Amazonのリンク https://www.amazon.co.jp]",
@@ -651,6 +700,7 @@ const lines: Line[] = [{
     "indent": 1,
     "start": true,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd289e7838e30000dc9cb6",
@@ -665,6 +715,7 @@ const lines: Line[] = [{
     "indent": 1,
     "start": false,
     "end": true,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd6e581280f00000ab09bc",
@@ -687,6 +738,7 @@ const lines: Line[] = [{
     "indent": 1,
     "start": true,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd6e641280f00000ab09be",
@@ -701,6 +753,7 @@ const lines: Line[] = [{
     "indent": 1,
     "start": false,
     "end": true,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd6e721280f00000ab09bf",
@@ -723,6 +776,7 @@ const lines: Line[] = [{
     "indent": 2,
     "start": true,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd6e911280f00000ab09c1",
@@ -737,6 +791,7 @@ const lines: Line[] = [{
     "indent": 2,
     "start": false,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd6e961280f00000ab09c2",
@@ -751,6 +806,7 @@ const lines: Line[] = [{
     "indent": 2,
     "start": false,
     "end": true,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd6e9a1280f00000ab09c3",
@@ -773,6 +829,7 @@ const lines: Line[] = [{
     "indent": 2,
     "start": true,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dd6eba1280f00000ab09c5",
@@ -787,6 +844,7 @@ const lines: Line[] = [{
     "indent": 2,
     "start": false,
     "end": true,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfadbd1280f00000faf8db",
@@ -833,6 +891,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": true,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfaddc1280f00000faf8df",
@@ -847,6 +906,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": false,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfade41280f00000faf8e0",
@@ -861,6 +921,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": false,
     "end": true,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfadea1280f00000faf8e1",
@@ -891,6 +952,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": true,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfae051280f00000faf8e4",
@@ -905,6 +967,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": false,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfae0b1280f00000faf8e5",
@@ -919,6 +982,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": false,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfae0b1280f00000faf8e6",
@@ -933,6 +997,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": false,
     "end": false,
+    "hasCursor": false,
   },
 }, {
   "id": "61dfae2b1280f00000faf8e7",
@@ -947,6 +1012,7 @@ const lines: Line[] = [{
     "indent": 3,
     "start": false,
     "end": true,
+    "hasCursor": false,
   },
 }, {
   "id": "624de2ed1280f0000050bebd",
@@ -1503,6 +1569,90 @@ const lines: Line[] = [{
     "children": "太字",
   },
 }, {
+  "id": "641e8df61280f00000780bf8",
+  "text": " [[[リンク]入り太字[イドバタニシ.icon]]]",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1679724022,
+  "updated": 1734767936,
+  "section": { "number": 7, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " [[[リンク]入り太字[イドバタニシ.icon]]]",
+      "tag": " ",
+      "content": "[[[リンク]入り太字[イドバタニシ.icon]]]",
+    },
+    "children": {
+      "type": "strong",
+      "unit": {
+        "content": "[リンク]入り太字[イドバタニシ.icon]",
+        "whole": "[[[リンク]入り太字[イドバタニシ.icon]]]",
+      },
+      "children": [
+        {
+          "type": "link",
+          "unit": {
+            "page": "リンク",
+            "content": "リンク",
+            "whole": "[リンク]",
+          },
+          "children": "リンク",
+        },
+        "入り太字",
+        {
+          "type": "icon",
+          "unit": {
+            "page": "イドバタニシ",
+            "size": 1,
+            "content": "イドバタニシ.icon",
+            "whole": "[イドバタニシ.icon]",
+          },
+          "children": "イドバタニシ.icon",
+        },
+      ],
+    },
+  },
+}, {
+  "id": "641e8ddd1280f00000780bf7",
+  "text": " [[[リンク]とアイコンは書き込めるが、[* 文字装飾]は書き込めない]]",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1679723997,
+  "updated": 1734767932,
+  "section": { "number": 7, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole":
+        " [[[リンク]とアイコンは書き込めるが、[* 文字装飾]は書き込めない]]",
+      "tag": " ",
+      "content":
+        "[[[リンク]とアイコンは書き込めるが、[* 文字装飾]は書き込めない]]",
+    },
+    "children": [
+      "[[",
+      {
+        "type": "link",
+        "unit": { "page": "リンク", "content": "リンク", "whole": "[リンク]" },
+        "children": "リンク",
+      },
+      "とアイコンは書き込めるが、",
+      {
+        "type": "deco",
+        "unit": {
+          "whole": "[* 文字装飾]",
+          "content": "文字装飾",
+          "deco": "*",
+          "strong": 1,
+          "italic": false,
+          "strike": false,
+          "underline": false,
+        },
+        "children": "文字装飾",
+      },
+      "は書き込めない]]",
+    ],
+  },
+}, {
   "id": "61fe44d77838e300001888f2",
   "text": "[- 取り消し線]",
   "userId": "60fb0a79f3364000237838e3",
@@ -1575,12 +1725,36 @@ const lines: Line[] = [{
     "children": "インラインコード",
   },
 }, {
+  "id": "676669ad1280f000000d1356",
+  "text": " `\\`をescapeできる`",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767914,
+  "updated": 1734767914,
+  "section": { "number": 7, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " `\\`をescapeできる`",
+      "tag": " ",
+      "content": "`\\`をescapeできる`",
+    },
+    "children": {
+      "type": "code",
+      "unit": {
+        "whole": "`\\`をescapeできる`",
+        "content": "\\`をescapeできる",
+      },
+      "children": "\\`をescapeできる",
+    },
+  },
+}, {
   "id": "624de33e1280f0000050bf08",
   "text": ">引用文",
   "userId": "5ef2bdebb60650001e1280f0",
   "created": 1649271613,
   "updated": 1649271613,
   "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
   "nodes": {
     "type": "quote",
     "unit": { "whole": ">引用文", "tag": ">", "content": "引用文" },
@@ -1593,6 +1767,7 @@ const lines: Line[] = [{
   "created": 1649271613,
   "updated": 1649272895,
   "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
   "nodes": {
     "type": "indent",
     "unit": {
@@ -1623,13 +1798,205 @@ const lines: Line[] = [{
     },
   },
 }, {
+  "id": "641e8dce1280f00000780bf6",
+  "text": " > 中には[リンク]や[$ \\text{数式}]も書けます",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1679723982,
+  "updated": 1679723995,
+  "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " > 中には[リンク]や[$ \\text{数式}]も書けます",
+      "tag": " ",
+      "content": "> 中には[リンク]や[$ \\text{数式}]も書けます",
+    },
+    "children": {
+      "type": "quote",
+      "unit": {
+        "whole": "> 中には[リンク]や[$ \\text{数式}]も書けます",
+        "tag": "> ",
+        "content": "中には[リンク]や[$ \\text{数式}]も書けます",
+      },
+      "children": [
+        "中には",
+        {
+          "type": "link",
+          "unit": {
+            "page": "リンク",
+            "content": "リンク",
+            "whole": "[リンク]",
+          },
+          "children": "リンク",
+        },
+        "や",
+        {
+          "type": "deco-formula",
+          "unit": {
+            "whole": "[$ \\text{数式}]",
+            "content": "$ \\text{数式}",
+            "formula": "\\text{数式}",
+          },
+          "children": "$ \\text{数式}",
+        },
+        "も書けます",
+      ],
+    },
+  },
+}, {
+  "id": "676641c61280f000000d1346",
+  "text": " >\t中に箇条書きを書く",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734754759,
+  "updated": 1734754772,
+  "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " >\t中に箇条書きを書く",
+      "tag": " ",
+      "content": ">\t中に箇条書きを書く",
+    },
+    "children": {
+      "type": "quote",
+      "unit": {
+        "whole": ">\t中に箇条書きを書く",
+        "tag": ">",
+        "content": "\t中に箇条書きを書く",
+      },
+      "children": {
+        "type": "indent",
+        "unit": {
+          "whole": "\t中に箇条書きを書く",
+          "tag": "\t",
+          "content": "中に箇条書きを書く",
+        },
+        "children": "中に箇条書きを書く",
+      },
+    },
+  },
+}, {
+  "id": "676641d31280f000000d1347",
+  "text": " >\t\tタブ or 半角スペース or 全角スペースでインデントできる",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734754772,
+  "updated": 1734755190,
+  "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " >\t\tタブ or 半角スペース or 全角スペースでインデントできる",
+      "tag": " ",
+      "content": ">\t\tタブ or 半角スペース or 全角スペースでインデントできる",
+    },
+    "children": {
+      "type": "quote",
+      "unit": {
+        "whole": ">\t\tタブ or 半角スペース or 全角スペースでインデントできる",
+        "tag": ">",
+        "content": "\t\tタブ or 半角スペース or 全角スペースでインデントできる",
+      },
+      "children": {
+        "type": "indent",
+        "unit": {
+          "whole": "\t\tタブ or 半角スペース or 全角スペースでインデントできる",
+          "tag": "\t\t",
+          "content": "タブ or 半角スペース or 全角スペースでインデントできる",
+        },
+        "children": "タブ or 半角スペース or 全角スペースでインデントできる",
+      },
+    },
+  },
+}, {
+  "id": "676641dc1280f000000d1348",
+  "text": " > \t\t",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734755175,
+  "updated": 1734755177,
+  "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
+  "nodes": {
+    "type": "indent",
+    "unit": { "whole": " > \t\t", "tag": " ", "content": "> \t\t" },
+    "children": {
+      "type": "quote",
+      "unit": { "whole": "> \t\t", "tag": "> ", "content": "\t\t" },
+      "children": {
+        "type": "indent",
+        "unit": { "whole": "\t\t", "tag": "\t\t", "content": "" },
+        "children": "",
+      },
+    },
+  },
+}, {
+  "id": "6766435a1280f000000d1349",
+  "text": " >　　　",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734755178,
+  "updated": 1734755180,
+  "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
+  "nodes": {
+    "type": "indent",
+    "unit": { "whole": " >　　　", "tag": " ", "content": ">　　　" },
+    "children": {
+      "type": "quote",
+      "unit": { "whole": ">　　　", "tag": ">", "content": "　　　" },
+      "children": {
+        "type": "indent",
+        "unit": { "whole": "　　　", "tag": "　　　", "content": "" },
+        "children": "",
+      },
+    },
+  },
+}, {
+  "id": "676666341280f000000d1352",
+  "text": " >  ",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767913,
+  "updated": 1734767913,
+  "section": { "number": 7, "start": false, "end": false },
+  "quoteLine": true,
+  "nodes": {
+    "type": "indent",
+    "unit": { "whole": " >  ", "tag": " ", "content": ">  " },
+    "children": {
+      "type": "quote",
+      "unit": { "whole": ">  ", "tag": "> ", "content": " " },
+      "children": {
+        "type": "indent",
+        "unit": { "whole": " ", "tag": " ", "content": "" },
+        "children": "",
+      },
+    },
+  },
+}, {
   "id": "624de33e1280f0000050bf0a",
   "text": "? Helpfeel",
-  "userId": "5ef2bdebb60650001e1280f0",
+  "userId": "661b6e882a96e9002371b3c2",
   "created": 1649271613,
-  "updated": 1649271613,
+  "updated": 1714902875,
   "section": { "number": 7, "start": false, "end": false },
   "helpfeel": { "prefix": "?", "entry": "Helpfeel" },
+}, {
+  "id": "6637575d71b3c20000e3f965",
+  "text": "\tcss:code.helpfeel",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1714902877,
+  "updated": 1714902887,
+  "section": { "number": 7, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": "\tcss:code.helpfeel",
+      "tag": "\t",
+      "content": "css:code.helpfeel",
+    },
+    "children": "css:code.helpfeel",
+  },
 }, {
   "id": "624de33e1280f0000050bf0b",
   "text": "$ コマンド",
@@ -1638,6 +2005,22 @@ const lines: Line[] = [{
   "updated": 1671920664,
   "section": { "number": 7, "start": false, "end": false },
   "cli": { "prefix": "$", "command": "コマンド" },
+}, {
+  "id": "6637570471b3c20000e3f964",
+  "text": "\tcss: .text.cli(%と同じ)",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1714902788,
+  "updated": 1714902819,
+  "section": { "number": 7, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": "\tcss: .text.cli(%と同じ)",
+      "tag": "\t",
+      "content": "css: .text.cli(%と同じ)",
+    },
+    "children": "css: .text.cli(%と同じ)",
+  },
 }, {
   "id": "624de33e1280f0000050bf0c",
   "text": "% コマンド",
@@ -1648,16 +2031,16 @@ const lines: Line[] = [{
   "cli": { "prefix": "%", "command": "コマンド" },
 }, {
   "id": "624de33e1280f0000050bf0d",
-  "text": "[    ]: [空白記法]",
-  "userId": "5ef2bdebb60650001e1280f0",
+  "text": "[　]: [空白記法]",
+  "userId": "661b6e882a96e9002371b3c2",
   "created": 1649271613,
-  "updated": 1649271632,
+  "updated": 1714902849,
   "section": { "number": 7, "start": false, "end": false },
   "nodes": [
     {
       "type": "blank",
-      "unit": { "content": "    ", "whole": "[    ]" },
-      "children": "    ",
+      "unit": { "content": "　", "whole": "[　]" },
+      "children": "　",
     },
     ": ",
     {
@@ -1670,6 +2053,14 @@ const lines: Line[] = [{
       "children": "空白記法",
     },
   ],
+}, {
+  "id": "6766693c1280f000000d1355",
+  "text": " % コマンド",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767913,
+  "updated": 1734767913,
+  "section": { "number": 7, "start": false, "end": false },
+  "cli": { "prefix": "%", "command": "コマンド" },
 }, {
   "id": "61fe45047838e300001888f7",
   "text": "",
@@ -2635,6 +3026,31 @@ const lines: Line[] = [{
     }],
   },
 }, {
+  "id": "6637543771b3c20000e679fe",
+  "text": " \tあまり使われてない？[bsahd.icon]",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1714902071,
+  "updated": 1714902079,
+  "section": { "number": 8, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " \tあまり使われてない？[bsahd.icon]",
+      "tag": " \t",
+      "content": "あまり使われてない？[bsahd.icon]",
+    },
+    "children": ["あまり使われてない？", {
+      "type": "icon",
+      "unit": {
+        "page": "bsahd",
+        "size": 1,
+        "content": "bsahd.icon",
+        "whole": "[bsahd.icon]",
+      },
+      "children": "bsahd.icon",
+    }],
+  },
+}, {
   "id": "61dd26c07838e300002ff25c",
   "text": " `>`: [> abcABC123あいう]",
   "userId": "60fb0a79f3364000237838e3",
@@ -3252,6 +3668,162 @@ const lines: Line[] = [{
         "whole": "[行内で小さくするUserCSS]",
       },
       "children": "行内で小さくするUserCSS",
+    },
+  },
+}, {
+  "id": "6637563b71b3c20000e3f962",
+  "text": "\t`+!`: [+! abcABC123あいう]",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1714902586,
+  "updated": 1714902613,
+  "section": { "number": 8, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": "\t`+!`: [+! abcABC123あいう]",
+      "tag": "\t",
+      "content": "`+!`: [+! abcABC123あいう]",
+    },
+    "children": [
+      {
+        "type": "code",
+        "unit": { "whole": "`+!`", "content": "+!" },
+        "children": "+!",
+      },
+      ": ",
+      {
+        "type": "deco",
+        "unit": {
+          "whole": "[+! abcABC123あいう]",
+          "content": "abcABC123あいう",
+          "deco": "+!",
+          "strong": 0,
+          "italic": false,
+          "strike": false,
+          "underline": false,
+        },
+        "children": "abcABC123あいう",
+      },
+    ],
+  },
+}, {
+  "id": "6637565771b3c20000e3f963",
+  "text": "\t\t[明朝体記法]",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1714902615,
+  "updated": 1714902618,
+  "section": { "number": 8, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": "\t\t[明朝体記法]",
+      "tag": "\t\t",
+      "content": "[明朝体記法]",
+    },
+    "children": {
+      "type": "link",
+      "unit": {
+        "page": "明朝体記法",
+        "content": "明朝体記法",
+        "whole": "[明朝体記法]",
+      },
+      "children": "明朝体記法",
+    },
+  },
+}, {
+  "id": "66ed230571b3c20000fb24f5",
+  "text": " `+_`:[+_ abcABC123あいう]",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1726817030,
+  "updated": 1726817440,
+  "section": { "number": 8, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " `+_`:[+_ abcABC123あいう]",
+      "tag": " ",
+      "content": "`+_`:[+_ abcABC123あいう]",
+    },
+    "children": [
+      {
+        "type": "code",
+        "unit": { "whole": "`+_`", "content": "+_" },
+        "children": "+_",
+      },
+      ":",
+      {
+        "type": "deco",
+        "unit": {
+          "whole": "[+_ abcABC123あいう]",
+          "content": "abcABC123あいう",
+          "deco": "+_",
+          "strong": 0,
+          "italic": false,
+          "strike": false,
+          "underline": true,
+        },
+        "children": "abcABC123あいう",
+      },
+    ],
+  },
+}, {
+  "id": "66ed234d71b3c20000fb24f8",
+  "text": " \t`_+`:[_+ abcABC123あいう]",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1726817107,
+  "updated": 1726817452,
+  "section": { "number": 8, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " \t`_+`:[_+ abcABC123あいう]",
+      "tag": " \t",
+      "content": "`_+`:[_+ abcABC123あいう]",
+    },
+    "children": [
+      {
+        "type": "code",
+        "unit": { "whole": "`_+`", "content": "_+" },
+        "children": "_+",
+      },
+      ":",
+      {
+        "type": "deco",
+        "unit": {
+          "whole": "[_+ abcABC123あいう]",
+          "content": "abcABC123あいう",
+          "deco": "_+",
+          "strong": 0,
+          "italic": false,
+          "strike": false,
+          "underline": true,
+        },
+        "children": "abcABC123あいう",
+      },
+    ],
+  },
+}, {
+  "id": "66ed231e71b3c20000fb24f7",
+  "text": " \t[文法エラー・警告をIDE風に表示するUserCSS]",
+  "userId": "661b6e882a96e9002371b3c2",
+  "created": 1726817055,
+  "updated": 1726817065,
+  "section": { "number": 8, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": " \t[文法エラー・警告をIDE風に表示するUserCSS]",
+      "tag": " \t",
+      "content": "[文法エラー・警告をIDE風に表示するUserCSS]",
+    },
+    "children": {
+      "type": "link",
+      "unit": {
+        "page": "文法エラー・警告をIDE風に表示するUserCSS",
+        "content": "文法エラー・警告をIDE風に表示するUserCSS",
+        "whole": "[文法エラー・警告をIDE風に表示するUserCSS]",
+      },
+      "children": "文法エラー・警告をIDE風に表示するUserCSS",
     },
   },
 }, {
@@ -4102,6 +4674,7 @@ const lines: Line[] = [{
         "type": "urlLink",
         "unit": {
           "link": "https://scrapbox.io/help-jp/ブラケティング",
+          "space": " ",
           "title": "タイトルつきリンク",
           "content":
             "タイトルつきリンク https://scrapbox.io/help-jp/ブラケティング",
@@ -4410,12 +4983,19 @@ const lines: Line[] = [{
   },
 }, {
   "id": "61df899e7838e300001de3a2",
-  "text": "[イドバタニシ.icon] アイコン",
-  "userId": "60fb0a79f3364000237838e3",
+  "text": "`[イドバタニシ.icon]`[イドバタニシ.icon] アイコン",
+  "userId": "5ef2bdebb60650001e1280f0",
   "created": 1642039710,
-  "updated": 1642039710,
+  "updated": 1734767912,
   "section": { "number": 10, "start": false, "end": false },
   "nodes": [{
+    "type": "code",
+    "unit": {
+      "whole": "`[イドバタニシ.icon]`",
+      "content": "[イドバタニシ.icon]",
+    },
+    "children": "[イドバタニシ.icon]",
+  }, {
     "type": "icon",
     "unit": {
       "page": "イドバタニシ",
@@ -4425,6 +5005,65 @@ const lines: Line[] = [{
     },
     "children": "イドバタニシ.icon",
   }, " アイコン"],
+}, {
+  "id": "676659471280f000000d134d",
+  "text": "`[イドバタニシ.icon*3]`[イドバタニシ.icon*3]繰り返しアイコン",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767912,
+  "updated": 1734767912,
+  "section": { "number": 10, "start": false, "end": false },
+  "nodes": [{
+    "type": "code",
+    "unit": {
+      "whole": "`[イドバタニシ.icon*3]`",
+      "content": "[イドバタニシ.icon*3]",
+    },
+    "children": "[イドバタニシ.icon*3]",
+  }, {
+    "type": "icon",
+    "unit": {
+      "page": "イドバタニシ",
+      "size": 3,
+      "content": "イドバタニシ.icon*3",
+      "whole": "[イドバタニシ.icon*3]",
+    },
+    "children": "イドバタニシ.icon*3",
+  }, "繰り返しアイコン"],
+}, {
+  "id": "6766594f1280f000000d134e",
+  "text":
+    "`[イドバタニシ.iconx3]`[イドバタニシ.iconx3]繰り返しアイコン(`x`も可)",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767912,
+  "updated": 1734767912,
+  "section": { "number": 10, "start": false, "end": false },
+  "nodes": [
+    {
+      "type": "code",
+      "unit": {
+        "whole": "`[イドバタニシ.iconx3]`",
+        "content": "[イドバタニシ.iconx3]",
+      },
+      "children": "[イドバタニシ.iconx3]",
+    },
+    {
+      "type": "icon",
+      "unit": {
+        "page": "イドバタニシ",
+        "size": 3,
+        "content": "イドバタニシ.iconx3",
+        "whole": "[イドバタニシ.iconx3]",
+      },
+      "children": "イドバタニシ.iconx3",
+    },
+    "繰り返しアイコン(",
+    {
+      "type": "code",
+      "unit": { "whole": "`x`", "content": "x" },
+      "children": "x",
+    },
+    "も可)",
+  ],
 }, {
   "id": "61df899e7838e300001de3a3",
   "text": "[イドバタニシ.icon*1000]繰り返しアイコン (最大1000個)",
@@ -5428,11 +6067,11 @@ const lines: Line[] = [{
     },
   },
 }, {
-  "id": "61dd29347838e30000dc9cc8",
+  "id": "6766634e1280f000000d134f",
   "text": " Youtube再生リスト",
   "userId": "5ef2bdebb60650001e1280f0",
-  "created": 1641883957,
-  "updated": 1641902339,
+  "created": 1734767912,
+  "updated": 1734767912,
   "section": { "number": 13, "start": false, "end": false },
   "nodes": {
     "type": "indent",
@@ -5594,8 +6233,50 @@ const lines: Line[] = [{
         "whole": "[https://vimeo.com/121284607]",
         "content": "https://vimeo.com/121284607",
         "videoId": "121284607",
+        "params": {},
       },
       "children": "https://vimeo.com/121284607",
+    },
+  },
+}, {
+  "id": "676663811280f000000d1350",
+  "text": "  なぜかcase insensitive",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767913,
+  "updated": 1734767913,
+  "section": { "number": 13, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": "  なぜかcase insensitive",
+      "tag": "  ",
+      "content": "なぜかcase insensitive",
+    },
+    "children": "なぜかcase insensitive",
+  },
+}, {
+  "id": "676663951280f000000d1351",
+  "text": "   [HTTPS://vimeo.com/121284607]",
+  "userId": "5ef2bdebb60650001e1280f0",
+  "created": 1734767913,
+  "updated": 1734767913,
+  "section": { "number": 13, "start": false, "end": false },
+  "nodes": {
+    "type": "indent",
+    "unit": {
+      "whole": "   [HTTPS://vimeo.com/121284607]",
+      "tag": "   ",
+      "content": "[HTTPS://vimeo.com/121284607]",
+    },
+    "children": {
+      "type": "vimeo",
+      "unit": {
+        "whole": "[HTTPS://vimeo.com/121284607]",
+        "content": "HTTPS://vimeo.com/121284607",
+        "videoId": "121284607",
+        "params": {},
+      },
+      "children": "HTTPS://vimeo.com/121284607",
     },
   },
 }, {
@@ -5933,6 +6614,31 @@ const lines: Line[] = [{
   "created": 1641902636,
   "updated": 1641902636,
   "section": { "number": 15, "start": false, "end": true },
+  "nodes": "",
+}, {
+  "id": "6587e35a5b98c20000a729fd",
+  "text": "[UserCSS.icon]",
+  "userId": "5b5e7121417cf700145b98c2",
+  "created": 1703404378,
+  "updated": 1703404379,
+  "section": { "number": 16, "start": true, "end": false },
+  "nodes": {
+    "type": "icon",
+    "unit": {
+      "page": "UserCSS",
+      "size": 1,
+      "content": "UserCSS.icon",
+      "whole": "[UserCSS.icon]",
+    },
+    "children": "UserCSS.icon",
+  },
+}, {
+  "id": "6587e35a5b98c20000a729fe",
+  "text": "",
+  "userId": "5b5e7121417cf700145b98c2",
+  "created": 1703404379,
+  "updated": 1703404379,
+  "section": { "number": 16, "start": false, "end": true },
   "nodes": "",
 }];
 

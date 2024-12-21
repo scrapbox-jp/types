@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** Spotify埋め込み */
@@ -12,7 +12,7 @@ export interface Spotify {
   children: PlainText;
 }
 
-export interface SpotifyUnit extends Unit {
+export interface SpotifyUnit extends BracketUnit {
   /** Spotify video ID */
   videoId: string;
 

@@ -1,4 +1,4 @@
-import type { Unit } from "./unit.ts";
+import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
 /** タイトル付き音声 */
@@ -18,7 +18,7 @@ export interface AudioLink {
   children: PlainText;
 }
 
-export interface AudioLinkUnit extends Unit {
+export interface AudioLinkUnit extends BracketUnit {
   /** 音声のURL */
   link: string;
 
