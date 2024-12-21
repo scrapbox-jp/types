@@ -23,7 +23,7 @@ export interface Abortable {
  * For `EventTarget`s this is the only way to get the event listeners for the
  * event target. This is useful for debugging and diagnostic purposes.
  *
- * ```js
+ * ```js ignore
  * const { getEventListeners, EventEmitter } = require('events');
  *
  * {
@@ -48,7 +48,7 @@ export declare function getEventListeners(
 ): Function[];
 
 /**
- * ```js
+ * ```js ignore
  * const { on, EventEmitter } = require('events');
  *
  * (async () => {
@@ -77,7 +77,7 @@ export declare function getEventListeners(
  *
  * An `AbortSignal` can be used to cancel waiting on events:
  *
- * ```js
+ * ```js ignore
  * const { on, EventEmitter } = require('events');
  * const ac = new AbortController();
  *
@@ -120,7 +120,7 @@ export declare function on(
  * This method is intentionally generic and works with the web platform [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) interface, which has no special`'error'` event
  * semantics and does not listen to the `'error'` event.
  *
- * ```js
+ * ```js ignore
  * const { once, EventEmitter } = require('events');
  *
  * async function run() {
@@ -152,7 +152,7 @@ export declare function on(
  * '`error'` event itself, then it is treated as any other kind of event without
  * special handling:
  *
- * ```js
+ * ```js ignore
  * const { EventEmitter, once } = require('events');
  *
  * const ee = new EventEmitter();
@@ -168,7 +168,7 @@ export declare function on(
  *
  * An `AbortSignal` can be used to cancel waiting for the event:
  *
- * ```js
+ * ```js ignore
  * const { EventEmitter, once } = require('events');
  *
  * const ee = new EventEmitter();
@@ -228,7 +228,7 @@ interface StaticEventEmitterOptions {
 /**
  * The `EventEmitter` class is defined and exposed by the `events` module:
  *
- * ```js
+ * ```js ignore
  * const EventEmitter = require('events');
  * ```
  *
@@ -253,7 +253,7 @@ export declare class EventEmitter {
    * already been added. Multiple calls passing the same combination of `eventName`and `listener` will result in the `listener` being added, and called, multiple
    * times.
    *
-   * ```js
+   * ```js ignore
    * server.on('connection', (stream) => {
    *   console.log('someone connected!');
    * });
@@ -264,7 +264,7 @@ export declare class EventEmitter {
    * By default, event listeners are invoked in the order they are added. The`emitter.prependListener()` method can be used as an alternative to add the
    * event listener to the beginning of the listeners array.
    *
-   * ```js
+   * ```js ignore
    * const myEE = new EventEmitter();
    * myEE.on('foo', () => console.log('a'));
    * myEE.prependListener('foo', () => console.log('b'));
@@ -282,7 +282,7 @@ export declare class EventEmitter {
    * Adds a **one-time**`listener` function for the event named `eventName`. The
    * next time `eventName` is triggered, this listener is removed and then invoked.
    *
-   * ```js
+   * ```js ignore
    * server.once('connection', (stream) => {
    *   console.log('Ah, we have our first user!');
    * });
@@ -293,7 +293,7 @@ export declare class EventEmitter {
    * By default, event listeners are invoked in the order they are added. The`emitter.prependOnceListener()` method can be used as an alternative to add the
    * event listener to the beginning of the listeners array.
    *
-   * ```js
+   * ```js ignore
    * const myEE = new EventEmitter();
    * myEE.once('foo', () => console.log('a'));
    * myEE.prependOnceListener('foo', () => console.log('b'));
@@ -310,7 +310,7 @@ export declare class EventEmitter {
   /**
    * Removes the specified `listener` from the listener array for the event named`eventName`.
    *
-   * ```js
+   * ```js ignore
    * const callback = (stream) => {
    *   console.log('someone connected!');
    * };
@@ -328,7 +328,7 @@ export declare class EventEmitter {
    * time of emitting are called in order. This implies that any`removeListener()` or `removeAllListeners()` calls _after_ emitting and_before_ the last listener finishes execution will
    * not remove them from`emit()` in progress. Subsequent events behave as expected.
    *
-   * ```js
+   * ```js ignore
    * const myEmitter = new MyEmitter();
    *
    * const callbackA = () => {
@@ -368,7 +368,7 @@ export declare class EventEmitter {
    * event (as in the example below), `removeListener()` will remove the most
    * recently added instance. In the example the `once('ping')`listener is removed:
    *
-   * ```js
+   * ```js ignore
    * const ee = new EventEmitter();
    *
    * function pong() {
@@ -425,7 +425,7 @@ export declare class EventEmitter {
   /**
    * Returns a copy of the array of listeners for the event named `eventName`.
    *
-   * ```js
+   * ```js ignore
    * server.on('connection', (stream) => {
    *   console.log('someone connected!');
    * });
@@ -440,7 +440,7 @@ export declare class EventEmitter {
    * Returns a copy of the array of listeners for the event named `eventName`,
    * including any wrappers (such as those created by `.once()`).
    *
-   * ```js
+   * ```js ignore
    * const emitter = new EventEmitter();
    * emitter.once('log', () => console.log('log once'));
    *
@@ -473,7 +473,7 @@ export declare class EventEmitter {
    *
    * Returns `true` if the event had listeners, `false` otherwise.
    *
-   * ```js
+   * ```js ignore
    * const EventEmitter = require('events');
    * const myEmitter = new EventEmitter();
    *
@@ -520,7 +520,7 @@ export declare class EventEmitter {
    * already been added. Multiple calls passing the same combination of `eventName`and `listener` will result in the `listener` being added, and called, multiple
    * times.
    *
-   * ```js
+   * ```js ignore
    * server.prependListener('connection', (stream) => {
    *   console.log('someone connected!');
    * });
@@ -539,7 +539,7 @@ export declare class EventEmitter {
    * Adds a **one-time**`listener` function for the event named `eventName` to the_beginning_ of the listeners array. The next time `eventName` is triggered, this
    * listener is removed, and then invoked.
    *
-   * ```js
+   * ```js ignore
    * server.prependOnceListener('connection', (stream) => {
    *   console.log('Ah, we have our first user!');
    * });
@@ -558,7 +558,7 @@ export declare class EventEmitter {
    * Returns an array listing the events for which the emitter has registered
    * listeners. The values in the array are strings or `Symbol`s.
    *
-   * ```js
+   * ```js ignore
    * const EventEmitter = require('events');
    * const myEE = new EventEmitter();
    * myEE.on('foo', () => {});
@@ -584,7 +584,7 @@ export declare class EventEmitter {
    * This method is intentionally generic and works with the web platform [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) interface, which has no special`'error'` event
    * semantics and does not listen to the `'error'` event.
    *
-   * ```js
+   * ```js ignore
    * const { once, EventEmitter } = require('events');
    *
    * async function run() {
@@ -616,7 +616,7 @@ export declare class EventEmitter {
    * '`error'` event itself, then it is treated as any other kind of event without
    * special handling:
    *
-   * ```js
+   * ```js ignore
    * const { EventEmitter, once } = require('events');
    *
    * const ee = new EventEmitter();
@@ -632,7 +632,7 @@ export declare class EventEmitter {
    *
    * An `AbortSignal` can be used to cancel waiting for the event:
    *
-   * ```js
+   * ```js ignore
    * const { EventEmitter, once } = require('events');
    *
    * const ee = new EventEmitter();
@@ -668,7 +668,7 @@ export declare class EventEmitter {
     options?: StaticEventEmitterOptions,
   ): Promise<any[]>;
   /**
-   * ```js
+   * ```js ignore
    * const { on, EventEmitter } = require('events');
    *
    * (async () => {
@@ -697,7 +697,7 @@ export declare class EventEmitter {
    *
    * An `AbortSignal` can be used to cancel waiting on events:
    *
-   * ```js
+   * ```js ignore
    * const { on, EventEmitter } = require('events');
    * const ac = new AbortController();
    *
@@ -729,7 +729,7 @@ export declare class EventEmitter {
   /**
    * A class method that returns the number of listeners for the given `eventName`registered on the given `emitter`.
    *
-   * ```js
+   * ```js ignore
    * const { EventEmitter, listenerCount } = require('events');
    * const myEmitter = new EventEmitter();
    * myEmitter.on('event', () => {});
@@ -756,7 +756,7 @@ export declare class EventEmitter {
    * For `EventTarget`s this is the only way to get the event listeners for the
    * event target. This is useful for debugging and diagnostic purposes.
    *
-   * ```js
+   * ```js ignore
    * const { getEventListeners, EventEmitter } = require('events');
    *
    * {
