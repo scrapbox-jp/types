@@ -5,14 +5,15 @@
     "fix": "deno fmt && deno lint --fix && deno test --allow-read --doc --parallel --shuffle && deno publish --dry-run --allow-dirty",
     "check": "deno fmt --check && deno lint && deno test --allow-read --doc --parallel --shuffle && deno publish --dry-run",
     "coverage": "deno test --allow-read=./ --parallel --shuffle --coverage && deno coverage --html",
-    "doc": "deno doc --html rest.ts userscript.ts"
+    "doc": "deno doc --html rest.ts userscript.ts websocket.ts"
   },
   "imports": {
     "@std/testing/types": "jsr:@std/testing@0/types"
   },
   "exports": {
     "./rest": "./rest.ts",
-    "./userscript": "./userscript.ts"
+    "./userscript": "./userscript.ts",
+    "./websocket": "./websocket.ts"
   },
   "compilerOptions": {
     "lib": [

@@ -1,17 +1,14 @@
 {
-  "version": "3",
-  "packages": {
-    "specifiers": {
-      "jsr:@std/testing": "jsr:@std/testing@0.225.3",
-      "jsr:@std/testing@0": "jsr:@std/testing@0.225.3"
-    },
-    "jsr": {
-      "@std/testing@0.225.3": {
-        "integrity": "348c24d0479d44ab3dbb4f26170f242e19f24051b45935d4a9e7ca0ab7e37780"
-      }
+  "version": "4",
+  "specifiers": {
+    "jsr:@std/testing@*": "0.225.3",
+    "jsr:@std/testing@0": "0.225.3"
+  },
+  "jsr": {
+    "@std/testing@0.225.3": {
+      "integrity": "348c24d0479d44ab3dbb4f26170f242e19f24051b45935d4a9e7ca0ab7e37780"
     }
   },
-  "remote": {},
   "workspace": {
     "dependencies": [
       "jsr:@std/testing@0"
