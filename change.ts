@@ -1,4 +1,17 @@
-import type { BasePage, LineId, StringLc } from "./base.ts";
+import type { LineId, StringLc } from "./base.ts";
+import type {
+  ChangeLine,
+  CharsCountChange,
+  DeleteChange,
+  DescriptionsChange,
+  FilesChange,
+  HelpFeelsChange,
+  ImageChange,
+  InfoboxDefinitionChange,
+  InsertChange,
+  LinesCountChange,
+  PinChange,
+} from "./websocket/change.ts";
 
 /** ページの変更内容 */
 export type Change =
@@ -6,30 +19,17 @@ export type Change =
   | UpdateChange
   | DeleteChange
   | LinksChange
+  | ProjectLinksChange
+  | IconsChange
   | DescriptionsChange
   | ImageChange
+  | FilesChange
+  | HelpFeelsChange
+  | InfoboxDefinitionChange
   | TitleChange
+  | LinesCountChange
+  | CharsCountChange
   | PinChange;
-
-/** 行を新規作成する変更 */
-export interface InsertChange {
-  /** このIDが示す行の上に挿入する
-   *
-   * 末尾に挿入するときは`"_end"`を指定する
-   */
-  _insert: LineId;
-
-  /** 挿入する行のデータ */
-  lines: NewLine;
-}
-
-export interface NewLine {
-  /** 新しく挿入する行のID */
-  id: LineId;
-
-  /** 行のテキスト */
-  text: string;
-}
 
 /** 既存の行を書き換える変更 */
 export interface UpdateChange {
@@ -38,23 +38,6 @@ export interface UpdateChange {
 
   /** 行の変更内容 */
   lines: ChangeLine;
-}
-
-export interface ChangeLine {
-  /**変更前の文字列*/
-  origText: string;
-
-  /**変更後の文字列*/
-  text: string;
-}
-
-/** 既存の行を削除する変更 */
-export interface DeleteChange {
-  /** 削除する行のID */
-  _delete: LineId;
-
-  /** 常に `-1` */
-  lines: -1;
 }
 
 /** ページ中のリンクが変更されると発生する */
@@ -66,19 +49,22 @@ export interface LinksChange {
   linksLc: StringLc[];
 }
 
-/** ページのサムネイル本文が変更されると発生する */
-export interface DescriptionsChange {
-  /** 新しいサムネイル本文 */
-  descriptions: string[];
+/** ページ中のproject linksが変更されると発生する */
+export interface ProjectLinksChange {
+  /** 新しいリンク */
+  projectLinks: string[];
+
+  /** 新しいリンク */
+  projectLinksLc: StringLc[];
 }
 
-/** ページのサムネイルが変更されると発生する */
-export interface ImageChange {
-  /** 新しいサムネイルのURL
-   *
-   * サムネイルがなくなったときは`null`になる
-   */
-  image: string | null;
+/** ページ中のiconsが変更されると発生する */
+export interface IconsChange {
+  /** 新しいicons */
+  icons: string[];
+
+  /** 新しいicons */
+  iconsLc: StringLc[];
 }
 
 /** ページのタイトルが変更されると発生する */
@@ -88,9 +74,4 @@ export interface TitleChange {
 
   /** 新しいタイトル */
   titleLc: StringLc;
-}
-
-/** ページのピンの状態が変更されると発生する */
-export interface PinChange {
-  pin: BasePage["pin"];
 }
