@@ -78,7 +78,7 @@ export interface TimeStamp {
    *
    * These include default formats
    */
-  removeAllFormat: () => void;
+  removeAllFormats: () => void;
 }
 
 /** Type of {@linkcode ScrapboxBase.Project} */
