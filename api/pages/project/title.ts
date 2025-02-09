@@ -26,9 +26,6 @@ export interface UserInfo extends User {
   /** user e-mail */
   email: string;
 
-  /** whether the user is a pro user or not */
-  pro: boolean;
-
   /** login provider */
   provider: "google" | "microsoft" | "email";
 
