@@ -14,6 +14,7 @@ import type {
   InsertChange,
 } from "../change.ts";
 import type { User } from "../api/pages/project/title.ts";
+import type { ProjectUpdatesStreamEvent } from "../stream-event.ts";
 
 export interface EmitEventMap {
   "socket.io-request": (
@@ -116,52 +117,6 @@ export interface ProjectUpdatesStreamCommit {
     | [DeletePageChange];
   cursor: null;
   freeze: true;
-}
-
-export type ProjectUpdatesStreamEvent =
-  | PageDeleteEvent
-  | MemberJoinEvent
-  | MemberAddEvent
-  | AdminAddEvent
-  | AdminDeleteEvent
-  | OwnerSetEvent
-  | InvitationResetEvent;
-
-export interface ProjectEvent {
-  id: string;
-  pageId: string;
-  userId: string;
-  projectId: string;
-  created: number;
-  updated: number;
-}
-
-export interface PageDeleteEvent extends ProjectEvent {
-  type: "page.delete";
-  data: {
-    titleLc: string;
-  };
-}
-export interface MemberJoinEvent extends ProjectEvent {
-  type: "member.join";
-}
-export interface MemberAddEvent extends ProjectEvent {
-  type: "member.add";
-}
-export interface InvitationResetEvent extends ProjectEvent {
-  type: "invitation.reset";
-}
-export interface AdminAddEvent extends ProjectEvent {
-  type: "admin.add";
-  targetUserId: UserId;
-}
-export interface AdminDeleteEvent extends ProjectEvent {
-  type: "admin.delete";
-  targetUserId: UserId;
-}
-export interface OwnerSetEvent extends ProjectEvent {
-  type: "owner.set";
-  targetUserId: UserId;
 }
 
 export interface CommitNotification extends PageCommit {
