@@ -9,6 +9,7 @@ export * from "./error.ts";
 
 export * from "./api/commits/project/pageId.ts";
 export * from "./api/embed-text/twitter.ts";
+export * from "./api/embed-text/url.ts";
 export * from "./api/page-data/export/project.ts";
 export * from "./api/page-data/import/project.ts";
 export * from "./api/page-snapshots/project/pageId.ts";
