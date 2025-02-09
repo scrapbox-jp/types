@@ -6,6 +6,7 @@
 export * from "./base.ts";
 export * from "./change.ts";
 export * from "./error.ts";
+export * from "./stream-event.ts";
 
 export * from "./api/commits/project/pageId.ts";
 export * from "./api/embed-text/twitter.ts";
@@ -24,4 +25,5 @@ export * from "./api/project-backup/project/backupId.ts";
 export * from "./api/project-backup/project/list.ts";
 export * from "./api/projects/project.ts";
 export * from "./api/projects.ts";
+export * from "./api/stream/project.ts";
 export * from "./api/users/me.ts";
