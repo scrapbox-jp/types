@@ -29,12 +29,108 @@ export interface UserInfo extends User {
   /** login provider */
   provider: "google" | "microsoft" | "email";
 
+  /** The settings for [Page list filter](https://scrapbox.io/shokai/Page_list_filter) */
+  pageFilters: PageFilter[];
+
+  /** The setting for [Translation mode (beta)](https://scrapbox.io/help-jp/Translation_mode_(beta)) */
+  translation: TranslationSetting;
+
   /** creation time of the account */
   created: UnixTime;
 
   /** update time of the account */
   updated: UnixTime;
 }
+
+/** Setting for [Page list filter](https://scrapbox.io/shokai/Page_list_filter) */
+export interface PageFilter {
+  /** filter type */
+  type: string;
+
+  /** icon name to filter */
+  value: string;
+}
+
+/** Setting for [Translation mode (beta)](https://scrapbox.io/help-jp/Translation_mode_(beta)) */
+export interface TranslationSetting {
+  /** User native language */
+  nativeLanguage: string;
+
+  /** The language that the user wants to translate any language into */
+  to: string;
+}
+
+/**
+ * Available languages you can use in [Translation mode (beta)](https://scrapbox.io/help-jp/Translation_mode_(beta))
+ *
+ * | language               | value   |
+ * | ---------------------- | ------- |
+ * | Arabic                 | `AR`    |
+ * | Bulgarian              | `BG`    |
+ * | Czech                  | `CS`    |
+ * | Danish                 | `DA`    |
+ * | German                 | `DE`    |
+ * | Greek                  | `EL`    |
+ * | English (British)      | `EN-GB` |
+ * | English (American)     | `EN-US` |
+ * | Spanish                | `ES`    |
+ * | Estonian               | `ET`    |
+ * | Finnish                | `FI`    |
+ * | French                 | `FR`    |
+ * | Hungarian              | `HU`    |
+ * | Indonesian             | `ID`    |
+ * | Italian                | `IT`    |
+ * | Japanese               | `JA`    |
+ * | Korean                 | `KO`    |
+ * | Lithuanian             | `LT`    |
+ * | Latvian                | `LV`    |
+ * | Norwegian              | `NB`    |
+ * | Dutch                  | `NL`    |
+ * | Polish                 | `PL`    |
+ * | Portuguese (Brazilian) | `PT-BR` |
+ * | Portuguese (European)  | `PT-PT` |
+ * | Romanian               | `RO`    |
+ * | Russian                | `RU`    |
+ * | Slovak                 | `SK`    |
+ * | Slovenian              | `SL`    |
+ * | Swedish                | `SV`    |
+ * | Turkish                | `TR`    |
+ * | Ukrainian              | `UK`    |
+ * | Chinese (simplified)   | `ZH`    |
+ */
+export type TranslationLanguage =
+  | "AR"
+  | "BG"
+  | "CS"
+  | "DA"
+  | "DE"
+  | "EL"
+  | "EN-GB"
+  | "EN-US"
+  | "ES"
+  | "ET"
+  | "FI"
+  | "FR"
+  | "HU"
+  | "ID"
+  | "IT"
+  | "JA"
+  | "KO"
+  | "LT"
+  | "LV"
+  | "NB"
+  | "NL"
+  | "PL"
+  | "PT-BR"
+  | "PT-PT"
+  | "RO"
+  | "RU"
+  | "SK"
+  | "SL"
+  | "SV"
+  | "TR"
+  | "UK"
+  | "ZH";
 
 /** page information */
 export interface Page extends BasePage {
