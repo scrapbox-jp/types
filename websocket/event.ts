@@ -1,17 +1,19 @@
 import type { CommitId, PageId, ProjectId, UserId } from "../base.ts";
-import type { User } from "../response.ts";
 import type {
   ChangeToPush,
-  DeleteChange,
   DeletePageChange,
-  DescriptionsChange,
   IconsChange,
-  ImageChange,
-  InsertChange,
   LinksChange,
   TitleChange,
   UpdateChange,
 } from "./change.ts";
+import type {
+  DeleteChange,
+  DescriptionsChange,
+  ImageChange,
+  InsertChange,
+} from "../change.ts";
+import type { User } from "../api/pages/project/title.ts";
 
 export interface EmitEventMap {
   "socket.io-request": (
