@@ -28,7 +28,7 @@ export interface EmitEventMap {
         | { error: { name: string; message?: string } },
     ) => void,
   ) => void;
-  "page-leave": (req: { projectId: ProjectId, pageId: PageId }) => void;
+  "page-leave": (req: { projectId: ProjectId; pageId: PageId }) => void;
   cursor: (req: Omit<MoveCursorData, "socketId">) => void;
 }
 
@@ -107,15 +107,15 @@ export interface ProjectUpdatesStreamCommit {
   pageId: PageId;
   userId: UserId;
   changes:
-  | (
-    | InsertChange
-    | UpdateChange
-    | DeleteChange
-    | TitleChange
-    | LinksChange
-    | IconsChange
-  )[]
-  | [DeletePageChange];
+    | (
+      | InsertChange
+      | UpdateChange
+      | DeleteChange
+      | TitleChange
+      | LinksChange
+      | IconsChange
+    )[]
+    | [DeletePageChange];
   cursor: null;
   freeze: true;
 }
@@ -126,8 +126,8 @@ export interface CommitNotification extends PageCommit {
 
 export interface QuickSearchCommit extends Omit<CommitNotification, "changes"> {
   changes:
-  | (TitleChange | LinksChange | DescriptionsChange | ImageChange)[]
-  | [DeletePageChange];
+    | (TitleChange | LinksChange | DescriptionsChange | ImageChange)[]
+    | [DeletePageChange];
 }
 
 export interface QuickSearchReplaceLink {
