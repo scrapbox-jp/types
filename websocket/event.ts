@@ -28,6 +28,7 @@ export interface EmitEventMap {
         | { error: { name: string; message?: string } },
     ) => void,
   ) => void;
+  "page-leave": (req: { projectId: ProjectId; pageId: PageId }) => void;
   cursor: (req: Omit<MoveCursorData, "socketId">) => void;
 }
 
@@ -94,7 +95,7 @@ export interface ListenEventMap {
   "quick-search:commit": (event: QuickSearchCommit) => void;
   "quick-search:replace-link": QuickSearchReplaceLink;
   "infobox:updating": boolean;
-  "infobox:reload": void;
+  "infobox:reload": (event: { updating: boolean }) => void;
   "literal-database:reload": void;
 }
 
