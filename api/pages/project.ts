@@ -1,4 +1,4 @@
-import type { CommitId, PageId, UnixTime, UserId } from "../../base.ts";
+import type { PageId, UnixTime, UserId } from "../../base.ts";
 
 /** the response type of https://scrpabox.io/api/pages/:projectname */
 export interface PageList {
