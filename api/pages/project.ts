@@ -23,9 +23,6 @@ export interface PageSummery {
   /** page id */
   id: PageId;
 
-  /** 最新の編集コミットid */
-  commitId: CommitId;
-
   /** the title of a page */
   title: string;
 
