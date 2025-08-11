@@ -15,11 +15,11 @@ export interface PageList {
   count: number;
 
   /** 取得できたページ情報 */
-  pages: PageSummery[];
+  pages: PageSummary[];
 }
 
-/** a page summery included in {@linkcode PageList} */
-export interface PageSummery {
+/** a page summary included in {@linkcode PageList} */
+export interface PageSummary {
   /** page id */
   id: PageId;
 
