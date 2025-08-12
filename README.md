@@ -4,6 +4,22 @@
 [![npm](https://img.shields.io/npm/v/@cosense/types)](https://www.npmjs.com/package/@cosense/types)
 [![test](https://github.com/scrapbox-jp/types/workflows/ci/badge.svg)](https://github.com/scrapbox-jp/types/actions?query=workflow%3Aci)
 
+> **Node.js & npm Notice**
+>
+> Now also published on **[npm](https://www.npmjs.com/package/@cosense/types)**.
+>
+> Node.js support is **experimental**: I mainly target Deno and browsers, so I
+> don't actively maintain Node.js compatibility. Some tests run, but there may
+> still be runtime or type gaps remaining. Please use it with that
+> understanding.
+>
+> That said, **issues / PRs to improve Node support are very welcome!**
+>
+> If you don't need a public npm package, you can consume the JSR version
+> directly—`npm` via a custom registry in `.npmrc`; `yarn` or `pnpm` need no
+> extra config. See the
+> [JSR docs](https://jsr.io/docs/using-packages#adding-a-package).
+
 Type definitions for [cosense](https://cosen.se)
 
 ## Getting Started
