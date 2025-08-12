@@ -37,7 +37,7 @@ npm install @cosense/types
 
 Import the library:
 
-```ts
+```typescript ignore
 // ESM syntax
 import type { PageList } from "@cosense/types/rest";
 import type { Scrapbox } from "@cosense/types/userscript";
@@ -45,7 +45,7 @@ import type { Scrapbox } from "@cosense/types/userscript";
 
 ### Usage Examples
 
-```ts
+```typescript ignore
 // Example for JSR (Deno)
 import type { PageList } from "jsr:@cosense/types/rest";
 
@@ -60,7 +60,7 @@ const pages: PageList = {
 
 For npm users:
 
-```ts
+```typescript ignore
 // Example for npm (Node.js)
 import type { PageList } from "@cosense/types/rest";
 import type { Scrapbox } from "@cosense/types/userscript";
