@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/v/@cosense/types)](https://www.npmjs.com/package/@cosense/types)
 [![test](https://github.com/scrapbox-jp/types/workflows/ci/badge.svg)](https://github.com/scrapbox-jp/types/actions?query=workflow%3Aci)
 
-> **Node.js & npm Notice**
+> **Node.js & npm Notice (since 0.11.1)**
 >
 > Now also published on **[npm](https://www.npmjs.com/package/@cosense/types)**.
 >
