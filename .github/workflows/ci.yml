@@ -14,5 +14,6 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: ${{ env.DENO_VERSION }}
+          cache: true
       - name: Check all
         run: deno task check
