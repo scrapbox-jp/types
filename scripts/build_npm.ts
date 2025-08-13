@@ -1,3 +1,4 @@
+/// <reference lib="deno.ns" />
 import { build, emptyDir } from "@deno/dnt";
 
 await emptyDir("./npm");
@@ -47,8 +48,7 @@ await build({
   },
   // Don't run type checking during build to avoid Node.js compatibility issues
   typeCheck: false,
-  declaration: "separate",
-  scriptModule: false,
+  declaration: "inline",
   compilerOptions: {
     lib: ["ESNext", "DOM", "DOM.Iterable"],
     target: "ES2023",
