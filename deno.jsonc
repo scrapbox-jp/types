@@ -7,7 +7,12 @@
     "coverage": "deno test --allow-read=./ --parallel --shuffle --coverage && deno coverage --html",
     "doc": "deno doc --html rest.ts userscript.ts websocket.ts",
     "npm:build": "deno run -A scripts/build_npm.ts",
-    "npm:check": "cd npm && npm publish --provenance --access=public --dry-run"
+    "npm:check": {
+      "command": "cd npm && npm publish --provenance --access=public --dry-run",
+      "dependencies": [
+        "npm:build"
+      ]
+    }
   },
   "imports": {
     "@std/testing/types": "jsr:@std/testing@0/types",
