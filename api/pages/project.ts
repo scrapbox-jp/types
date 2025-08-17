@@ -2,19 +2,19 @@ import type { PageId, UnixTime, UserId } from "../../base.ts";
 
 /** the response type of https://scrpabox.io/api/pages/:projectname */
 export interface PageList {
-  /** data取得先のproject名 */
+  /** project name from which data was retrieved */
   projectName: string;
 
-  /** parameterに渡したskipと同じ */
+  /** same as skip passed in parameter */
   skip: number;
 
-  /** parameterに渡したlimitと同じ */
+  /** same as limit passed in parameter */
   limit: number;
 
-  /** projectの全ページ数 (中身のないページを除く) */
+  /** total number of pages in the project (excluding pages with no content) */
   count: number;
 
-  /** 取得できたページ情報 */
+  /** page information that could be retrieved */
   pages: PageSummary[];
 }
 

@@ -1,13 +1,13 @@
 import type { BaseLine, UnixTime } from "../../../base.ts";
 import type { Page, UserInfo } from "../../pages/project/title.ts";
 
-/** exportしたときのページデータ */
+/** page data when exported */
 export interface ExportedPage<hasMetadata extends true | false = false>
   extends Pick<Page, "title" | "updated" | "created" | "id" | "views"> {
-  /** ページ本文
+  /** page content
    *
-   * `hasMetadata === true`のときは行のmetadataが入る
-   * それ以外の場合は行のテキストが入る
+   * when `hasMetadata === true`, line metadata is included
+   * otherwise, line text is included
    */
   lines: hasMetadata extends true ? Omit<BaseLine, "id">[] : string[];
 }
@@ -20,7 +20,7 @@ export interface ExportedData<hasMetadata extends true | false = false> {
   /** project's display name */
   displayName: string;
 
-  /** このデータを生成した日時 (UNIX時刻) */
+  /** date and time when this data was generated (UNIX time) */
   exported: UnixTime;
 
   /** project members */

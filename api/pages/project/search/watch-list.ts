@@ -3,7 +3,7 @@ import type { SearchQuery } from "./query.ts";
 
 /** the response type of /api/projects/search/query and /api/projects/search/watch-list */
 export interface ProjectSearchResult {
-  /** 検索文字列 */
+  /** search string */
   searchQuery: string;
 
   /** 検索語句 */

@@ -1,6 +1,6 @@
-/** Scrapbox REST APIが返すエラーの型
+/** error types returned by Scrapbox REST API
  *
- * `name`はないことがある
+ * `name` may not exist
  */
 export interface ErrorLike {
   /** error name */
@@ -9,35 +9,35 @@ export interface ErrorLike {
   message: string;
 }
 
-/** 参加していないprivate projectに対してAPIを叩いたときに発生するエラー */
+/** error that occurs when calling API on a private project you haven't joined */
 export interface NotMemberError extends ErrorLike {
   /** error name */
   name: "NotMemberError";
 }
 
-/** 指定したprojectやpageが見つからないときに発生するエラー */
+/** error that occurs when the specified project or page is not found */
 export interface NotFoundError extends ErrorLike {
   /** error name */
   name: "NotFoundError";
 }
 
-/** owner/admin権限が不足しているときに発生するエラー */
+/** error that occurs when owner/admin privileges are insufficient */
 export interface NotPrivilegeError extends ErrorLike {
   /** error name */
   name: "NotPrivilegeError";
 }
 
-/** Loginが必要なAPIをloginせずに叩いたときに発生するエラー */
+/** error that occurs when calling an API that requires login without being logged in */
 export interface NotLoggedInError extends ErrorLike {
   /** error name */
   name: "NotLoggedInError";
 
-  /** 詳細情報 */
+  /** detailed information */
   details: {
-    /** 取得しようとしたprojectの名前 */
+    /** name of the project you tried to access */
     project: string;
 
-    /** 使用できるログイン方法 */
+    /** available login methods */
     loginStrategies: (
       | "google"
       | "github"
@@ -50,54 +50,54 @@ export interface NotLoggedInError extends ErrorLike {
   };
 }
 
-/** CSRF tokenが不正なときに発生するエラー */
+/** error that occurs when CSRF token is invalid */
 export interface SessionError extends ErrorLike {
   /** error name */
   name: "SessionError";
 }
 
-/** 不正なURLを渡したときに返ってくるエラー
+/** error returned when passing an invalid URL
  *
- * 実際のresponseではmessageしか返ってこないことに注意
+ * note that in actual response, only message is returned
  */
 export interface InvalidURLError extends ErrorLike {
   /** error name */
   name: "InvalidURLError";
 }
 
-/** URL先ページから正常な応答が返ってこなかったときのエラー */
+/** error when normal response is not returned from the URL destination page */
 export interface BadRequestError extends ErrorLike {
   /** error name */
   name: "BadRequestError";
 }
 
-/** 検索文字列を渡さないと出てくるエラー
+/** error that appears when you don't pass a search string
  *
- * 実際のresponseではmessageしか返ってこないことに注意
+ * note that in actual response, only message is returned
  */
 export interface NoQueryError extends ErrorLike {
   /** error name */
   name: "NoQueryError";
 }
-/** 不正なfollowingIdを渡されたときに発生するエラー
+/** error that occurs when an invalid followingId is passed
  *
- * 実際のresponseではmessageしか返ってこないことに注意
+ * note that in actual response, only message is returned
  */
 export interface InvalidFollowingIdError extends ErrorLike {
   name: "InvalidFollowingIdError";
 }
 
-/** 容量を使い切ったときに発生するerror
+/** error that occurs when capacity is exhausted
  *
- * 実際のresponseではmessageしか返ってこないことに注意
+ * note that in actual response, only message is returned
  */
 export interface FileCapacityError extends ErrorLike {
   name: "FileCapacityError";
 }
 
-/** Google Cloud Storage XML APIのerror
+/** Google Cloud Storage XML API error
  *
- * `message`には[この形式](https://cloud.google.com/storage/docs/xml-api/reference-status#http-status-and-error-codes)のXMLが入る
+ * `message` contains XML in [this format](https://cloud.google.com/storage/docs/xml-api/reference-status#http-status-and-error-codes)
  */
 export interface GCSError extends ErrorLike {
   name: "GCSError";

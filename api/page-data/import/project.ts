@@ -6,7 +6,7 @@ export interface ImportedData<hasMetadata extends true | false = false> {
   pages: hasMetadata extends true ? ImportedPage[] : ImportedLightPage[];
 }
 
-/** メタデータ無しインポート用ページデータ */
+/** import page data without metadata */
 export interface ImportedLightPage {
   /** page's title
    *
@@ -20,18 +20,18 @@ export interface ImportedLightPage {
    */
   lines: string[];
 }
-/** インポート用メタデータ付き行データ */
+/** import line data with metadata */
 export interface ImportedLine {
   /** line text */
   text: string;
 
-  /** 行の最終更新日時 (UNIX時刻) */
+  /** line last update date and time (UNIX time) */
   updated?: UnixTime;
 
-  /** 行の最終作成日時 (UNIX時刻) */
+  /** line last creation date and time (UNIX time) */
   created?: UnixTime;
 }
-/** メタデータ付きインポート用ページデータ */
+/** import page data with metadata */
 export interface ImportedPage {
   /** page's title
    *

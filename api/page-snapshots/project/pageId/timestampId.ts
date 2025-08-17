@@ -15,12 +15,12 @@ export interface PageWithSnapshot extends BasePage {
 
 /** a page snapshot */
 export interface Snapshot {
-  /** snapshotを撮ったときのページタイトル */
+  /** page title when the snapshot was taken */
   title: string;
 
-  /** snapshotの作成日時 */
+  /** snapshot creation date and time */
   created: UnixTime;
 
-  /** snapshotしたページ本文 */
+  /** page content that was snapshotted */
   lines: BaseLine[];
 }
