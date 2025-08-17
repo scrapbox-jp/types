@@ -1,53 +1,53 @@
 import type { BasePage, LineId } from "./base.ts";
 
-/** 行を新規作成する変更 */
+/** change that creates a new line */
 export interface InsertChange {
-  /** このIDが示す行の上に挿入する
+  /** insert above the line indicated by this ID
    *
-   * 末尾に挿入するときは`"_end"`を指定する
+   * specify `"_end"` when inserting at the end
    */
   _insert: LineId;
 
-  /** 挿入する行のデータ */
+  /** data of the line to insert */
   lines: NewLine;
 }
 
 export interface NewLine {
-  /** 新しく挿入する行のID */
+  /** ID of the newly inserted line */
   id: LineId;
 
-  /** 行のテキスト */
+  /** text of the line */
   text: string;
 }
 
 export interface ChangeLine {
-  /**変更前の文字列*/
+  /** string before change */
   origText: string;
 
-  /**変更後の文字列*/
+  /** string after change */
   text: string;
 }
 
-/** 既存の行を削除する変更 */
+/** change that deletes an existing line */
 export interface DeleteChange {
-  /** 削除する行のID */
+  /** ID of the line to delete */
   _delete: LineId;
 
-  /** 常に `-1` */
+  /** always `-1` */
   lines: -1;
 }
 
-/** ページのサムネイル本文が変更されると発生する */
+/** occurs when the thumbnail text of a page is changed */
 export interface DescriptionsChange {
-  /** 新しいサムネイル本文 */
+  /** new thumbnail text */
   descriptions: string[];
 }
 
-/** ページのサムネイルが変更されると発生する */
+/** occurs when the thumbnail of a page is changed */
 export interface ImageChange {
-  /** 新しいサムネイルのURL
+  /** new thumbnail URL
    *
-   * サムネイルがなくなったときは`null`になる
+   * becomes `null` when the thumbnail is removed
    */
   image: string | null;
 }
@@ -87,7 +87,7 @@ export interface CharsCountChange {
   charsCount: number;
 }
 
-/** ページのピンの状態が変更されると発生する */
+/** occurs when the pin status of a page is changed */
 export interface PinChange {
   pin: BasePage["pin"];
 }

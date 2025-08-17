@@ -1,17 +1,17 @@
-/** scrapboxの行のメタデータ */
+/** scrapbox line metadata */
 export interface BaseLine {
   id: LineId;
 
-  /** 行のテキスト */
+  /** text of the line */
   text: string;
 
-  /** 一番最後に行を編集した人のid */
+  /** id of the user who last edited the line */
   userId: UserId;
 
-  /** 行の作成日時 */
+  /** line creation date and time */
   created: UnixTime;
 
-  /** 行の最終更新日時 */
+  /** line last update date and time */
   updated: UnixTime;
 }
 
@@ -19,7 +19,7 @@ export interface BaseLine {
 export interface BasePage {
   id: PageId;
 
-  /** 最新の編集コミットid */
+  /** latest edit commit id */
   commitId: CommitId;
 
   /** the title of a page */
@@ -37,29 +37,29 @@ export interface BasePage {
    */
   descriptions: string[];
 
-  /** ピン留めの状態を表す数値
+  /** numeric value representing pin status
    *
-   * - 0: ピンされてない
-   * - 0以外: ピンされている
+   * - 0: not pinned
+   * - non-zero: pinned
    */
   pin: number;
 
-  /** ページの作成日時 */
+  /** page creation date and time */
   created: UnixTime;
 
-  /** ページの最終更新日時 */
+  /** page last update date and time */
   updated: UnixTime;
 
-  /** Date last visitedに使われる最終アクセス日時 */
+  /** last access date and time used for Date last visited */
   accessed: UnixTime;
 
-  /** Page historyの最終生成日時 */
+  /** last generation date and time of page history */
   snapshotCreated: UnixTime | null;
 
-  /** ページの閲覧回数 */
+  /** page view count */
   views: number;
 
-  /** 被リンク数 */
+  /** number of incoming links */
   linked: number;
 
   /** page rank */

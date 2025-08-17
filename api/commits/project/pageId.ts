@@ -68,47 +68,47 @@ export type Change =
   | CharsCountChange
   | PinChange;
 
-/** 既存の行を書き換える変更 */
+/** change that rewrites an existing line */
 export interface UpdateChange {
-  /** 書き換える行のID */
+  /** ID of the line to rewrite */
   _update: LineId;
 
-  /** 行の変更内容 */
+  /** content changes of the line */
   lines: ChangeLine;
 }
 
-/** ページ中のリンクが変更されると発生する */
+/** occurs when links in a page are changed */
 export interface LinksChange {
-  /** 新しいリンク */
+  /** new links */
   links: string[];
 
-  /** 新しいリンク */
+  /** new links */
   linksLc: StringLc[];
 }
 
-/** ページ中のproject linksが変更されると発生する */
+/** occurs when project links in a page are changed */
 export interface ProjectLinksChange {
-  /** 新しいリンク */
+  /** new links */
   projectLinks: string[];
 
-  /** 新しいリンク */
+  /** new links */
   projectLinksLc: StringLc[];
 }
 
-/** ページ中のiconsが変更されると発生する */
+/** occurs when icons in a page are changed */
 export interface IconsChange {
-  /** 新しいicons */
+  /** new icons */
   icons: string[];
 
-  /** 新しいicons */
+  /** new icons */
   iconsLc: StringLc[];
 }
 
-/** ページのタイトルが変更されると発生する */
+/** occurs when the title of a page is changed */
 export interface TitleChange {
-  /** 新しいタイトル */
+  /** new title */
   title: string;
 
-  /** 新しいタイトル */
+  /** new title */
   titleLc: StringLc;
 }
