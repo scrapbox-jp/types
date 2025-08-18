@@ -1,22 +1,22 @@
 import type { BracketUnit, DoubleBracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
-/** Gyazoから引っ張ってきた画像の画像記法 */
+/** image notation for images pulled from Gyazo */
 export interface Gyazo {
   type: "gyazo";
 
-  /** 構文解析結果 */
+  /** parsing result */
   unit: GyazoUnit;
 
   /** the same as `unit.content` */
   children: PlainText;
 }
 
-/** Gyazoから引っ張ってきた画像の強調画像記法 */
+/** strong image notation for images pulled from Gyazo */
 export interface StrongGyazo {
   type: "strongGyazo";
 
-  /** 構文解析結果 */
+  /** parsing result */
   unit: StrongGyazoUnit;
 
   /** the same as `unit.content` */

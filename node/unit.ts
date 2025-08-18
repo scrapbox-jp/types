@@ -1,17 +1,17 @@
 export interface Unit {
-  /** 記法を取り除いたテキスト */
+  /** text with notation removed */
   content: string;
 
-  /** 記法を取り除いていない生のテキスト */
+  /** raw text without notation removed */
   whole: string;
 }
 
 export interface BracketUnit extends Unit {
-  /** 記法を取り除いていない生のテキスト */
+  /** raw text without notation removed */
   whole: `[${this["content"]}]`;
 }
 
 export interface DoubleBracketUnit extends Unit {
-  /** 記法を取り除いていない生のテキスト */
+  /** raw text without notation removed */
   whole: `[[${this["content"]}]]`;
 }

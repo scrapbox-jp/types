@@ -1,15 +1,15 @@
-/** Scrapboxのページの種類を表す文字列から`"page"`を除いたもの
+/** string representing Scrapbox page types excluding `"page"`
  *
  * | String | Description |
  * | ------ | ----------- |
- * | list | トップページと全文検索結果ページ |
- * | stream | streamページ |
- * | error-page | 何らかのエラーが発生したときに遷移するページ |
- * | new-project-page | 新規project作成ページ |
- * | invitation-page | projectに参加するときに出てくるページ |
- * | invitation-page | projectに参加するときに出てくるページ |
- * | settings-* | ユーザー設定ページ |
- * | project-settings-* | projectの設定ページ |
+ * | list | top page and full-text search results page |
+ * | stream | stream page |
+ * | error-page | page to navigate to when some error occurs |
+ * | new-project-page | new project creation page |
+ * | invitation-page | page that appears when joining a project |
+ * | invitation-page | page that appears when joining a project |
+ * | settings-* | user settings page |
+ * | project-settings-* | project settings page |
  */
 export type PartialLayout =
   | "launch"
@@ -41,5 +41,5 @@ export type PartialLayout =
   | "project-settings-upload-page"
   | "project-settings-billing-page";
 
-/** Scrapboxのページの種類を表す文字列 */
+/** string representing Scrapbox page types */
 export type Layout = "page" | PartialLayout;
