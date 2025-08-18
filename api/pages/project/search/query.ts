@@ -5,7 +5,7 @@ export interface SearchResult {
   /** 検索したprojectの名前 */
   projectName: string;
 
-  /** 検索文字列 */
+  /** search string */
   searchQuery: string;
 
   /** 検索語句 */
@@ -17,7 +17,7 @@ export interface SearchResult {
   /** 検索件数 */
   count: number;
 
-  /** 検索文字列と完全一致するタイトルが見つかったら`true` */
+  /** `true` if a title with exact match to the search string is found */
   existsExactTitleMatch: boolean;
 
   field: "title" | "helpfeels" | "lines";

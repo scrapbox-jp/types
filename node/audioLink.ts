@@ -1,16 +1,16 @@
 import type { BracketUnit } from "./unit.ts";
 import type { PlainText } from "./plainText.ts";
 
-/** タイトル付き音声 */
+/** audio with title */
 export interface AudioLink {
   type: "audioLink";
 
-  /** 構文解析結果 */
+  /** parsing result */
   unit: AudioLinkUnit;
 
-  /** scrapboxにuploadされたfileのID
+  /** ID of file uploaded to scrapbox
    *
-   * このpropertyはscrapboxにuploadされた音声ファイルのときのみ生える
+   * this property only exists for audio files uploaded to scrapbox
    */
   fileId?: string;
 
@@ -19,9 +19,9 @@ export interface AudioLink {
 }
 
 export interface AudioLinkUnit extends BracketUnit {
-  /** 音声のURL */
+  /** audio URL */
   link: string;
 
-  /** 音声のタイトル */
+  /** audio title */
   title: string;
 }

@@ -19,7 +19,7 @@ import type { Spotify } from "./spotify.ts";
 import type { Anchor } from "./anchor.ts";
 import type { GoogleMap } from "./googleMap.ts";
 
-/** 文字装飾記法中に入れられる記法 */
+/** notation that can be put in text decoration notation */
 export type NodeInDecoration =
   | PlainText
   | Formula
@@ -41,36 +41,36 @@ export type NodeInDecoration =
   | Vimeo
   | GoogleMap;
 
-/** 文字装飾記法 */
+/** text decoration notation */
 export interface Decoration {
   type: "deco";
 
-  /** 構文解析結果 */
+  /** parsing result */
   unit: DecorationUnit;
 
-  /** 中に含まれるNode */
+  /** node contained inside */
   children: NodeInDecoration | NodeInDecoration[];
 }
 
 export interface DecorationUnit extends BracketUnit {
-  /** 文字装飾記号 */
+  /** text decoration symbol */
   deco: string;
 
-  /** 強調のレベル
+  /** emphasis level
    *
-   * `*`が一つ増えるごとに1増える
+   * increases by 1 for each additional `*`
    *
-   * 一つもないときは`0`になる
+   * becomes `0` when there are none
    */
   strong: number;
 
-  /** 斜体記号`/`を含むとき`true` */
+  /** `true` when contains italic symbol `/` */
   italic: boolean;
 
-  /** 打ち消し記号`-`を含むとき`true` */
+  /** `true` when contains strikethrough symbol `-` */
   strike: boolean;
 
-  /** 下線記号`_`を含むとき`true` */
+  /** `true` when contains underline symbol `_` */
   underline: boolean;
 
   whole: `[${string} ${string}]`;

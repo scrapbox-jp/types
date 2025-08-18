@@ -1,18 +1,18 @@
 import type { Unit } from "./unit.ts";
 import type { NodeWithoutIndent } from "./node.ts";
 
-/** インデントがある行 */
+/** line with indentation */
 export interface Indent {
   type: "indent";
 
-  /** 構文解析結果 */
+  /** parsing result */
   unit: IndentUnit;
 
-  /** 中に含まれるNodes */
+  /** nodes contained inside */
   children: NodeWithoutIndent | NodeWithoutIndent[];
 }
 
 export interface IndentUnit extends Unit {
-  /** インデントに使われている空白 */
+  /** whitespace used for indentation */
   tag: string;
 }

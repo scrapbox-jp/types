@@ -53,14 +53,14 @@ export interface PopupMenu {
    * @param button button settings
    */
   addButton: (button: {
-    /** ボタンのタイトル
+    /** button title
      *
-     * 関数を設定して、選択範囲が変わるたびにタイトルを変更させる事もできる
+     * you can also set a function to change the title every time the selection changes
      */
     title: string | ((text: string) => string | undefined);
-    /** ボタンをクリックしたときに実行する処理
+    /** process to execute when the button is clicked
      *
-     * @return ここで返した文字列で選択範囲を置換し、popupを閉じる。`undefined`を返した場合は何もしない。popupも閉じない
+     * @return replace the selection with the string returned here and close the popup. If `undefined` is returned, do nothing. The popup will not close either
      */
     onClick: (text: string) => string | undefined;
   }) => void;

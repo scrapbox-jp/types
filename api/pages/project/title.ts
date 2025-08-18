@@ -190,7 +190,7 @@ export interface RelatedPages {
   /** external links */
   projectLinks1hop: ProjectRelatedPage[];
 
-  /** このページを参照しているページorアイコンがあればtrue */
+  /** true if there are pages or icons that reference this page */
   hasBackLinksOrIcons: boolean;
 
   /** 2 hop searchのquery */
@@ -210,7 +210,7 @@ export interface InfoboxResult {
   truncated: boolean;
 }
 
-/** 関連ページのメタデータ */
+/** related page metadata */
 export interface RelatedPage extends
   Pick<
     BasePage,
