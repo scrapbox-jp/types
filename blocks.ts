@@ -8,15 +8,15 @@ export type Line =
       /** section number */
       number: number;
 
-      /** section開始行なら`true` */
+      /** `true` if section start line */
       start: boolean;
 
-      /** section終了行なら`true` */
+      /** `true` if section end line */
       end: boolean;
     };
   }
   & ({
-    /** タイトル行だったときのみ生える */
+    /** appears only when it was a title line */
     title?: true;
   } | {
     codeBlock: CodeBlock;

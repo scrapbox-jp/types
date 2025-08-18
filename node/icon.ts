@@ -32,12 +32,12 @@ export interface StrongIcon {
 }
 
 export interface IconUnit<Strong extends boolean = false> extends Unit {
-  /** アイコンがあるページのタイトル */
+  /** title of the page where the icon is located */
   page: string;
 
-  /** 繰り返し回数
+  /** repeat count
    *
-   * 最大1000
+   * maximum 1000
    */
   size: 1;
 
@@ -49,15 +49,15 @@ export interface IconUnit<Strong extends boolean = false> extends Unit {
 }
 
 export interface ProjectIconUnit<Strong extends boolean> extends Unit {
-  /** アイコンがあるproject name */
+  /** project name where the icon is located */
   project: string;
 
-  /** アイコンがあるページのタイトル */
+  /** title of the page where the icon is located */
   page: string;
 
-  /** 繰り返し回数
+  /** repeat count
    *
-   * 最大1000
+   * maximum 1000
    */
   size: 1;
 
@@ -70,12 +70,12 @@ export interface ProjectIconUnit<Strong extends boolean> extends Unit {
 }
 
 export interface RepeatIconUnit<Strong extends boolean> extends Unit {
-  /** アイコンがあるページのタイトル */
+  /** title of the page where the icon is located */
   page: string;
 
-  /** 繰り返し回数
+  /** repeat count
    *
-   * 最大1000
+   * maximum 1000
    */
   size: number;
 
@@ -88,15 +88,15 @@ export interface RepeatIconUnit<Strong extends boolean> extends Unit {
 }
 
 export interface RepeatProjectIconUnit<Strong extends boolean> extends Unit {
-  /** アイコンがあるproject name */
+  /** project name where the icon is located */
   project: string;
 
-  /** アイコンがあるページのタイトル */
+  /** title of the page where the icon is located */
   page: string;
 
-  /** 繰り返し回数
+  /** repeat count
    *
-   * 最大1000
+   * maximum 1000
    */
   size: number;
 

@@ -20,6 +20,6 @@ export interface SpotifyUnit extends BracketUnit {
 }
 
 export interface SpotifyParams {
-  /** Spotifyのカテゴリ */
+  /** Spotify category */
   type: "track" | "artist" | "playlist" | "album" | "episode" | "show";
 }

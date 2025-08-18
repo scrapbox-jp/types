@@ -8,12 +8,12 @@ export interface Quote {
   /** 構文解析結果 */
   unit: QuoteUnit;
 
-  /** 中に含まれるNodes */
+  /** nodes contained inside */
   children: Node | NodeWithoutIndent[];
 }
 
 export interface QuoteUnit extends Unit {
-  /** 引用記号とそれに続く半角空白を1文字含んだもの */
+  /** quote symbol with following half-width space, containing 1 character */
   tag: ">" | "> ";
   whole: `${">" | "> "}${string}`;
 }
