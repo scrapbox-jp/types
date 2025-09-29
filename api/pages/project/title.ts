@@ -132,8 +132,12 @@ export type TranslationLanguage =
   | "UK"
   | "ZH";
 
-/** page information */
-export interface Page extends BasePage {
+/** page information
+ *
+ * @typeParam HasInfoboxDefinition Whether the page includes the infobox definition
+ */
+export interface Page<HasInfoboxDefinition extends boolean = false>
+  extends BasePage {
   /** APIを叩いたuserの最終アクセス日時。
    *
    * おそらくこの値を元にテロメアの未読/既読の判別をしている
@@ -158,17 +162,19 @@ export interface Page extends BasePage {
   /** ページ内のアイコン */
   icons: string[];
 
+  helpfeels: string[];
+
   /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルのfile id */
   files: string[];
 
-  infoboxDefinition: string[];
+  infoboxDefinition: HasInfoboxDefinition extends true ? [] : string[];
 
   infoboxResult: InfoboxResult[];
 
   infoboxDisableLinks: string[];
 
   /** 関連ページリスト */
-  relatedPages: RelatedPages;
+  relatedPages: RelatedPages<HasInfoboxDefinition>;
 
   /** ページを作成したユーザー */
   user: User;
@@ -178,26 +184,49 @@ export interface Page extends BasePage {
 
   /** ページを編集したユーザーのうち、`user`以外の人 */
   collaborators: User[];
+
+  charsCount: number;
+
+  linesCount: number;
 }
 
-export interface RelatedPages {
+/** A page with infobox definition */
+export type PageWithInfoboxDefinition = Page<true>;
+
+/** A page without infobox definition */
+export type PageWithoutInfoboxDefinition = Page<false>;
+
+export interface RelatedPages<HasInfoboxDefinition extends boolean = false> {
   /** 1 hop links */
-  links1hop: RelatedPage[];
+  links1hop:
+    (HasInfoboxDefinition extends true ? Omit<RelatedPage, "descriptions">
+      : RelatedPage)[];
 
   /** 2 hop links */
-  links2hop: RelatedPage[];
+  links2hop:
+    (HasInfoboxDefinition extends true ? Omit<RelatedPage, "descriptions">
+      : RelatedPage)[];
 
   /** external links */
   projectLinks1hop: ProjectRelatedPage[];
 
-  /** true if there are pages or icons that reference this page */
+  /** `true` if there are pages or icons that reference this page */
   hasBackLinksOrIcons: boolean;
+
+  fatHeadwordsLc: string[];
+
+  hiddenHeadwordsLc: string[];
 
   /** 2 hop searchのquery */
   search: string;
 
   /** 全文検索エンジンの名前 */
   searchBackend: string;
+
+  charsCount: {
+    links1hop: number;
+    links2hop: number;
+  };
 }
 
 export interface InfoboxResult {
