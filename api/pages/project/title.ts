@@ -267,6 +267,8 @@ export interface RelatedPage extends
 
   infoboxDisableLinks: string[];
 
+  charsCount: number;
+
   search?: SearchQuery;
 }
 
