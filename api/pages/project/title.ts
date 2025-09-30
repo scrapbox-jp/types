@@ -167,7 +167,7 @@ export interface Page<HasInfoboxDefinition extends boolean = false>
   /** ページ内に含まれる、scrapbox.ioにアップロードしたファイルのfile id */
   files: string[];
 
-  infoboxDefinition: HasInfoboxDefinition extends true ? [] : string[];
+  infoboxDefinition: HasInfoboxDefinition extends true ? string[] : [];
 
   infoboxResult: InfoboxResult[];
 
