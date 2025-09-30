@@ -269,6 +269,8 @@ export interface RelatedPage extends
 
   charsCount: number;
 
+  lastAccessed: number;
+
   search?: SearchQuery;
 }
 
