@@ -263,9 +263,9 @@ export interface RelatedPage extends
    */
   linksLc: StringLc[];
 
-  infoboxResult: InfoboxResult[];
+  infoboxResult?: InfoboxResult[];
 
-  infoboxDisableLinks: string[];
+  infoboxDisableLinks?: string[];
 
   charsCount: number;
 
