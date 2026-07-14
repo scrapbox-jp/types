@@ -1,31 +1,8 @@
 {
-  "name": "@cosense/types",
-  "version": "0.0.0",
-  "tasks": {
-    "fix": "deno fmt && deno lint --fix && deno test --allow-read --doc --parallel --shuffle && deno publish --dry-run --allow-dirty",
-    "check": "deno fmt --check && deno lint && deno test --allow-read --doc --parallel --shuffle && deno publish --dry-run",
-    "coverage": "deno test --allow-read=./ --parallel --shuffle --coverage && deno coverage --html",
-    "doc": "deno doc --html rest.ts userscript.ts websocket.ts",
-    "npm:build": "deno run -A scripts/build_npm.ts",
-    "npm:check": {
-      "command": "cd npm && npm publish --provenance --access=public --dry-run",
-      "dependencies": [
-        "npm:build"
-      ]
-    }
-  },
-  "imports": {
-    "@std/testing/types": "jsr:@std/testing@0/types",
-    "@deno/dnt": "jsr:@deno/dnt@^0.42.3"
-  },
-  "exports": {
-    "./rest": "./rest.ts",
-    "./userscript": "./userscript.ts",
-    "./websocket": "./websocket.ts"
-  },
   "compilerOptions": {
     "lib": [
       "dom",
+      "dom.asynciterable",
       "dom.iterable",
       "esnext"
     ]
@@ -34,5 +11,29 @@
     "coverage/",
     "docs/",
     "npm/"
-  ]
+  ],
+  "exports": {
+    "./rest": "./rest.ts",
+    "./userscript": "./userscript.ts",
+    "./websocket": "./websocket.ts"
+  },
+  "imports": {
+    "@deno/dnt": "jsr:@deno/dnt@^0.42.3",
+    "@std/testing/types": "jsr:@std/testing@^1.0.19/types"
+  },
+  "name": "@cosense/types",
+  "tasks": {
+    "check": "deno fmt --check && deno lint && deno test --allow-read --doc --parallel --shuffle && deno publish --dry-run",
+    "coverage": "deno test --allow-read=./ --parallel --shuffle --coverage && deno coverage --html",
+    "doc": "deno doc --html rest.ts userscript.ts websocket.ts",
+    "fix": "deno fmt && deno lint --fix && deno test --allow-read --doc --parallel --shuffle && deno publish --dry-run --allow-dirty",
+    "npm:build": "deno run -A scripts/build_npm.ts",
+    "npm:check": {
+      "command": "cd npm && npm publish --provenance --access=public --dry-run",
+      "dependencies": [
+        "npm:build"
+      ]
+    }
+  },
+  "version": "0.0.0"
 }

@@ -2,6 +2,11 @@
 
 type NativeMouseEvent = MouseEvent;
 
+interface StyleMedia {
+  type: string;
+  matchMedium(mediaquery: string): boolean;
+}
+
 // deno-lint-ignore no-namespace
 export namespace React {
   /**
