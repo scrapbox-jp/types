@@ -6,9 +6,11 @@
  * | page:changed | 別のページに遷移した |
  * | layout:changed | 別の種類のページに遷移した |
  * | project:changed | 別のprojectに遷移した |
+ * | infobox:changed | infoboxが更新された |
  */
 export type eventName =
   | "lines:changed"
   | "page:changed"
   | "layout:changed"
-  | "project:changed";
+  | "project:changed"
+  | "infobox:changed";
