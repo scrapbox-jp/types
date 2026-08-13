@@ -177,10 +177,15 @@ export interface Page<HasInfoboxDefinition extends boolean = false>
   relatedPages: RelatedPages<HasInfoboxDefinition>;
 
   /** ページを作成したユーザー */
-  user: User;
+  user: User | null;
 
   /** 最後にページを更新したユーザー */
-  lastUpdateUser: User;
+  lastUpdateUser: User | null;
+
+  /** ページを編集したユーザー */
+  users: {
+    id: UserId;
+  }[];
 
   /** ページを編集したユーザーのうち、`user`以外の人 */
   collaborators: User[];

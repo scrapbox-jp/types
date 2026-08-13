@@ -1,4 +1,4 @@
-import type { PageId, UnixTime, UserId } from "../../base.ts";
+import type { BasePage, UserId } from "../../base.ts";
 
 /** the response type of https://scrpabox.io/api/pages/:projectname */
 export interface PageList {
@@ -19,56 +19,34 @@ export interface PageList {
 }
 
 /** a page summary included in {@linkcode PageList} */
-export interface PageSummary {
-  /** page id */
-  id: PageId;
-
-  /** the title of a page */
-  title: string;
-
-  /** the thumbnail URL of a page if exists
-   *
-   * set to `null` if not exists
-   */
-  image: string | null;
-
-  /** the thumbnail text of a page.
-   *
-   * the maximum number of lines is 5.
-   */
-  descriptions: string[];
-
+export interface PageSummary extends
+  Pick<
+    BasePage,
+    | "id"
+    | "title"
+    | "image"
+    | "descriptions"
+    | "pin"
+    | "created"
+    | "updated"
+    | "accessed"
+    | "views"
+    | "linked"
+  > {
   /** the user who created the page (maybe) */
   user: {
     id: UserId;
-  };
+  } | null;
 
   /** the user who last updated the page (maybe) */
   lastUpdateUser: {
     id: UserId;
-  };
+  } | null;
 
-  /** ピン留めの状態を表す数値
-   *
-   * - 0: ピンされてない
-   * - 0以外: ピンされている
-   */
-  pin: number;
-
-  /** ページの作成日時 */
-  created: UnixTime;
-
-  /** ページの最終更新日時 */
-  updated: UnixTime;
-
-  /** Date last visitedに使われる最終アクセス日時 */
-  accessed: UnixTime;
-
-  /** ページの閲覧回数 */
-  views: number;
-
-  /** 被リンク数 */
-  linked: number;
+  /** the users who edited the page */
+  users: {
+    id: UserId;
+  }[];
 
   /** The total number of lines in the page */
   linesCount: number;
