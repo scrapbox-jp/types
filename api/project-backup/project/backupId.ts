@@ -1,5 +1,5 @@
-import type { BaseLine, StringLc, UnixTime } from "../../../base.ts";
-import type { UserForExport } from "../../page-data/export/project.ts";
+import type { BaseLine, StringLc } from "../../../base.ts";
+import type { ExportDataBase } from "../../page-data/export/project.ts";
 import type { Page } from "../../pages/project/title.ts";
 
 /** page data to be backed up */
@@ -13,19 +13,7 @@ export interface BackupedPage
 }
 
 /** project backup data got from /api/project-backup/:projectname/:backupId.json */
-export interface BackupData {
-  /** project's name */
-  name: string;
-
-  /** project's display name */
-  displayName: string;
-
-  /** date and time when this data was generated (UNIX time) */
-  exported: UnixTime;
-
-  /** project members */
-  users: UserForExport[];
-
+export interface BackupData extends ExportDataBase {
   /** backuped pages */
   pages: BackupedPage[];
 }
