@@ -8,6 +8,14 @@ export interface BaseLine {
   /** id of the user who last edited the line */
   userId: UserId;
 
+  /** user who last edited the line
+   *
+   * exists when the line has user information embedded
+   */
+  user?: {
+    id: UserId;
+  };
+
   /** line creation date and time */
   created: UnixTime;
 

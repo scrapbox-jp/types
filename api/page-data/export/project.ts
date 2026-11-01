@@ -12,8 +12,8 @@ export interface ExportedPage<hasMetadata extends true | false = false>
   lines: hasMetadata extends true ? Omit<BaseLine, "id">[] : string[];
 }
 
-/** JSON data exported from https://scrapbox.io/api/page-data/export/:projectname.json  */
-export interface ExportedData<hasMetadata extends true | false = false> {
+/** base interface for exported data */
+export interface ExportDataBase {
   /** project's name */
   name: string;
 
@@ -25,7 +25,11 @@ export interface ExportedData<hasMetadata extends true | false = false> {
 
   /** project members */
   users: UserForExport[];
+}
 
+/** JSON data exported from https://scrapbox.io/api/page-data/export/:projectname.json  */
+export interface ExportedData<hasMetadata extends true | false = false>
+  extends ExportDataBase {
   /** exported pages */
   pages: ExportedPage<hasMetadata>[];
 }
