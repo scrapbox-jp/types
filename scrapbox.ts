@@ -17,6 +17,12 @@ export interface ScrapboxBase<L extends Layout> extends EventEmitter {
   /** the current page layout */
   get Layout(): L;
   Page: Page<L>;
+
+  /** current user information */
+  User: UserInfoViaUserScript;
+
+  /** AI prompt API */
+  ai: AiViaUserScript;
 }
 
 /** {@linkcode scrapbox}に露出している`PageMenu`の型 */
@@ -40,7 +46,7 @@ export interface ExposedPageMenu {
   addItem: (item: Item) => void;
 
   /** Add a separator to the default Page Menu button */
-  addSeparater: () => void;
+  addSeparator: () => void;
 
   /** remove all custom items from the default Page Menu button */
   removeAllItems: () => void;
@@ -86,8 +92,20 @@ export interface Project {
   /** get the current project name */
   get name(): string;
 
+  /** whether the project is public */
+  get publicVisible(): boolean;
+
+  /** the current project plan */
+  get plan(): string;
+
+  /** additional plans */
+  get additionalPlans(): AdditionalPlans;
+
   /** get the dictionary used for comupletion */
   get pages(): (Candidate<true> | Candidate<false>)[];
+
+  /** Upload a file to the project */
+  upload(file: Blob): Promise<UploadResult>;
 }
 
 /** A current project's pages information for any suggestions */
@@ -131,6 +149,21 @@ export interface Page<T extends Layout> {
   /** get the current page metadata */
   get metadata(): T extends "page" ? PageMetadata : null;
 
+  /** get the page creation date */
+  get created(): T extends "page" ? Date : null;
+
+  /** get the page last update date */
+  get updated(): T extends "page" ? Date : null;
+
+  /** get the current cursor position */
+  get cursor(): T extends "page" ? CursorPosition : null;
+
+  /** get the current text selection range */
+  get selection(): T extends "page" ? SelectionRange : null;
+
+  /** infobox data */
+  infobox: InfoboxViaUserScript;
+
   /** Insert `text` before the `line`-th line.
    *
    * This edit can be undone by the user.
@@ -139,8 +172,13 @@ export interface Page<T extends Layout> {
    *
    * @param text text to insert
    * @param line line number to insert. `undefined` treats as `0`
+   * @param options additional options
    */
-  insertLine(text: string, line?: number): void;
+  insertLine(
+    text: string,
+    line?: number,
+    options?: LineEditOptions,
+  ): void;
 
   /** Replace the `line`-th line with `text`.
    *
@@ -150,14 +188,107 @@ export interface Page<T extends Layout> {
    *
    * @param text text to replace
    * @param line line number to replace
+   * @param options additional options
    */
-  updateLine(text: string, line: number): void;
+  updateLine(
+    text: string,
+    line: number,
+    options?: LineEditOptions,
+  ): void;
 
   /** Return a promise that resolves when all page edits are saved */
   waitForSave: () => Promise<void>;
 
   /** Go to `title` page */
   show: (title: string) => Promise<void>;
+}
+
+/** infobox data accessible via UserScript */
+export interface InfoboxViaUserScript {
+  /** available infobox titles */
+  get titles(): string[] | undefined;
+  /** get infobox data by title */
+  get(title: string): Record<string, string> | undefined;
+}
+
+/** additional project plans information */
+export interface AdditionalPlans {
+  /** KCS plan enabled */
+  kcs?: boolean;
+  /** Enterprise plan enabled */
+  enterprise?: boolean;
+  /** Helpfeel plan enabled */
+  helpfeel?: boolean;
+}
+
+/** result of uploading a file */
+export interface UploadResult {
+  /** formatted text to insert into the page */
+  text: string;
+  /** URL of the uploaded file */
+  url: string;
+  /** warnings during upload */
+  warnings: string[];
+}
+
+/** cursor position on the current page */
+export interface CursorPosition extends Position {
+  /** whether the editor has focus */
+  hasFocus: boolean;
+}
+
+/** position in {@linkcode SelectionRange} */
+export interface Position {
+  /** line number */
+  line: number;
+  /** character position within the line */
+  char: number;
+}
+
+/** text selection range on the current page */
+export interface SelectionRange {
+  /** selection start position */
+  start: Position;
+  /** selection end position */
+  end: Position;
+}
+
+/** options for inserting or updating a line */
+export interface LineEditOptions {
+  /** whether to skip updating infobox */
+  noInfoboxUpdate?: boolean;
+}
+
+/** current user information exposed via UserScript */
+export interface UserInfoViaUserScript {
+  /** current user display name */
+  get name(): string | undefined;
+  /** current user email */
+  get email(): string | undefined;
+  /** current user UI language */
+  get uiLanguage(): string;
+}
+
+/** AI prompt API exposed via UserScript */
+export interface AiViaUserScript {
+  /** send a prompt to the AI API
+   *
+   * @param options prompt options
+   */
+  prompt(options: AIPromptOptions): Promise<AIPromptResult>;
+}
+
+/** result of an AI prompt */
+export type AIPromptResult =
+  | { data: string }
+  | { name: string; message: string };
+
+/** options for {@linkcode AiViaUserScript.prompt} */
+export interface AIPromptOptions {
+  /** system prompt */
+  system?: string;
+  /** user prompt */
+  user?: string;
 }
 
 /** A current page metadata that {@linkcode Page.metadata} returns */
